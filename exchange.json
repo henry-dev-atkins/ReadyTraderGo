@@ -39,6 +39,7 @@
     "Data_Trader": "secretZERO",
     "Default_Trader": "secret2",
     "NotUs_Trader": "secret3",
-    "Arb_Trader": "secret4"
+    "Arb_Trader":"secret4",
+    "Jamie_Trader":"secret5"
   }
 }
