@@ -57,8 +57,8 @@ class AutoTrader(BaseAutoTrader):
         #[[INSTRUMENT, ask5-bestAsk, vol, ask4-bestAsk, vol, ask3-bestAsk, vol, ask2-bestAsk, vol, bestAsk, vol, MIDPOINT, Vol=0, bestBid, vol, bid2-bestBid, vol, , bid3-bestBid, vol, , bid4-bestBid, vol, , bid5-bestBid, vol], [...]]
         self.fileStore = np.zeros(shape=(21)) #[[12 Dim like ^], [12Dim like ^], ... [Each 12dim is for a snapshot]]
         self.numberOfFutureOrderBookMesseges = 0
-        self.training_data = []
-        self.test_data = []
+        self.test_data = np.zeros(shape=(21))
+        self.training_data = np.zeros(shape=(21))
     
     def CreateDataArray(self, instrument, bid_prices, b_vol, ask_prices, a_vol):
         """
@@ -113,11 +113,21 @@ class AutoTrader(BaseAutoTrader):
         if instrument == Instrument.FUTURE:self.numberOfFutureOrderBookMesseges += 1
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,sequence_number)
         self.ETFData.append([ask_prices, ask_volumes, bid_prices, bid_volumes]) if instrument == Instrument.ETF else self.FutureData.append([ask_prices, ask_volumes, bid_prices, bid_volumes])
-        
+
         data = self.CreateDataArray(instrument, bid_prices, bid_volumes, ask_prices, ask_volumes)
-        
-        print("Data Shape: ", self.fileStore.shape)
+
+        if self.numberOfFutureOrderBookMesseges % 100 == 0:
+            for idx, OrderBook in enumerate(self.fileStore[-100:]):
+                if OrderBook[-1] == 0: #if OrderBook is for ETF
+                    self.test_data = np.vstack((self.test_data, OrderBook))
+                    self.training_data = np.vstack((self.training_data, self.fileStore[-100+idx-10:-100+idx]))
+                    with open('test_data.npy', 'wb') as f:
+                        np.save(f, self.test_data)
+                    with open('training_data.npy', 'wb') as f:
+                        np.save(f, self.training_data)
+
         """if self.fileStore[-1] == 1 and self.numberOfFutureOrderBookMesseges >= 11: #if Future
+            print("Data Shape: ", self.fileStore.shape)
             self.training_data.append(self.fileStore[-1])
             train = []
             for val in self.fileStore[-11:-1]:
