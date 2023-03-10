@@ -2350,3 +2350,52 @@ ConnectionResetError: [WinError 10054] An existing connection was forcibly close
 2023-03-10 18:18:23,613 [INFO   ] [COMPETITOR] 'TraderThree' closing execution channel at time=46.281000
 2023-03-10 18:18:23,613 [INFO   ] [CONNECTION] fd=384 connection lost
 2023-03-10 18:18:57,349 [INFO   ] [COMPETITOR] Unhedged lots timer expired for TraderThree at etf=10 fut=110 rel=120
+2023-03-10 18:36:58,926 [INFO   ] [APP] exchange started with arguments={rtg.py, run, ADV1.py, ADV2.py, ADV3.py, ADV4.py, autotraderH.py}
+2023-03-10 18:36:58,926 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"TraderZERO":"secretZERO","TraderOne":"secret1","TraderTwo":"secret2","TraderThree":"secret3","TraderFour":"secret4"}}
+2023-03-10 18:36:58,927 [INFO   ] [CONTROLLER] starting the match
+2023-03-10 18:36:58,927 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-10 18:36:58,928 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-10 18:36:58,952 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-10 18:36:58,953 [INFO   ] [INFORMATION] information channel established
+2023-03-10 18:36:58,990 [INFO   ] [CONNECTION] fd=20 connection established: peer=127.0.0.1:50150
+2023-03-10 18:36:59,034 [INFO   ] [EXECUTION] fd=20 'TraderOne' is ready!
+2023-03-10 18:36:59,035 [INFO   ] [CONNECTION] fd=25 connection established: peer=127.0.0.1:50151
+2023-03-10 18:36:59,035 [INFO   ] [EXECUTION] fd=25 'TraderTwo' is ready!
+2023-03-10 18:36:59,035 [INFO   ] [CONNECTION] fd=26 connection established: peer=127.0.0.1:50152
+2023-03-10 18:36:59,035 [INFO   ] [EXECUTION] fd=26 'TraderFour' is ready!
+2023-03-10 18:36:59,036 [INFO   ] [CONNECTION] fd=27 connection established: peer=127.0.0.1:50153
+2023-03-10 18:36:59,058 [INFO   ] [EXECUTION] fd=27 'TraderThree' is ready!
+2023-03-10 18:36:59,060 [INFO   ] [CONNECTION] fd=28 connection established: peer=127.0.0.1:50154
+2023-03-10 18:36:59,077 [INFO   ] [EXECUTION] fd=28 'TraderZERO' is ready!
+2023-03-10 18:37:00,142 [INFO   ] [CONNECTION] fd=29 connection established: peer=127.0.0.1:50155
+2023-03-10 18:37:04,034 [INFO   ] [CONTROLLER] market open
+2023-03-10 18:37:12,257 [ERROR  ] [CONNECTION] fd=26 connection lost:
+Traceback (most recent call last):
+  File "/Users/georgescriven/anaconda3/envs/Ready_Trader_Go_env/lib/python3.11/asyncio/selector_events.py", line 987, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [Errno 54] Connection reset by peer
+2023-03-10 18:37:12,259 [WARNING] [EXECUTION] fd=26 lost connection to auto-trader:
+Traceback (most recent call last):
+  File "/Users/georgescriven/anaconda3/envs/Ready_Trader_Go_env/lib/python3.11/asyncio/selector_events.py", line 987, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [Errno 54] Connection reset by peer
+2023-03-10 18:37:23,313 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=19.278087 client_order_id=3 message='price is not a multiple of tick size'
+2023-03-10 18:37:24,039 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=20.004710 client_order_id=6 message='price is not a multiple of tick size'
+2023-03-10 18:37:24,311 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=20.276409 client_order_id=9 message='price is not a multiple of tick size'
+2023-03-10 18:37:24,520 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=20.485194 client_order_id=12 message='price is not a multiple of tick size'
+2023-03-10 18:37:25,288 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=21.253649 client_order_id=15 message='price is not a multiple of tick size'
+2023-03-10 18:37:26,010 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=21.975506 client_order_id=18 message='price is not a multiple of tick size'
+2023-03-10 18:37:26,543 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=22.508240 client_order_id=21 message='price is not a multiple of tick size'
+2023-03-10 18:37:26,773 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=22.738289 client_order_id=24 message='price is not a multiple of tick size'
+2023-03-10 18:37:27,075 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=23.040891 client_order_id=27 message='price is not a multiple of tick size'
+2023-03-10 18:37:34,086 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=30.051445 client_order_id=46 message='price is not a multiple of tick size'
+2023-03-10 18:37:43,133 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=39.098668 client_order_id=73 message='price is not a multiple of tick size'
+2023-03-10 18:37:49,082 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=45.047425 client_order_id=102 message='price is not a multiple of tick size'
+2023-03-10 18:37:49,329 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=45.294179 client_order_id=105 message='price is not a multiple of tick size'
+2023-03-10 18:37:49,503 [INFO   ] [COMPETITOR] 'TraderThree' sent error message: time=45.467825 client_order_id=108 message='future position limit breached'
+2023-03-10 18:37:49,503 [INFO   ] [COMPETITOR] 'TraderThree' closing execution channel at time=45.467825
+2023-03-10 18:37:49,503 [INFO   ] [CONNECTION] fd=27 connection lost
+2023-03-10 18:38:09,296 [INFO   ] [COMPETITOR] Unhedged lots timer expired for TraderFour at etf=7 fut=-47 rel=-40
+2023-03-10 18:38:24,040 [INFO   ] [COMPETITOR] Unhedged lots timer expired for TraderThree at etf=22 fut=108 rel=130
