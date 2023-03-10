@@ -36,10 +36,9 @@
     "PositionLimit": 100
   },
   "Traders": {
-    "TraderZERO": "secretZERO",
-    "TraderOne": "secret1",
-    "TraderTwo": "secret2",
-    "TraderThree": "secret3",
-    "TraderFour": "secret4"
+    "Data_Trader": "secretZERO",
+    "Default_Trader": "secret2",
+    "NotUs_Trader": "secret3",
+    "Arb_Trader": "secret4"
   }
 }

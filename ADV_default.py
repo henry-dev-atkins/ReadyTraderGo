@@ -47,6 +47,9 @@ class AutoTrader(BaseAutoTrader):
         self.bids = set()
         self.asks = set()
         self.ask_id = self.ask_price = self.bid_id = self.bid_price = self.position = 0
+        self.data = [] # bids, bid vol, ask, ask vol
+        self.last_best_bid = 0
+        self.last_best_ask = 0
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -79,7 +82,16 @@ class AutoTrader(BaseAutoTrader):
         """
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
+        #Default
         if instrument == Instrument.FUTURE:
+            self.NewBid = bid_prices[0] if bid_prices[0] != 0 else 0
+            self.LastBid = self.NewBid
+            self.LastLastBid = self.LastBid
+            
+            if abs(self.LastBid - self.LastLastBid) < abs(self.NewBid - self.LastBid) and self.bid_id == 0 and new_bid_price != 0 and self.position < POSITION_LIMIT:
+                self.send_insert_order(self.bid_id, Side.BUY, new_bid_price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+
+
             price_adjustment = - (self.position // LOT_SIZE) * TICK_SIZE_IN_CENTS
             new_bid_price = bid_prices[0] + price_adjustment if bid_prices[0] != 0 else 0
             new_ask_price = ask_prices[0] + price_adjustment if ask_prices[0] != 0 else 0
@@ -102,6 +114,7 @@ class AutoTrader(BaseAutoTrader):
                 self.ask_price = new_ask_price
                 self.send_insert_order(self.ask_id, Side.SELL, new_ask_price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
                 self.asks.add(self.ask_id)
+            #self.logger.info(self.data)
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
         """Called when one of your orders is filled, partially or fully.
@@ -155,3 +168,4 @@ class AutoTrader(BaseAutoTrader):
         """
         self.logger.info("received trade ticks for instrument %d with sequence number %d", instrument,
                          sequence_number)
+        
