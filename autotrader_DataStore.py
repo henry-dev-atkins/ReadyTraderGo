@@ -116,11 +116,13 @@ class AutoTrader(BaseAutoTrader):
 
         data = self.CreateDataArray(instrument, bid_prices, bid_volumes, ask_prices, ask_volumes)
 
-        if self.numberOfFutureOrderBookMesseges % 100 == 0:
-            for idx, OrderBook in enumerate(self.fileStore[-100:]):
+        if self.numberOfFutureOrderBookMesseges % 10 == 0:
+            for idx, OrderBook in enumerate(self.fileStore[-10:]):
                 if OrderBook[-1] == 0: #if OrderBook is for ETF
                     self.test_data = np.vstack((self.test_data, OrderBook))
-                    self.training_data = np.vstack((self.training_data, self.fileStore[-100+idx-10:-100+idx]))
+                    self.training_data = np.vstack((self.training_data, np.array(self.fileStore[-10+idx-10:-10+idx])))
+                    #print(self.training_data)
+                    #print(self.fileStore[-10+idx-10:-10+idx].shape)
                     with open('test_data.npy', 'wb') as f:
                         np.save(f, self.test_data)
                     with open('training_data.npy', 'wb') as f:
