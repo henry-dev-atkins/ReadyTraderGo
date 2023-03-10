@@ -190,3 +190,159 @@ ConnectionResetError: [WinError 10054] An existing connection was forcibly close
 2023-03-10 18:07:11,066 [INFO   ] [CONNECTION] fd=824 connection lost
 2023-03-10 18:07:11,067 [INFO   ] [APP] closing event loop
 2023-03-10 18:07:11,067 [INFO   ] [RECEIVER] connection lost
+2023-03-10 18:13:14,061 [INFO   ] [APP] ADV4 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:13:14,063 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderFour","Secret":"secret4"}
+2023-03-10 18:13:14,068 [INFO   ] [CONNECTION] fd=596 connection established: peer=127.0.0.1:12345
+2023-03-10 18:13:14,075 [INFO   ] [CONNECTION] fd=596 connection lost
+2023-03-10 18:13:14,075 [INFO   ] [APP] closing event loop
+2023-03-10 18:13:14,076 [INFO   ] [RECEIVER] connection lost
+2023-03-10 18:14:27,227 [INFO   ] [APP] ADV4 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:14:27,227 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderFour","Secret":"secret4"}
+2023-03-10 18:14:27,232 [INFO   ] [CONNECTION] fd=960 connection established: peer=127.0.0.1:12345
+2023-03-10 18:14:27,233 [INFO   ] [CONNECTION] fd=960 connection lost
+2023-03-10 18:14:27,233 [INFO   ] [APP] closing event loop
+2023-03-10 18:14:27,233 [INFO   ] [RECEIVER] connection lost
+2023-03-10 18:16:35,590 [INFO   ] [APP] ADV4 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:16:35,590 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderFour","Secret":"secret4"}
+2023-03-10 18:16:35,596 [INFO   ] [CONNECTION] fd=944 connection established: peer=127.0.0.1:12345
+2023-03-10 18:16:35,597 [INFO   ] [CONNECTION] fd=944 connection lost
+2023-03-10 18:16:35,598 [INFO   ] [APP] closing event loop
+2023-03-10 18:16:35,598 [INFO   ] [RECEIVER] connection lost
+2023-03-10 18:17:32,325 [INFO   ] [APP] ADV4 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:17:32,326 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderFour","Secret":"secret4"}
+2023-03-10 18:17:32,330 [INFO   ] [CONNECTION] fd=392 connection established: peer=127.0.0.1:12345
+2023-03-10 18:17:37,336 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 1
+2023-03-10 18:17:37,336 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 1
+2023-03-10 18:17:37,604 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 2
+2023-03-10 18:17:37,604 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 2
+2023-03-10 18:17:37,604 [INFO   ] [TRADER] received order status for order 1 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:37,604 [INFO   ] [TRADER] received hedge filled for order 2 with average price 0 and volume 0
+2023-03-10 18:17:37,605 [INFO   ] [TRADER] received order status for order 3 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:37,605 [INFO   ] [TRADER] received hedge filled for order 4 with average price 0 and volume 0
+2023-03-10 18:17:37,884 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 3
+2023-03-10 18:17:37,885 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 3
+2023-03-10 18:17:38,061 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 4
+2023-03-10 18:17:38,061 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 4
+2023-03-10 18:17:38,135 [INFO   ] [TRADER] received order filled for order 3 with price 147600 and volume 10
+2023-03-10 18:17:38,135 [INFO   ] [TRADER] received order status for order 3 with fill volume 10 remaining 0 and fees -148
+2023-03-10 18:17:38,135 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 2
+2023-03-10 18:17:38,135 [INFO   ] [TRADER] received hedge filled for order 5 with average price 147100 and volume 10
+2023-03-10 18:17:38,308 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 5
+2023-03-10 18:17:38,308 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 5
+2023-03-10 18:17:38,309 [INFO   ] [TRADER] received order status for order 6 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:38,310 [INFO   ] [TRADER] received hedge filled for order 7 with average price 0 and volume 0
+2023-03-10 18:17:38,310 [INFO   ] [TRADER] received order filled for order 6 with price 147100 and volume 10
+2023-03-10 18:17:38,310 [INFO   ] [TRADER] received order status for order 6 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:17:38,315 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 3
+2023-03-10 18:17:38,315 [INFO   ] [TRADER] received trade ticks for instrument 0 with sequence number 2
+2023-03-10 18:17:38,315 [INFO   ] [TRADER] received hedge filled for order 8 with average price 147300 and volume 10
+2023-03-10 18:17:38,408 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 4
+2023-03-10 18:17:38,590 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 6
+2023-03-10 18:17:38,590 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 6
+2023-03-10 18:17:38,593 [INFO   ] [TRADER] received order status for order 9 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:38,593 [INFO   ] [TRADER] received hedge filled for order 10 with average price 0 and volume 0
+2023-03-10 18:17:38,828 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 7
+2023-03-10 18:17:38,828 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 7
+2023-03-10 18:17:38,829 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 5
+2023-03-10 18:17:39,059 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 8
+2023-03-10 18:17:39,059 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 8
+2023-03-10 18:17:39,063 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 6
+2023-03-10 18:17:39,403 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 9
+2023-03-10 18:17:39,403 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 9
+2023-03-10 18:17:39,413 [INFO   ] [TRADER] received trade ticks for instrument 0 with sequence number 3
+2023-03-10 18:17:39,415 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 7
+2023-03-10 18:17:39,517 [INFO   ] [TRADER] received trade ticks for instrument 0 with sequence number 4
+2023-03-10 18:17:39,592 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 10
+2023-03-10 18:17:39,592 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 10
+2023-03-10 18:17:39,828 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 11
+2023-03-10 18:17:39,828 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 11
+2023-03-10 18:17:39,829 [INFO   ] [TRADER] received order filled for order 1 with price 146400 and volume 10
+2023-03-10 18:17:39,829 [INFO   ] [TRADER] received order status for order 1 with fill volume 10 remaining 0 and fees -146
+2023-03-10 18:17:39,830 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 8
+2023-03-10 18:17:39,830 [INFO   ] [TRADER] received hedge filled for order 11 with average price 146800 and volume 10
+2023-03-10 18:17:40,124 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 12
+2023-03-10 18:17:40,124 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 12
+2023-03-10 18:17:40,124 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 9
+2023-03-10 18:17:40,124 [INFO   ] [TRADER] received order status for order 12 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:40,124 [INFO   ] [TRADER] received hedge filled for order 13 with average price 0 and volume 0
+2023-03-10 18:17:40,386 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 13
+2023-03-10 18:17:40,386 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 13
+2023-03-10 18:17:40,387 [INFO   ] [TRADER] received order filled for order 12 with price 146900 and volume 10
+2023-03-10 18:17:40,387 [INFO   ] [TRADER] received order status for order 12 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:17:40,387 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 10
+2023-03-10 18:17:40,387 [INFO   ] [TRADER] received hedge filled for order 14 with average price 146800 and volume 10
+2023-03-10 18:17:40,611 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 14
+2023-03-10 18:17:40,612 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 14
+2023-03-10 18:17:40,612 [INFO   ] [TRADER] received order status for order 15 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:40,612 [INFO   ] [TRADER] received hedge filled for order 16 with average price 0 and volume 0
+2023-03-10 18:17:40,798 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 15
+2023-03-10 18:17:40,798 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 15
+2023-03-10 18:17:40,799 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 11
+2023-03-10 18:17:41,001 [INFO   ] [TRADER] received order filled for order 15 with price 146900 and volume 7
+2023-03-10 18:17:41,001 [INFO   ] [TRADER] received order status for order 15 with fill volume 7 remaining 3 and fees -103
+2023-03-10 18:17:41,002 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 12
+2023-03-10 18:17:41,002 [INFO   ] [TRADER] received hedge filled for order 17 with average price 146800 and volume 7
+2023-03-10 18:17:41,048 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 16
+2023-03-10 18:17:41,048 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 16
+2023-03-10 18:17:41,332 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 17
+2023-03-10 18:17:41,332 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 17
+2023-03-10 18:17:41,631 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 18
+2023-03-10 18:17:41,631 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 18
+2023-03-10 18:17:41,791 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 19
+2023-03-10 18:17:41,791 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 19
+2023-03-10 18:17:41,855 [INFO   ] [TRADER] received order filled for order 15 with price 146900 and volume 3
+2023-03-10 18:17:41,856 [INFO   ] [TRADER] received order status for order 15 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:17:41,856 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 13
+2023-03-10 18:17:41,856 [INFO   ] [TRADER] received hedge filled for order 18 with average price 146800 and volume 3
+2023-03-10 18:17:42,123 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 20
+2023-03-10 18:17:42,123 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 20
+2023-03-10 18:17:42,124 [INFO   ] [TRADER] received order status for order 19 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:42,124 [INFO   ] [TRADER] received hedge filled for order 20 with average price 0 and volume 0
+2023-03-10 18:17:42,355 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 21
+2023-03-10 18:17:42,355 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 21
+2023-03-10 18:17:42,356 [INFO   ] [TRADER] received order filled for order 19 with price 146800 and volume 10
+2023-03-10 18:17:42,356 [INFO   ] [TRADER] received order status for order 19 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:17:42,356 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 14
+2023-03-10 18:17:42,356 [INFO   ] [TRADER] received hedge filled for order 21 with average price 146700 and volume 10
+2023-03-10 18:17:42,559 [INFO   ] [TRADER] received trade ticks for instrument 0 with sequence number 5
+2023-03-10 18:17:42,611 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 22
+2023-03-10 18:17:42,611 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 22
+2023-03-10 18:17:42,612 [INFO   ] [TRADER] received order filled for order 22 with price 146800 and volume 10
+2023-03-10 18:17:42,612 [INFO   ] [TRADER] received order status for order 22 with fill volume 10 remaining 0 and fees 294
+2023-03-10 18:17:42,612 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 15
+2023-03-10 18:17:42,612 [INFO   ] [TRADER] received hedge filled for order 23 with average price 0 and volume 0
+2023-03-10 18:17:42,612 [INFO   ] [TRADER] received hedge filled for order 24 with average price 146800 and volume 10
+2023-03-10 18:17:42,860 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 23
+2023-03-10 18:17:42,860 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 23
+2023-03-10 18:17:42,861 [INFO   ] [TRADER] received trade ticks for instrument 1 with sequence number 16
+2023-03-10 18:17:42,861 [INFO   ] [TRADER] received order status for order 25 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:42,861 [INFO   ] [TRADER] received hedge filled for order 26 with average price 0 and volume 0
+2023-03-10 18:17:43,099 [INFO   ] [TRADER] received order book for instrument 0 with sequence number 24
+2023-03-10 18:17:43,099 [INFO   ] [TRADER] received order book for instrument 1 with sequence number 24
+2023-03-10 18:17:43,100 [ERROR  ] [RECEIVER] connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\pubsub.py", line 136, in _subscribe_worker
+    protocol.datagram_received(buffer[start:start + length], from_addr)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 212, in datagram_received
+    self.on_datagram(typ, data, HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 69, in on_datagram
+    self.on_order_book_update_message(inst, seq, *BOOK_PART.iter_unpack(data[ORDER_BOOK_HEADER_SIZE:]))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ADV4.py", line 123, in on_order_book_update_message
+    print("osition > 0, self.Future_best_ask < self.etf_best_bid", str(id) + str(self.self.Future_best_ask))
+AttributeError: 'AutoTrader' object has no attribute 'self'
+2023-03-10 18:17:46,207 [INFO   ] [APP] closing event loop
+2023-03-10 18:17:46,208 [INFO   ] [CONNECTION] fd=392 connection lost
+2023-03-10 18:17:46,208 [ERROR  ] [asyncio] Exception in callback _SelectorSocketTransport._call_connection_lost(None)
+handle: <Handle _SelectorSocketTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 976, in _call_connection_lost
+    super()._call_connection_lost(exc)
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 734, in _call_connection_lost
+    self._protocol.connection_lost(exc)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 59, in connection_lost
+    Subscription.close(self)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 186, in close
+    self._receiver_transport.close()
+AttributeError: 'NoneType' object has no attribute 'close'

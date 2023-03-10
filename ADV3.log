@@ -1575,3 +1575,309 @@
 2023-03-10 18:07:05,837 [INFO   ] [APP] ADV3 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
 2023-03-10 18:07:05,837 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderThree","Secret":"secret3"}
 2023-03-10 18:07:05,842 [INFO   ] [CONNECTION] fd=732 connection established: peer=127.0.0.1:12345
+2023-03-10 18:13:14,061 [INFO   ] [APP] ADV3 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:13:14,062 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderThree","Secret":"secret3"}
+2023-03-10 18:13:14,068 [INFO   ] [CONNECTION] fd=596 connection established: peer=127.0.0.1:12345
+2023-03-10 18:13:14,077 [INFO   ] [CONNECTION] fd=596 connection lost
+2023-03-10 18:13:14,078 [INFO   ] [APP] closing event loop
+2023-03-10 18:13:14,079 [INFO   ] [RECEIVER] connection lost
+2023-03-10 18:14:27,214 [INFO   ] [APP] ADV3 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:14:27,214 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderThree","Secret":"secret3"}
+2023-03-10 18:14:27,219 [INFO   ] [CONNECTION] fd=904 connection established: peer=127.0.0.1:12345
+2023-03-10 18:14:27,231 [INFO   ] [CONNECTION] fd=904 connection lost
+2023-03-10 18:14:27,231 [INFO   ] [APP] closing event loop
+2023-03-10 18:14:27,231 [INFO   ] [RECEIVER] connection lost
+2023-03-10 18:16:35,548 [INFO   ] [APP] ADV3 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:16:35,548 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderThree","Secret":"secret3"}
+2023-03-10 18:16:35,554 [INFO   ] [CONNECTION] fd=900 connection established: peer=127.0.0.1:12345
+2023-03-10 18:16:35,555 [INFO   ] [CONNECTION] fd=900 connection lost
+2023-03-10 18:16:35,556 [INFO   ] [APP] closing event loop
+2023-03-10 18:16:35,556 [INFO   ] [RECEIVER] connection lost
+2023-03-10 18:17:32,322 [INFO   ] [APP] ADV3 started with arguments={rtg.py, run, autotraderH.py, ADV1.py, ADV2.py, ADV3.py, ADV4.py}
+2023-03-10 18:17:32,322 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"TraderThree","Secret":"secret3"}
+2023-03-10 18:17:32,326 [INFO   ] [CONNECTION] fd=648 connection established: peer=127.0.0.1:12345
+2023-03-10 18:17:56,896 [INFO   ] [TRADER] received order filled for order 1 with price 146900 and volume 10
+2023-03-10 18:17:56,896 [INFO   ] [TRADER] received order status for order 1 with fill volume 10 remaining 0 and fees 294
+2023-03-10 18:17:56,897 [INFO   ] [TRADER] received order status for order 2 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:56,897 [INFO   ] [TRADER] received order status for order 3 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:56,897 [CRITICAL] [TRADER] Order 3 not found
+2023-03-10 18:17:57,333 [WARNING] [TRADER] Cancelling buy order 1
+2023-03-10 18:17:57,334 [WARNING] [TRADER] Cancelling sell order 2
+2023-03-10 18:17:57,349 [INFO   ] [TRADER] received order status for order 2 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:57,349 [INFO   ] [TRADER] received order filled for order 4 with price 146900 and volume 10
+2023-03-10 18:17:57,349 [INFO   ] [TRADER] received order status for order 4 with fill volume 10 remaining 0 and fees 294
+2023-03-10 18:17:57,349 [INFO   ] [TRADER] received order status for order 5 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:57,351 [INFO   ] [TRADER] received order status for order 6 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:57,351 [CRITICAL] [TRADER] Order 6 not found
+2023-03-10 18:17:57,602 [WARNING] [TRADER] Cancelling buy order 4
+2023-03-10 18:17:57,602 [WARNING] [TRADER] Cancelling sell order 5
+2023-03-10 18:17:57,603 [INFO   ] [TRADER] received order status for order 5 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:57,603 [INFO   ] [TRADER] received order filled for order 7 with price 147000 and volume 10
+2023-03-10 18:17:57,603 [INFO   ] [TRADER] received order status for order 7 with fill volume 10 remaining 0 and fees 294
+2023-03-10 18:17:57,603 [INFO   ] [TRADER] received order status for order 8 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:57,604 [INFO   ] [TRADER] received order status for order 9 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:57,604 [CRITICAL] [TRADER] Order 9 not found
+2023-03-10 18:17:57,819 [WARNING] [TRADER] Cancelling buy order 7
+2023-03-10 18:17:57,819 [WARNING] [TRADER] Cancelling sell order 8
+2023-03-10 18:17:57,819 [INFO   ] [TRADER] received order status for order 8 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:57,820 [INFO   ] [TRADER] received order filled for order 10 with price 147000 and volume 10
+2023-03-10 18:17:57,820 [INFO   ] [TRADER] received order status for order 10 with fill volume 10 remaining 0 and fees 294
+2023-03-10 18:17:57,820 [INFO   ] [TRADER] received order status for order 11 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:57,820 [INFO   ] [TRADER] received order status for order 12 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:57,820 [CRITICAL] [TRADER] Order 12 not found
+2023-03-10 18:17:58,635 [WARNING] [TRADER] Cancelling buy order 10
+2023-03-10 18:17:58,635 [WARNING] [TRADER] Cancelling sell order 11
+2023-03-10 18:17:58,636 [INFO   ] [TRADER] received order status for order 11 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:58,637 [INFO   ] [TRADER] received order filled for order 13 with price 147600 and volume 10
+2023-03-10 18:17:58,637 [INFO   ] [TRADER] received order status for order 13 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:17:58,637 [INFO   ] [TRADER] received order status for order 14 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:58,638 [INFO   ] [TRADER] received order status for order 15 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:58,638 [CRITICAL] [TRADER] Order 15 not found
+2023-03-10 18:17:59,316 [WARNING] [TRADER] Cancelling buy order 13
+2023-03-10 18:17:59,316 [WARNING] [TRADER] Cancelling sell order 14
+2023-03-10 18:17:59,317 [INFO   ] [TRADER] received order status for order 14 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:59,317 [INFO   ] [TRADER] received order filled for order 16 with price 147700 and volume 10
+2023-03-10 18:17:59,318 [INFO   ] [TRADER] received order status for order 16 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:17:59,318 [INFO   ] [TRADER] received order status for order 17 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:59,318 [INFO   ] [TRADER] received order status for order 18 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:59,318 [CRITICAL] [TRADER] Order 18 not found
+2023-03-10 18:17:59,898 [WARNING] [TRADER] Cancelling buy order 16
+2023-03-10 18:17:59,898 [WARNING] [TRADER] Cancelling sell order 17
+2023-03-10 18:17:59,901 [INFO   ] [TRADER] received order status for order 17 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:59,901 [INFO   ] [TRADER] received order filled for order 19 with price 147700 and volume 10
+2023-03-10 18:17:59,901 [INFO   ] [TRADER] received order status for order 19 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:17:59,901 [INFO   ] [TRADER] received order status for order 20 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:17:59,902 [INFO   ] [TRADER] received order status for order 21 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:17:59,902 [CRITICAL] [TRADER] Order 21 not found
+2023-03-10 18:18:00,356 [WARNING] [TRADER] Cancelling buy order 19
+2023-03-10 18:18:00,356 [WARNING] [TRADER] Cancelling sell order 20
+2023-03-10 18:18:00,356 [INFO   ] [TRADER] received order status for order 20 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:00,359 [INFO   ] [TRADER] received order filled for order 22 with price 147600 and volume 10
+2023-03-10 18:18:00,359 [INFO   ] [TRADER] received order status for order 22 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:18:00,359 [INFO   ] [TRADER] received order status for order 23 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:00,359 [INFO   ] [TRADER] received order status for order 24 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:00,359 [CRITICAL] [TRADER] Order 24 not found
+2023-03-10 18:18:00,603 [WARNING] [TRADER] Cancelling buy order 22
+2023-03-10 18:18:00,603 [WARNING] [TRADER] Cancelling sell order 23
+2023-03-10 18:18:00,613 [INFO   ] [TRADER] received order status for order 23 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:00,614 [INFO   ] [TRADER] received order filled for order 25 with price 147600 and volume 10
+2023-03-10 18:18:00,614 [INFO   ] [TRADER] received order status for order 25 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:18:00,614 [INFO   ] [TRADER] received order status for order 26 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:00,615 [INFO   ] [TRADER] received order status for order 27 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:00,615 [CRITICAL] [TRADER] Order 27 not found
+2023-03-10 18:18:00,825 [WARNING] [TRADER] Cancelling buy order 25
+2023-03-10 18:18:00,825 [WARNING] [TRADER] Cancelling sell order 26
+2023-03-10 18:18:00,827 [INFO   ] [TRADER] received order status for order 26 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:00,827 [INFO   ] [TRADER] received order status for order 28 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:01,074 [WARNING] [TRADER] Cancelling sell order 28
+2023-03-10 18:18:01,079 [INFO   ] [TRADER] received order status for order 28 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:01,079 [INFO   ] [TRADER] received order status for order 29 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:01,824 [WARNING] [TRADER] Cancelling sell order 29
+2023-03-10 18:18:01,834 [INFO   ] [TRADER] received order status for order 29 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:01,834 [INFO   ] [TRADER] received order status for order 30 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:02,097 [WARNING] [TRADER] Cancelling sell order 30
+2023-03-10 18:18:02,097 [INFO   ] [TRADER] received order status for order 30 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:02,098 [INFO   ] [TRADER] received order status for order 31 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:02,309 [WARNING] [TRADER] Cancelling sell order 31
+2023-03-10 18:18:02,311 [INFO   ] [TRADER] received order status for order 31 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:02,311 [INFO   ] [TRADER] received order status for order 32 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:02,578 [WARNING] [TRADER] Cancelling sell order 32
+2023-03-10 18:18:02,581 [INFO   ] [TRADER] received order status for order 32 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:02,581 [INFO   ] [TRADER] received order status for order 33 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:02,847 [WARNING] [TRADER] Cancelling sell order 33
+2023-03-10 18:18:02,848 [INFO   ] [TRADER] received order status for order 33 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:02,848 [INFO   ] [TRADER] received order status for order 34 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:03,630 [WARNING] [TRADER] Cancelling sell order 34
+2023-03-10 18:18:03,644 [INFO   ] [TRADER] received order status for order 34 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:03,644 [INFO   ] [TRADER] received order status for order 35 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:03,866 [WARNING] [TRADER] Cancelling sell order 35
+2023-03-10 18:18:03,866 [INFO   ] [TRADER] received order status for order 35 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:03,866 [INFO   ] [TRADER] received order status for order 36 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:04,057 [WARNING] [TRADER] Cancelling sell order 36
+2023-03-10 18:18:04,057 [INFO   ] [TRADER] received order status for order 36 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:04,058 [INFO   ] [TRADER] received order status for order 37 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:04,546 [WARNING] [TRADER] Cancelling sell order 37
+2023-03-10 18:18:04,546 [INFO   ] [TRADER] received order status for order 37 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:04,546 [INFO   ] [TRADER] received order status for order 38 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:05,097 [WARNING] [TRADER] Cancelling sell order 38
+2023-03-10 18:18:05,097 [INFO   ] [TRADER] received order status for order 38 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:05,097 [INFO   ] [TRADER] received order status for order 39 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:05,333 [WARNING] [TRADER] Cancelling sell order 39
+2023-03-10 18:18:05,335 [INFO   ] [TRADER] received order status for order 39 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:05,335 [INFO   ] [TRADER] received order status for order 40 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:06,300 [WARNING] [TRADER] Cancelling sell order 40
+2023-03-10 18:18:06,300 [INFO   ] [TRADER] received order status for order 40 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:06,300 [INFO   ] [TRADER] received order status for order 41 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:07,085 [WARNING] [TRADER] Cancelling sell order 41
+2023-03-10 18:18:07,085 [INFO   ] [TRADER] received order status for order 41 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:07,085 [INFO   ] [TRADER] received order status for order 42 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:07,244 [INFO   ] [TRADER] received order filled for order 42 with price 147200 and volume 10
+2023-03-10 18:18:07,244 [INFO   ] [TRADER] received order status for order 42 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:07,338 [INFO   ] [TRADER] received order status for order 44 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:07,401 [INFO   ] [TRADER] received order filled for order 44 with price 147000 and volume 10
+2023-03-10 18:18:07,401 [INFO   ] [TRADER] received order status for order 44 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:07,405 [INFO   ] [TRADER] received order status for order 45 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:07,405 [CRITICAL] [TRADER] Order 45 not found
+2023-03-10 18:18:08,045 [WARNING] [TRADER] Cancelling buy order 44
+2023-03-10 18:18:08,045 [WARNING] [TRADER] Cancelling sell order 42
+2023-03-10 18:18:08,046 [INFO   ] [TRADER] received order status for order 46 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:08,583 [WARNING] [TRADER] Cancelling sell order 46
+2023-03-10 18:18:08,584 [INFO   ] [TRADER] received order status for order 46 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:08,584 [INFO   ] [TRADER] received order status for order 47 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:08,815 [WARNING] [TRADER] Cancelling sell order 47
+2023-03-10 18:18:08,816 [INFO   ] [TRADER] received order status for order 47 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:08,816 [INFO   ] [TRADER] received order status for order 48 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:09,400 [WARNING] [TRADER] Cancelling sell order 48
+2023-03-10 18:18:09,401 [INFO   ] [TRADER] received order status for order 48 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:09,401 [INFO   ] [TRADER] received order status for order 49 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:09,603 [WARNING] [TRADER] Cancelling sell order 49
+2023-03-10 18:18:09,603 [INFO   ] [TRADER] received order status for order 49 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:09,603 [INFO   ] [TRADER] received order status for order 50 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:09,838 [WARNING] [TRADER] Cancelling sell order 50
+2023-03-10 18:18:09,838 [INFO   ] [TRADER] received order status for order 50 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:09,838 [INFO   ] [TRADER] received order status for order 51 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:10,112 [WARNING] [TRADER] Cancelling sell order 51
+2023-03-10 18:18:10,113 [INFO   ] [TRADER] received order status for order 51 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:10,113 [INFO   ] [TRADER] received order status for order 52 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:10,388 [WARNING] [TRADER] Cancelling sell order 52
+2023-03-10 18:18:10,389 [INFO   ] [TRADER] received order status for order 52 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:10,389 [INFO   ] [TRADER] received order status for order 53 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:11,588 [WARNING] [TRADER] Cancelling sell order 53
+2023-03-10 18:18:11,589 [INFO   ] [TRADER] received order status for order 53 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:11,589 [INFO   ] [TRADER] received order status for order 54 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:12,732 [INFO   ] [TRADER] received order filled for order 54 with price 147100 and volume 10
+2023-03-10 18:18:12,732 [INFO   ] [TRADER] received order status for order 54 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:12,809 [INFO   ] [TRADER] received order status for order 56 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:13,045 [WARNING] [TRADER] Cancelling buy order 56
+2023-03-10 18:18:13,045 [WARNING] [TRADER] Cancelling sell order 54
+2023-03-10 18:18:13,045 [INFO   ] [TRADER] received order status for order 56 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:13,046 [INFO   ] [TRADER] received order status for order 57 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:13,356 [INFO   ] [TRADER] received order status for order 58 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:13,605 [WARNING] [TRADER] Cancelling buy order 58
+2023-03-10 18:18:13,605 [WARNING] [TRADER] Cancelling sell order 57
+2023-03-10 18:18:13,609 [INFO   ] [TRADER] received order status for order 58 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:13,609 [INFO   ] [TRADER] received order status for order 57 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:13,609 [INFO   ] [TRADER] received order status for order 59 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:13,871 [WARNING] [TRADER] Cancelling sell order 59
+2023-03-10 18:18:13,875 [INFO   ] [TRADER] received order status for order 59 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:13,875 [INFO   ] [TRADER] received order status for order 60 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:13,875 [INFO   ] [TRADER] received order status for order 61 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:14,088 [WARNING] [TRADER] Cancelling buy order 60
+2023-03-10 18:18:14,088 [WARNING] [TRADER] Cancelling sell order 61
+2023-03-10 18:18:14,089 [INFO   ] [TRADER] received order status for order 60 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:14,089 [INFO   ] [TRADER] received order status for order 61 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:14,089 [INFO   ] [TRADER] received order status for order 62 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:14,371 [WARNING] [TRADER] Cancelling sell order 62
+2023-03-10 18:18:14,373 [INFO   ] [TRADER] received order status for order 62 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:14,374 [INFO   ] [TRADER] received order status for order 63 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:14,374 [INFO   ] [TRADER] received order status for order 64 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:14,641 [WARNING] [TRADER] Cancelling buy order 63
+2023-03-10 18:18:14,641 [WARNING] [TRADER] Cancelling sell order 64
+2023-03-10 18:18:14,650 [INFO   ] [TRADER] received order status for order 63 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:14,650 [INFO   ] [TRADER] received order status for order 64 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:14,650 [INFO   ] [TRADER] received order status for order 65 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:14,815 [WARNING] [TRADER] Cancelling sell order 65
+2023-03-10 18:18:14,816 [INFO   ] [TRADER] received order status for order 65 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:14,816 [INFO   ] [TRADER] received order status for order 66 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:14,816 [INFO   ] [TRADER] received order status for order 67 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:15,049 [WARNING] [TRADER] Cancelling buy order 66
+2023-03-10 18:18:15,049 [WARNING] [TRADER] Cancelling sell order 67
+2023-03-10 18:18:15,052 [INFO   ] [TRADER] received order status for order 66 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:15,052 [INFO   ] [TRADER] received order status for order 67 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:15,052 [INFO   ] [TRADER] received order status for order 68 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:15,324 [INFO   ] [TRADER] received order status for order 69 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:16,133 [WARNING] [TRADER] Cancelling buy order 69
+2023-03-10 18:18:16,133 [WARNING] [TRADER] Cancelling sell order 68
+2023-03-10 18:18:16,134 [INFO   ] [TRADER] received order status for order 69 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:16,134 [INFO   ] [TRADER] received order status for order 68 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:16,134 [INFO   ] [TRADER] received order status for order 70 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:16,346 [INFO   ] [TRADER] received order status for order 71 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:16,403 [INFO   ] [TRADER] received order filled for order 71 with price 147300 and volume 10
+2023-03-10 18:18:16,404 [INFO   ] [TRADER] received order status for order 71 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:16,404 [INFO   ] [TRADER] received order status for order 72 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:16,404 [CRITICAL] [TRADER] Order 72 not found
+2023-03-10 18:18:16,561 [WARNING] [TRADER] Cancelling buy order 71
+2023-03-10 18:18:16,562 [WARNING] [TRADER] Cancelling sell order 70
+2023-03-10 18:18:16,562 [INFO   ] [TRADER] received order status for order 70 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:16,563 [INFO   ] [TRADER] received order status for order 73 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:16,699 [INFO   ] [TRADER] received order filled for order 73 with price 147400 and volume 10
+2023-03-10 18:18:16,699 [INFO   ] [TRADER] received order status for order 73 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:17,878 [WARNING] [TRADER] Cancelling sell order 73
+2023-03-10 18:18:17,878 [INFO   ] [TRADER] received order status for order 75 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:17,878 [INFO   ] [TRADER] received order status for order 76 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:18,587 [WARNING] [TRADER] Cancelling buy order 75
+2023-03-10 18:18:18,588 [WARNING] [TRADER] Cancelling sell order 76
+2023-03-10 18:18:18,588 [INFO   ] [TRADER] received order status for order 75 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:18,588 [INFO   ] [TRADER] received order status for order 76 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:18,588 [INFO   ] [TRADER] received order filled for order 77 with price 147100 and volume 10
+2023-03-10 18:18:18,588 [INFO   ] [TRADER] received order status for order 77 with fill volume 10 remaining 0 and fees 294
+2023-03-10 18:18:18,856 [WARNING] [TRADER] Cancelling sell order 77
+2023-03-10 18:18:18,858 [INFO   ] [TRADER] received order status for order 79 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:18,858 [INFO   ] [TRADER] received order status for order 80 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:19,353 [WARNING] [TRADER] Cancelling buy order 79
+2023-03-10 18:18:19,354 [WARNING] [TRADER] Cancelling sell order 80
+2023-03-10 18:18:19,354 [INFO   ] [TRADER] received order status for order 79 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:19,354 [INFO   ] [TRADER] received order status for order 80 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:19,354 [INFO   ] [TRADER] received order status for order 81 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:19,354 [INFO   ] [TRADER] received order filled for order 82 with price 147100 and volume 8
+2023-03-10 18:18:19,354 [INFO   ] [TRADER] received order status for order 82 with fill volume 8 remaining 2 and fees 235
+2023-03-10 18:18:19,458 [INFO   ] [TRADER] received order filled for order 82 with price 147100 and volume 2
+2023-03-10 18:18:19,458 [INFO   ] [TRADER] received order status for order 82 with fill volume 10 remaining 0 and fees 206
+2023-03-10 18:18:20,119 [WARNING] [TRADER] Cancelling buy order 81
+2023-03-10 18:18:20,119 [WARNING] [TRADER] Cancelling sell order 82
+2023-03-10 18:18:20,125 [INFO   ] [TRADER] received order status for order 81 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:20,125 [INFO   ] [TRADER] received order status for order 85 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:20,125 [INFO   ] [TRADER] received order status for order 86 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:20,341 [INFO   ] [TRADER] received order filled for order 86 with price 147300 and volume 10
+2023-03-10 18:18:20,341 [INFO   ] [TRADER] received order status for order 86 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:20,876 [WARNING] [TRADER] Cancelling buy order 85
+2023-03-10 18:18:20,876 [WARNING] [TRADER] Cancelling sell order 86
+2023-03-10 18:18:20,876 [INFO   ] [TRADER] received order status for order 85 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:20,876 [INFO   ] [TRADER] received order status for order 88 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:20,877 [INFO   ] [TRADER] received order status for order 89 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:21,143 [WARNING] [TRADER] Cancelling buy order 88
+2023-03-10 18:18:21,143 [WARNING] [TRADER] Cancelling sell order 89
+2023-03-10 18:18:21,144 [INFO   ] [TRADER] received order filled for order 89 with price 147200 and volume 10
+2023-03-10 18:18:21,144 [INFO   ] [TRADER] received order status for order 89 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:21,144 [INFO   ] [TRADER] received order status for order 88 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:21,144 [INFO   ] [TRADER] received order status for order 90 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:21,144 [INFO   ] [TRADER] received order status for order 91 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:22,077 [INFO   ] [TRADER] received order filled for order 91 with price 147400 and volume 10
+2023-03-10 18:18:22,077 [INFO   ] [TRADER] received order status for order 91 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:22,344 [WARNING] [TRADER] Cancelling buy order 90
+2023-03-10 18:18:22,344 [WARNING] [TRADER] Cancelling sell order 91
+2023-03-10 18:18:22,344 [INFO   ] [TRADER] received order status for order 90 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:22,345 [INFO   ] [TRADER] received order status for order 94 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:22,345 [INFO   ] [TRADER] received order filled for order 95 with price 147300 and volume 10
+2023-03-10 18:18:22,345 [INFO   ] [TRADER] received order status for order 95 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:18:22,580 [WARNING] [TRADER] Cancelling buy order 94
+2023-03-10 18:18:22,580 [WARNING] [TRADER] Cancelling sell order 95
+2023-03-10 18:18:22,581 [INFO   ] [TRADER] received order status for order 94 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:22,581 [INFO   ] [TRADER] received order filled for order 97 with price 147400 and volume 10
+2023-03-10 18:18:22,581 [INFO   ] [TRADER] received order status for order 97 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:18:22,582 [INFO   ] [TRADER] received order status for order 98 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:22,582 [INFO   ] [TRADER] received order status for order 99 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:22,582 [CRITICAL] [TRADER] Order 99 not found
+2023-03-10 18:18:22,829 [WARNING] [TRADER] Cancelling buy order 97
+2023-03-10 18:18:22,829 [WARNING] [TRADER] Cancelling sell order 98
+2023-03-10 18:18:22,831 [INFO   ] [TRADER] received order status for order 98 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:22,831 [INFO   ] [TRADER] received order status for order 100 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:22,831 [INFO   ] [TRADER] received order filled for order 101 with price 147400 and volume 10
+2023-03-10 18:18:22,831 [INFO   ] [TRADER] received order status for order 101 with fill volume 10 remaining 0 and fees 295
+2023-03-10 18:18:23,100 [WARNING] [TRADER] Cancelling buy order 100
+2023-03-10 18:18:23,100 [WARNING] [TRADER] Cancelling sell order 101
+2023-03-10 18:18:23,100 [INFO   ] [TRADER] received order status for order 100 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:23,100 [INFO   ] [TRADER] received order status for order 103 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:23,100 [INFO   ] [TRADER] received order status for order 104 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:23,611 [WARNING] [TRADER] Cancelling buy order 103
+2023-03-10 18:18:23,611 [WARNING] [TRADER] Cancelling sell order 104
+2023-03-10 18:18:23,612 [INFO   ] [TRADER] received order filled for order 104 with price 147200 and volume 10
+2023-03-10 18:18:23,612 [INFO   ] [TRADER] received order status for order 104 with fill volume 10 remaining 0 and fees -147
+2023-03-10 18:18:23,612 [INFO   ] [TRADER] received order status for order 103 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:23,612 [INFO   ] [TRADER] received order status for order 105 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:23,612 [INFO   ] [TRADER] received order status for order 106 with fill volume 0 remaining 10 and fees 0
+2023-03-10 18:18:23,613 [INFO   ] [TRADER] received order status for order 107 with fill volume 0 remaining 0 and fees 0
+2023-03-10 18:18:23,613 [CRITICAL] [TRADER] Order 107 not found
+2023-03-10 18:18:23,614 [INFO   ] [CONNECTION] fd=648 connection lost
+2023-03-10 18:18:23,614 [INFO   ] [APP] closing event loop
+2023-03-10 18:18:23,614 [INFO   ] [RECEIVER] connection lost
