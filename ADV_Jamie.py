@@ -268,7 +268,7 @@ class AutoTrader(BaseAutoTrader):
 
                     self.times.append(time.perf_counter() - startTime)
                     if (sequence_number+1) % 4 == 0:
-                        print("OLD PERF", np.round(1/np.mean(self.times),3))
+                        #print("OLD PERF", np.round(1/np.mean(self.times),3))
                         #print("PERF", np.mean(self.times), "POSITION", self.pos, "BOOK VOLUME", book_volume, "COMMSTALLY", self.commstally)
                         #print("ACCURACY", np.round(np.mean(self.accuracy),2), "FORECAST", np.round(self.instOffsets[-1],2), "ORDERS", len(self.orders.keys()), "OPCOUNT", OPCOUNT, "POSITION", self.pos, "COMMSTALLY", self.commstally, "TIME", sequence_number/4, "PERF", np.mean(self.times))
                         self.commstally = 0

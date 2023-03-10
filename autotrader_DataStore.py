@@ -55,34 +55,32 @@ class AutoTrader(BaseAutoTrader):
         self.last_best_bid = 0
         self.last_best_ask = 0
         #[[INSTRUMENT, ask5-bestAsk, vol, ask4-bestAsk, vol, ask3-bestAsk, vol, ask2-bestAsk, vol, bestAsk, vol, MIDPOINT, Vol=0, bestBid, vol, bid2-bestBid, vol, , bid3-bestBid, vol, , bid4-bestBid, vol, , bid5-bestBid, vol], [...]]
-        self.fileStore = [] #[[12 Dim like ^], [12Dim like ^], ... [Each 12dim is for a snapshot]]
+        self.fileStore = np.zeros(shape=(21)) #[[12 Dim like ^], [12Dim like ^], ... [Each 12dim is for a snapshot]]
         self.numberOfFutureOrderBookMesseges = 0
         self.training_data = []
         self.test_data = []
     
     def CreateDataArray(self, instrument, bid_prices, b_vol, ask_prices, a_vol):
+        """
+        Create datastore matrix of shape = (Orderbook Timesteps x 21)
+        21 dims are: Asks x5 (normalised to best) and vols, Bids x5 (normalised to best) and vols and Instrument.
+        """
         scaled_ask = [((price - ask_prices[0]) if i != 0 else ask_prices[0]) if price != 0 else -0.5 for i, price in enumerate(ask_prices)]
         scaled_bid = [((price - bid_prices[0]) if i != 0 else bid_prices[0]) if price != 0 else -0.5 for i, price in enumerate(bid_prices)]
-        a_vol = [i for i in a_vol]
+        a_vol = [i for i in reversed(a_vol)]
         scaled_ask.reverse()
-        a_vol.reverse()
 
+        #data = np.array([[scaled_ask], [i for i in a_vol], [i for i in scaled_bid], [i for i in b_vol], [instrument]])
         data = []
-        for i in range(12):
-            if i <= 4:
-                data.append(scaled_ask[i])
-                data.append(a_vol[i])
-            if i == 5:
-                data.append(((scaled_ask[0] - scaled_bid[0]) / 2) + scaled_bid[0])
-                data.append(0)
-            if i >= 6 and i != 11:
-                data.append(scaled_bid[i-6])
-                data.append(b_vol[i-6])
-            if i == 11: 
-                data.append(instrument)
-        self.fileStore.append(data)
+        [data.append(i) for i in scaled_ask]
+        [data.append(i) for i in a_vol]
+        [data.append(i) for i in scaled_bid]
+        [data.append(i) for i in b_vol]
+        data.append(instrument)
+
+        self.fileStore = np.vstack((self.fileStore, data))
         return data
-    
+
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
 
@@ -118,14 +116,14 @@ class AutoTrader(BaseAutoTrader):
         
         data = self.CreateDataArray(instrument, bid_prices, bid_volumes, ask_prices, ask_volumes)
         
-        #if self.numberOfFutureOrderBookMesseges == 10:
-        if self.fileStore[-1] == 1 and self.numberOfFutureOrderBookMesseges >= 11: #if Future
+        print("Data Shape: ", self.fileStore.shape)
+        """if self.fileStore[-1] == 1 and self.numberOfFutureOrderBookMesseges >= 11: #if Future
             self.training_data.append(self.fileStore[-1])
             train = []
             for val in self.fileStore[-11:-1]:
                 train.append(val)
             self.test_data.append(train)
-            print(self.training_data, self.test_data)
+            print(self.training_data, self.test_data)"""
 
 
 
