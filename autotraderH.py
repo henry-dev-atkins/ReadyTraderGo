@@ -50,9 +50,39 @@ class AutoTrader(BaseAutoTrader):
         self.ask_id = self.ask_price = self.bid_id = self.bid_price = self.position = 0
         self.FutureData = [] # bids, bid vol, ask, ask vol
         self.ETFData = []
+        self.F_BidsList = []
+        self.E_AsksList = []
         self.last_best_bid = 0
         self.last_best_ask = 0
+        #[[INSTRUMENT, ask5-bestAsk, vol, ask4-bestAsk, vol, ask3-bestAsk, vol, ask2-bestAsk, vol, bestAsk, vol, MIDPOINT, Vol=0, bestBid, vol, bid2-bestBid, vol, , bid3-bestBid, vol, , bid4-bestBid, vol, , bid5-bestBid, vol], [...]]
+        self.fileStore = [] #[[12 Dim like ^], [12Dim like ^], ... [Each 12dim is for a snapshot]]
+        self.numberOfFutureOrderBookMesseges = 0
+        self.training_data = []
+        self.test_data = []
+    
+    def CreateDataArray(self, instrument, bid_prices, b_vol, ask_prices, a_vol):
+        scaled_ask = [((price - ask_prices[0]) if i != 0 else ask_prices[0]) if price != 0 else -0.5 for i, price in enumerate(ask_prices)]
+        scaled_bid = [((price - bid_prices[0]) if i != 0 else bid_prices[0]) if price != 0 else -0.5 for i, price in enumerate(bid_prices)]
+        a_vol = [i for i in a_vol]
+        scaled_ask.reverse()
+        a_vol.reverse()
 
+        data = []
+        for i in range(12):
+            if i <= 4:
+                data.append(scaled_ask[i])
+                data.append(a_vol[i])
+            if i == 5:
+                data.append(((scaled_ask[0] - scaled_bid[0]) / 2) + scaled_bid[0])
+                data.append(0)
+            if i >= 6 and i != 11:
+                data.append(scaled_bid[i-6])
+                data.append(b_vol[i-6])
+            if i == 11: 
+                data.append(instrument)
+        self.fileStore.append(data)
+        return data
+    
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
 
@@ -82,20 +112,42 @@ class AutoTrader(BaseAutoTrader):
         prices are reported along with the volume available at each of those
         price levels.
         """
-        self.logger.info("received order book for instrument %d with sequence number %d", instrument,
-                         sequence_number, str(type(ask_prices)))
-        if instrument != Instrument.FUTURE:
-            self.ETFData.append([ask_prices, ask_volumes, bid_prices, bid_volumes])
-            if len(self.ETFData) % 5 == 0:#[int(i) for sublist in list_of_lists for i in sublist]
-                self.logger.info("ETF")
-                self.logger.info([str(i) for sublist in self.ETFData[-1] for i in sublist])
+        if instrument == Instrument.FUTURE:self.numberOfFutureOrderBookMesseges += 1
+        self.logger.info("received order book for instrument %d with sequence number %d", instrument,sequence_number)
+        self.ETFData.append([ask_prices, ask_volumes, bid_prices, bid_volumes]) if instrument == Instrument.ETF else self.FutureData.append([ask_prices, ask_volumes, bid_prices, bid_volumes])
+        
+        data = self.CreateDataArray(instrument, bid_prices, bid_volumes, ask_prices, ask_volumes)
+        
+        #if self.numberOfFutureOrderBookMesseges == 10:
+        if self.fileStore[-1] == 1 and self.numberOfFutureOrderBookMesseges >= 11: #if Future
+            self.training_data.append(self.fileStore[-1])
+            train = []
+            for val in self.fileStore[-11:-1]:
+                train.append(val)
+            self.test_data.append(train)
+            print(self.training_data, self.test_data)
 
-        if instrument == Instrument.FUTURE:
-            self.FutureData.append([ask_prices, ask_volumes, bid_prices, bid_volumes])
 
-            if len(self.FutureData) % 5 == 0:#[int(i) for sublist in list_of_lists for i in sublist]
-                self.logger.info("FUTURE")
-                self.logger.info([str(i) for sublist in self.FutureData[-1] for i in sublist])
+
+
+
+
+
+
+
+        """
+        self.F_BidsList.append(bid_prices[0])
+        self.F_BidsList = self.F_BidsList[-5:]
+        stdF_Bids = np.std(self.F_BidsList)
+        meanF_Bids = np.mean(self.F_BidsList)
+
+        if self.F_BidsList[-1] < meanF_Bids - stdF_Bids:
+            if self.ask_id == 0 and self.position > -POSITION_LIMIT:
+                self.ask_id = next(self.order_ids)
+                self.send_insert_order(self.ask_id, Side.SELL, self.ETFData[-1][0][0]-stdF_Bids, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                self.asks.add(self.ask_id)
+        """
+            
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
         """Called when one of your orders is filled, partially or fully.
