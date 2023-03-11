@@ -65,8 +65,8 @@ class AutoTrader(BaseAutoTrader):
         Create datastore matrix of shape = (Orderbook Timesteps x 21)
         21 dims are: Asks x5 (normalised to best) and vols, Bids x5 (normalised to best) and vols and Instrument.
         """
-        scaled_ask = [((price - ask_prices[0]) if i != 0 else ask_prices[0]) if price != 0 else -0.5 for i, price in enumerate(ask_prices)]
-        scaled_bid = [((price - bid_prices[0]) if i != 0 else bid_prices[0]) if price != 0 else -0.5 for i, price in enumerate(bid_prices)]
+        scaled_ask = [((price - ask_prices[0])/100 if i != 0 else ask_prices[0]/1000) for i, price in enumerate(ask_prices)]
+        scaled_bid = [((price - bid_prices[0])/100 if i != 0 else bid_prices[0]/1000) for i, price in enumerate(bid_prices)]
         a_vol = [i for i in reversed(a_vol)]
         scaled_ask.reverse()
 
@@ -123,9 +123,9 @@ class AutoTrader(BaseAutoTrader):
                     self.training_data = np.vstack((self.training_data, np.array(self.fileStore[-10+idx-10:-10+idx])))
                     #print(self.training_data)
                     #print(self.fileStore[-10+idx-10:-10+idx].shape)
-                    with open('test_data.npy', 'wb') as f:
+                    with open('test_data_scaled.npy', 'wb') as f:
                         np.save(f, self.test_data)
-                    with open('training_data.npy', 'wb') as f:
+                    with open('training_data_scaled.npy', 'wb') as f:
                         np.save(f, self.training_data)
 
         """if self.fileStore[-1] == 1 and self.numberOfFutureOrderBookMesseges >= 11: #if Future
