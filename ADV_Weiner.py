@@ -51,7 +51,9 @@ class AutoTrader(BaseAutoTrader):
         self.bids = set()
         self.asks = set()
         self.ask_id = self.ask_price = self.bid_id = self.bid_price = self.position = 0
-
+        self.InTrade = 0
+        self.asksAdded = []
+        self.bidsAdded = []
         self.memory = np.zeros((2,20,20))
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
@@ -110,31 +112,70 @@ class AutoTrader(BaseAutoTrader):
         ac = signal.fftconvolve(normmem,np.flip(normmem,axis=1),axes=1)
         #ac = ac / np.std(normmem**2,axis=1)[:,np.newaxis,:]
         conv = signal.fftconvolve(ac, self.memory, axes=1)
+
+        if self.position == 0:
+            self.InTrade = 0
         
         if instrument == 1: #ETF
-            #conv[np.isnan(conv)] = 0
+            for i in self.asksAdded:
+                if i in self.asks:
+                    self.send_cancel_order(i)
+                    self.asks_id = 0
+            for i in self.bidsAdded:
+                if i in self.bids:
+                    self.send_cancel_order(i)
+                    self.bids_id = 0
+            self.asksAdded = []
+            self.bidsAdded = []
             pred = np.round(conv[1,20*2-1])
-            for i, vol in enumerate(reversed(convdata[:5])): #bids
-                if vol == 0 and pred[i] != 0:
-                    if self.bid_id == 0 and self.position < POSITION_LIMIT:
-                        price = bid_prices[0] - i*TICK_SIZE_IN_CENTS
-                        print(price)
-                        self.bid_id = next(self.order_ids)
-                        print(self.bid_id, Side.BUY, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                        self.send_insert_order(self.bid_id, Side.BUY, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                        self.bids.add(self.bid_id)
-                        break
-            for i, vol in enumerate(reversed(convdata[5:])): #Asks
-                if vol == 0 and pred[i] != 0:
-                     if self.ask_id == 0 and self.position > -POSITION_LIMIT:
-                        price = ask_prices[0] - (5+i) * TICK_SIZE_IN_CENTS
-                        self.ask_id = next(self.order_ids)
-                        print(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                        self.send_insert_order(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                        self.asks.add(self.ask_id) 
-                        break
+            if self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < 60:
+                for i, vol in enumerate(reversed(convdata[:5])): #bids
+                    if vol == 0 and pred[i] != 0:
+                        if self.bid_id == 0 and self.position < POSITION_LIMIT:
+                            price = bid_prices[0] - i*TICK_SIZE_IN_CENTS
+                            self.bid_id = next(self.order_ids)
+                            self.send_insert_order(self.bid_id, Side.BUY, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                            self.bids.add(self.bid_id)
+                            self.bidsAdded.append(self.bid_id)
+                            self.InTrade = 1
+                            break
+                for i, vol in enumerate(reversed(convdata[5:])): #Asks
+                    if vol == 0 and pred[i] != 0:
+                        if self.ask_id == 0 and self.position > -POSITION_LIMIT:
+                            price = ask_prices[0] - (5+i) * TICK_SIZE_IN_CENTS
+                            self.ask_id = next(self.order_ids)
+                            self.send_insert_order(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                            self.asks.add(self.ask_id) 
+                            self.asksAdded.append(self.ask_id)
+                            self.InTrade = 1
+                            break
+            
+            if self.position >= 60:
+                pass
+            if self.position <= 60:
+                pass
 
-        """ 
+
+        """                     
+            if self.InTrade != 0 and self.OrderBooksSinceTrade > 20:
+                if self.position > 0:#short etf, buy future
+                    self.ask_id = next(self.order_ids)
+                    self.send_insert_order(self.ask_id, Side.SELL, ask_prices[0], LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                    self.asks.add(self.ask_id)
+                    id = next(self.order_ids)
+                    #print("osition > 0, self.Future_best_ask < self.etf_best_bid", str(id) + str(self.self.Future_best_ask))
+                    self.send_hedge_order(id, Side.BID, ask_prices[0], LOT_SIZE)
+                    print("Was Long, Close by Sell")
+
+                if self.position < 0: #short future, buy etf
+                    self.bid_id = next(self.order_ids)
+                    self.send_insert_order(self.bid_id, Side.BUY, bid_prices[0], LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                    self.bids.add(self.bid_id)
+                    id = next(self.order_ids)
+                    #print("self.Future_best_bid > self.etf_best_ask, on < 0", str(id) + str(self.Future_best_bid))
+                    self.send_hedge_order(id, Side.ASK, bid_prices[0], LOT_SIZE)
+                    print("Was Short, Closing By Buying")
+       
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
         if instrument == Instrument.FUTURE:
@@ -159,7 +200,7 @@ class AutoTrader(BaseAutoTrader):
                 self.ask_id = next(self.order_ids)
                 self.ask_price = new_ask_price
                 self.send_insert_order(self.ask_id, Side.SELL, new_ask_price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                self.asks.add(self.ask_id) 
+                self.asks.add(self.ask_id)
             """
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
@@ -171,6 +212,7 @@ class AutoTrader(BaseAutoTrader):
         """
         self.logger.info("received order filled for order %d with price %d and volume %d", client_order_id,
                          price, volume)
+
         if client_order_id in self.bids:
             self.position += volume
             self.send_hedge_order(next(self.order_ids), Side.ASK, MIN_BID_NEAREST_TICK, volume)
