@@ -105,8 +105,10 @@ class AutoTrader(BaseAutoTrader):
         self.memory[instrument,-1] = convdata
 
         #wiener filter
-        ac = signal.fftconvolve(self.memory,np.flip(self.memory,axis=1),axes=1)
-        ac = ac / np.std(self.memory**2,axis=1)[:,np.newaxis,:]
+        normmem = self.memory - np.mean(self.memory,axis=(1))
+        normmem = normmem / np.std(normmem,axis=(1))
+        ac = signal.fftconvolve(normmem,np.flip(normmem,axis=1),axes=1)
+        #ac = ac / np.std(normmem**2,axis=1)[:,np.newaxis,:]
         conv = signal.fftconvolve(ac, self.memory, axes=1)
         
         if instrument == 1:
