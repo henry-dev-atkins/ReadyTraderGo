@@ -26,8 +26,9 @@ import numpy as np
 np.set_printoptions(suppress=True)
 import scipy
 from scipy import signal
+import time
 
-LOT_SIZE = 10
+LOT_SIZE = 100
 POSITION_LIMIT = 100
 TICK_SIZE_IN_CENTS = 100
 MIN_BID_NEAREST_TICK = (MINIMUM_BID + TICK_SIZE_IN_CENTS) // TICK_SIZE_IN_CENTS * TICK_SIZE_IN_CENTS
@@ -55,6 +56,8 @@ class AutoTrader(BaseAutoTrader):
         self.asksAdded = []
         self.bidsAdded = []
         self.memory = np.zeros((2,20,20))
+        self.OrdersOpen = 0
+        self.ourTick = -1
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -101,62 +104,101 @@ class AutoTrader(BaseAutoTrader):
         prices are reported along with the volume available at each of those
         price levels.
         """
+        if instrument == 1:
+            self.ourTick += 1
+        
         convdata =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices)
         
         self.memory[instrument] = np.roll(self.memory[instrument], -1, axis=0)
         self.memory[instrument,-1] = convdata
 
-        #wiener filter
-        normmem = self.memory - np.mean(self.memory,axis=(1))[:,np.newaxis,:]
-        normmem = normmem / np.std(normmem,axis=(1))[:,np.newaxis,:]
-        ac = signal.fftconvolve(normmem,np.flip(normmem,axis=1),axes=1)
-        #ac = ac / np.std(normmem**2,axis=1)[:,np.newaxis,:]
-        conv = signal.fftconvolve(ac, self.memory, axes=1)
+        if self.ourTick >= 19:
 
-        if self.position == 0:
-            self.InTrade = 0
-        
-        if instrument == 1: #ETF
-            for i in self.asksAdded:
-                if i in self.asks:
-                    self.send_cancel_order(i)
-                    self.asks_id = 0
-            for i in self.bidsAdded:
-                if i in self.bids:
-                    self.send_cancel_order(i)
-                    self.bids_id = 0
-            self.asksAdded = []
-            self.bidsAdded = []
-            pred = np.round(conv[1,20*2-1])
-            if self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < 60:
-                for i, vol in enumerate(reversed(convdata[:5])): #bids
-                    if vol == 0 and pred[i] != 0:
-                        if self.bid_id == 0 and self.position < POSITION_LIMIT:
-                            price = bid_prices[0] - i*TICK_SIZE_IN_CENTS
-                            self.bid_id = next(self.order_ids)
-                            self.send_insert_order(self.bid_id, Side.BUY, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                            self.bids.add(self.bid_id)
-                            self.bidsAdded.append(self.bid_id)
-                            self.InTrade = 1
-                            break
-                for i, vol in enumerate(reversed(convdata[5:])): #Asks
-                    if vol == 0 and pred[i] != 0:
-                        if self.ask_id == 0 and self.position > -POSITION_LIMIT:
-                            price = ask_prices[0] - (5+i) * TICK_SIZE_IN_CENTS
-                            self.ask_id = next(self.order_ids)
-                            self.send_insert_order(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                            self.asks.add(self.ask_id) 
-                            self.asksAdded.append(self.ask_id)
-                            self.InTrade = 1
-                            break
+            #wiener filter
+            normmem = self.memory
+            normmem = normmem / ((np.std(normmem,axis=(1))[:,np.newaxis,:]) + 0.0000001)
+            ac = signal.fftconvolve(normmem,np.flip(normmem,axis=1),axes=1)
+            #ac = ac / np.std(normmem**2,axis=1)[:,np.newaxis,:]
+            conv = signal.fftconvolve(ac, self.memory, axes=1)
+            conv[np.isnan(conv)] = 0
+            conv *= np.mean(self.memory / conv[:,19:20*2-1,:],axis=1)[:,np.newaxis,:]
+
+            if self.position == 0:
+                self.InTrade = 0
             
-            if self.position >= 60:
-                pass
-            if self.position <= 60:
-                pass
+            if instrument == 1: #ETF
+                
+                for i in self.asksAdded:
+                    if i in self.asks:
+                        self.send_cancel_order(i)
+                        self.asks_id = 0
+                for i in self.bidsAdded:
+                    if i in self.bids:
+                        self.send_cancel_order(i)
+                        self.bids_id = 0
+                self.asksAdded = []
+                self.bidsAdded = []
+                #time.sleep(0.1)
+                pred = np.round(conv[1,20*2-1])
+                #print(self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < POSITION_LIMIT)
+                if self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < LOT_SIZE:
+                    TOTAL = max(LOT_SIZE - abs(self.position), 0)
+                    BID_TOTAL_SIZE = (TOTAL / 2) if self.position > 0 else (TOTAL / 2) - self.position
+                    ASK_TOTAL_SIZE = (TOTAL / 2) if self.position < 0 else (TOTAL / 2) + self.position
+                    bids = convdata[:10]
+                    bids = np.flip(bids)
+                    total = np.sum(pred[:10][bids==0])
+                    if total > 0:
+                        for i, vol in enumerate(bids): #bids
+                            if ~np.isnan(vol) and vol == 0 and pred[i] != 0 and ~np.isnan(pred[i]):
+                                price = bid_prices[0] - i*TICK_SIZE_IN_CENTS
+                                self.bid_id = next(self.order_ids)
+                                size = int(np.round(BID_TOTAL_SIZE * pred[i]/total))
+                                if size > 0 and size < 100:
+                                    print(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
+                                    self.send_insert_order(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
+                                    self.bids.add(self.bid_id)
+                                    self.bidsAdded.append(self.bid_id)
+                                    self.OrdersOpen += 1
+                                    self.InTrade = 1
+                                if i >= 3: break
+                    asks = convdata[10:]
+                    total = np.sum(pred[10:][asks==0])
+                    if total > 0:
+                        for i, vol in enumerate(asks): #Asks
+                            if ~np.isnan(vol) and vol == 0 and pred[i+10] != 0 and ~np.isnan(pred[i+10]):
+                                price = ask_prices[0] - (10+i) * TICK_SIZE_IN_CENTS
+                                #print(ask_prices[0], (10+i) , TICK_SIZE_IN_CENTS)
+                                self.ask_id = next(self.order_ids)
+                                size = int(np.round(ASK_TOTAL_SIZE * pred[i+10]/total))
+                                if size > 0 and size < 100:
+                                    print(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
+                                    self.send_insert_order(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
+                                    self.asks.add(self.ask_id) 
+                                    self.asksAdded.append(self.ask_id)
+                                    self.OrdersOpen += 1
+                                    self.InTrade = 1
+                                if i >= 3: break
+
+        """                 
+        if instrument == 1 and bid_prices[0] != 0:  
+            if self.position >= POSITION_LIMIT:
+                self.ask_id = next(self.order_ids)
+                self.send_insert_order(self.ask_id, Side.SELL, ask_prices[0] + TICK_SIZE_IN_CENTS, POSITION_LIMIT, Lifespan.GOOD_FOR_DAY)
+                self.asks.add(self.ask_id) 
+                self.asksAdded.append(self.ask_id)
+                self.OrdersOpen += 1
+            if self.position <= -POSITION_LIMIT:
+                self.bid_id = next(self.order_ids)
+                #print(self.bid_id, Side.BUY, bid_prices[0] - TICK_SIZE_IN_CENTS, POSITION_LIMIT, Lifespan.GOOD_FOR_DAY)
+                self.send_insert_order(self.bid_id, Side.BUY, bid_prices[0] - TICK_SIZE_IN_CENTS, POSITION_LIMIT, Lifespan.GOOD_FOR_DAY)
+                self.bids.add(self.bid_id)
+                self.bidsAdded.append(self.bid_id)
+                self.OrdersOpen += 1
+                self.InTrade = 1
 
 
-        """                     
+                          
             if self.InTrade != 0 and self.OrderBooksSinceTrade > 20:
                 if self.position > 0:#short etf, buy future
                     self.ask_id = next(self.order_ids)
@@ -212,13 +254,13 @@ class AutoTrader(BaseAutoTrader):
         """
         self.logger.info("received order filled for order %d with price %d and volume %d", client_order_id,
                          price, volume)
-
+        self.OrdersOpen -= 1
         if client_order_id in self.bids:
             self.position += volume
-            self.send_hedge_order(next(self.order_ids), Side.ASK, MIN_BID_NEAREST_TICK, volume)
+            if volume !=0:self.send_hedge_order(next(self.order_ids), Side.ASK, MIN_BID_NEAREST_TICK, volume)
         elif client_order_id in self.asks:
             self.position -= volume
-            self.send_hedge_order(next(self.order_ids), Side.BID, MAX_ASK_NEAREST_TICK, volume)
+            if volume !=0:self.send_hedge_order(next(self.order_ids), Side.BID, MAX_ASK_NEAREST_TICK, volume)
 
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,
                                 fees: int) -> None:
@@ -236,8 +278,10 @@ class AutoTrader(BaseAutoTrader):
         if remaining_volume == 0:
             if client_order_id == self.bid_id:
                 self.bid_id = 0
+                self.OrdersOpen -= 1
             elif client_order_id == self.ask_id:
                 self.ask_id = 0
+                self.OrdersOpen =- 1
 
             # It could be either a bid or an ask
             self.bids.discard(client_order_id)
