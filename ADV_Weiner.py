@@ -109,10 +109,27 @@ class AutoTrader(BaseAutoTrader):
         ac = ac / np.std(self.memory**2,axis=1)[:,np.newaxis,:]
         conv = signal.fftconvolve(ac, self.memory, axes=1)
         
-        if instrument == 1:
-            conv[np.isnan(conv)] = 0
-            print(np.round(conv[1,20*2-1]))
-        """ self.logger.info("received order book for instrument %d with sequence number %d", instrument,
+        if instrument == 1: #ETF
+            #conv[np.isnan(conv)] = 0
+            pred = np.round(conv[1,20*2-1])
+            for i, vol in enumerate(reversed(convdata[:5])): #bids
+                if vol == 0 and pred[i] != 0:
+                    if self.bid_id == 0 and self.position < POSITION_LIMIT:
+                        price = bid_prices[0] - i * TICK_SIZE_IN_CENTS
+                        self.bid_id = next(self.order_ids)
+                        self.send_insert_order(self.bid_id, Side.BUY, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                        self.bids.add(self.bid_id)
+            for i, vol in enumerate(reversed(convdata[5:])): #Asks
+                if vol == 0 and pred[i] != 0:
+                     if self.ask_id == 0 and self.position > -POSITION_LIMIT:
+                        price = ask_prices[0] - (5+i) * TICK_SIZE_IN_CENTS
+                        self.ask_id = next(self.order_ids)
+                        print(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                        self.send_insert_order(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
+                        self.asks.add(self.ask_id) 
+
+        """ 
+        self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
         if instrument == Instrument.FUTURE:
             price_adjustment = - (self.position // LOT_SIZE) * TICK_SIZE_IN_CENTS
@@ -136,7 +153,8 @@ class AutoTrader(BaseAutoTrader):
                 self.ask_id = next(self.order_ids)
                 self.ask_price = new_ask_price
                 self.send_insert_order(self.ask_id, Side.SELL, new_ask_price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
-                self.asks.add(self.ask_id) """
+                self.asks.add(self.ask_id) 
+            """
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
         """Called when one of your orders is filled, partially or fully.
