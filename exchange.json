@@ -40,6 +40,8 @@
     "Default_Trader": "secret2",
     "NotUs_Trader": "secret3",
     "Arb_Trader":"secret4",
-    "Jamie_Trader":"secret5"
+    "Jamie_Trader":"secret5",
+    "Regression_Trader":"secret6",
+    "Wiener_Trader":"secret7"
   }
 }

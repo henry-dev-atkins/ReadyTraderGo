@@ -251,6 +251,7 @@ class AutoTrader(BaseAutoTrader):
                                     self.orders[orderid] = [orderid, vol, 0, price] #age, volume, fulfilled, price
                                     self.pos["unreal"][1] += vol
                                     self.send_insert_order(orderid, Side.SELL, price, -vol, Lifespan.GOOD_FOR_DAY)
+                                    self.send_hedge_order(next(self.order_ids), Side.BID, price, vol)
                                     #print("SELL", vol, "AT", book_prices[i])
                             elif book_deltas[i] > 0:
                                 vol = int(book_deltas[i] * book_posOpRatio)
@@ -264,6 +265,7 @@ class AutoTrader(BaseAutoTrader):
                                     self.orders[orderid] = [orderid, vol, 0, price] #age, volume, fulfilled, price
                                     self.pos["unreal"][0] += vol
                                     self.send_insert_order(orderid, Side.BUY, price, vol, Lifespan.GOOD_FOR_DAY)
+                                    self.send_hedge_order(next(self.order_ids), Side.ASK, price, -vol)
                                     #print("BUY", vol, "AT", book_prices[i])
 
                     self.times.append(time.perf_counter() - startTime)
