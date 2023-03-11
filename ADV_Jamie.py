@@ -102,7 +102,7 @@ class AutoTrader(BaseAutoTrader):
                     if len(self.orders.keys()) > 0:
                         minprice = min(self.orders.items(), key=lambda x: x[1][3])[1][3]
                         maxprice = max(self.orders.items(), key=lambda x: x[1][3])[1][3]
-                    book_prices = np.arange(min(bid_prices[-1],minprice), max(ask_prices[-1],maxprice)+1)
+                    book_prices = np.arange(min(bid_prices[-1],minprice), max(ask_prices[-1],maxprice)+1,100)
                     book_volumes = {}
                     for i in range(len(book_prices)):
                         book_volumes[book_prices[i]] = []

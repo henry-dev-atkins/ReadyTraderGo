@@ -42,6 +42,7 @@
     "Arb_Trader":"secret4",
     "Jamie_Trader":"secret5",
     "Regression_Trader":"secret6",
-    "Wiener_Trader":"secret7"
+    "Wiener_Trader":"secret7",
+    "Mark_Trader":"secret6"
   }
 }
