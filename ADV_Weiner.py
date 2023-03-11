@@ -105,8 +105,8 @@ class AutoTrader(BaseAutoTrader):
         self.memory[instrument,-1] = convdata
 
         #wiener filter
-        normmem = self.memory - np.mean(self.memory,axis=(1))
-        normmem = normmem / np.std(normmem,axis=(1))
+        normmem = self.memory - np.mean(self.memory,axis=(1))[:,np.newaxis,:]
+        normmem = normmem / np.std(normmem,axis=(1))[:,np.newaxis,:]
         ac = signal.fftconvolve(normmem,np.flip(normmem,axis=1),axes=1)
         #ac = ac / np.std(normmem**2,axis=1)[:,np.newaxis,:]
         conv = signal.fftconvolve(ac, self.memory, axes=1)
@@ -117,10 +117,13 @@ class AutoTrader(BaseAutoTrader):
             for i, vol in enumerate(reversed(convdata[:5])): #bids
                 if vol == 0 and pred[i] != 0:
                     if self.bid_id == 0 and self.position < POSITION_LIMIT:
-                        price = bid_prices[0] - i * TICK_SIZE_IN_CENTS
+                        price = bid_prices[0] - i*TICK_SIZE_IN_CENTS
+                        print(price)
                         self.bid_id = next(self.order_ids)
+                        print(self.bid_id, Side.BUY, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
                         self.send_insert_order(self.bid_id, Side.BUY, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
                         self.bids.add(self.bid_id)
+                        break
             for i, vol in enumerate(reversed(convdata[5:])): #Asks
                 if vol == 0 and pred[i] != 0:
                      if self.ask_id == 0 and self.position > -POSITION_LIMIT:
@@ -129,6 +132,7 @@ class AutoTrader(BaseAutoTrader):
                         print(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
                         self.send_insert_order(self.ask_id, Side.SELL, price, LOT_SIZE, Lifespan.GOOD_FOR_DAY)
                         self.asks.add(self.ask_id) 
+                        break
 
         """ 
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,

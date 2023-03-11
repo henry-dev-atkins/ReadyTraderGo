@@ -7587,3 +7587,108 @@ Traceback (most recent call last):
   File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
     data = self._sock.recv(self.max_size)
 ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-03-11 19:41:52,600 [INFO   ] [APP] exchange started with arguments={rtg.py, run, ADV_Weiner.py}
+2023-03-11 19:41:52,600 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","Default_Trader":"secret2","NotUs_Trader":"secret3","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7"}}
+2023-03-11 19:41:52,602 [INFO   ] [CONTROLLER] starting the match
+2023-03-11 19:41:52,602 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-11 19:41:52,603 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-11 19:41:52,605 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-11 19:41:52,606 [INFO   ] [INFORMATION] information channel established
+2023-03-11 19:41:53,448 [INFO   ] [CONNECTION] fd=1012 connection established: peer=127.0.0.1:54587
+2023-03-11 19:41:57,644 [INFO   ] [CONTROLLER] market open
+2023-03-11 19:41:58,142 [INFO   ] [CONNECTION] fd=1004 connection established: peer=127.0.0.1:54589
+2023-03-11 19:41:58,142 [WARNING] [COMPETITOR] competitor logged in after market open: name='Wiener_Trader'
+2023-03-11 19:41:58,142 [INFO   ] [EXECUTION] fd=1004 'Wiener_Trader' is ready!
+2023-03-11 19:41:58,147 [INFO   ] [CONNECTION] fd=1004 connection lost
+2023-03-11 19:41:58,148 [WARNING] [EXECUTION] fd=1004 lost connection to auto-trader:
+2023-03-11 19:44:04,495 [INFO   ] [APP] exchange started with arguments={rtg.py, run, ADV_Weiner.py}
+2023-03-11 19:44:04,496 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","Default_Trader":"secret2","NotUs_Trader":"secret3","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7"}}
+2023-03-11 19:44:04,496 [INFO   ] [CONTROLLER] starting the match
+2023-03-11 19:44:04,497 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-11 19:44:04,497 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-11 19:44:04,497 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-11 19:44:04,497 [INFO   ] [INFORMATION] information channel established
+2023-03-11 19:44:05,507 [INFO   ] [CONNECTION] fd=592 connection established: peer=127.0.0.1:54616
+2023-03-11 19:44:09,515 [INFO   ] [CONTROLLER] market open
+2023-03-11 19:44:10,929 [INFO   ] [CONNECTION] fd=856 connection established: peer=127.0.0.1:54618
+2023-03-11 19:44:10,929 [WARNING] [COMPETITOR] competitor logged in after market open: name='Wiener_Trader'
+2023-03-11 19:44:10,930 [INFO   ] [EXECUTION] fd=856 'Wiener_Trader' is ready!
+2023-03-11 19:44:10,937 [INFO   ] [COMPETITOR] 'Wiener_Trader' sent error message: time=1.422000 client_order_id=1 message='0 is not a valid price'
+2023-03-11 19:44:10,943 [ERROR  ] [CONNECTION] fd=856 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-03-11 19:44:10,947 [WARNING] [EXECUTION] fd=856 lost connection to auto-trader:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-03-11 19:45:06,832 [INFO   ] [APP] exchange started with arguments={rtg.py, run, ADV_Weiner.py}
+2023-03-11 19:45:06,832 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","Default_Trader":"secret2","NotUs_Trader":"secret3","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7"}}
+2023-03-11 19:45:06,834 [INFO   ] [CONTROLLER] starting the match
+2023-03-11 19:45:06,834 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-11 19:45:06,835 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-11 19:45:06,837 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-11 19:45:06,837 [INFO   ] [INFORMATION] information channel established
+2023-03-11 19:45:07,917 [INFO   ] [CONNECTION] fd=388 connection established: peer=127.0.0.1:54635
+2023-03-11 19:45:10,789 [INFO   ] [CONNECTION] fd=952 connection established: peer=127.0.0.1:54636
+2023-03-11 19:45:10,790 [INFO   ] [EXECUTION] fd=952 'Wiener_Trader' is ready!
+2023-03-11 19:45:11,880 [INFO   ] [CONTROLLER] market open
+2023-03-11 19:45:11,921 [INFO   ] [COMPETITOR] 'Wiener_Trader' sent error message: time=0.015000 client_order_id=1 message='0 is not a valid price'
+2023-03-11 19:45:11,922 [ERROR  ] [CONNECTION] fd=952 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+2023-03-11 19:45:11,926 [WARNING] [EXECUTION] fd=952 lost connection to auto-trader:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+2023-03-11 19:48:06,164 [INFO   ] [APP] exchange started with arguments={rtg.py, run, ADV_Weiner.py}
+2023-03-11 19:48:06,164 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","Default_Trader":"secret2","NotUs_Trader":"secret3","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7"}}
+2023-03-11 19:48:06,165 [INFO   ] [CONTROLLER] starting the match
+2023-03-11 19:48:06,165 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-11 19:48:06,166 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-11 19:48:06,167 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-11 19:48:06,167 [INFO   ] [INFORMATION] information channel established
+2023-03-11 19:48:07,130 [INFO   ] [CONNECTION] fd=968 connection established: peer=127.0.0.1:54668
+2023-03-11 19:48:11,199 [INFO   ] [CONTROLLER] market open
+2023-03-11 19:48:13,766 [INFO   ] [CONNECTION] fd=756 connection established: peer=127.0.0.1:54675
+2023-03-11 19:48:13,768 [WARNING] [COMPETITOR] competitor logged in after market open: name='Wiener_Trader'
+2023-03-11 19:48:13,769 [INFO   ] [EXECUTION] fd=756 'Wiener_Trader' is ready!
+2023-03-11 19:48:13,787 [INFO   ] [COMPETITOR] 'Wiener_Trader' sent error message: time=2.594000 client_order_id=1 message='0 is not a valid price'
+2023-03-11 19:48:13,801 [ERROR  ] [CONNECTION] fd=756 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-03-11 19:48:13,813 [WARNING] [EXECUTION] fd=756 lost connection to auto-trader:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-03-11 19:50:49,599 [INFO   ] [APP] exchange started with arguments={rtg.py, run, ADV_Weiner.py}
+2023-03-11 19:50:49,600 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","Default_Trader":"secret2","NotUs_Trader":"secret3","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7"}}
+2023-03-11 19:50:49,601 [INFO   ] [CONTROLLER] starting the match
+2023-03-11 19:50:49,602 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-11 19:50:49,603 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-11 19:50:49,604 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-11 19:50:49,605 [INFO   ] [INFORMATION] information channel established
+2023-03-11 19:50:50,392 [INFO   ] [CONNECTION] fd=988 connection established: peer=127.0.0.1:54703
+2023-03-11 19:50:54,636 [INFO   ] [CONTROLLER] market open
+2023-03-11 19:50:56,229 [INFO   ] [CONNECTION] fd=1008 connection established: peer=127.0.0.1:54705
+2023-03-11 19:50:56,229 [WARNING] [COMPETITOR] competitor logged in after market open: name='Wiener_Trader'
+2023-03-11 19:50:56,229 [INFO   ] [EXECUTION] fd=1008 'Wiener_Trader' is ready!
+2023-03-11 19:50:56,236 [INFO   ] [COMPETITOR] 'Wiener_Trader' sent error message: time=1.609000 client_order_id=1 message='0 is not a valid price'
+2023-03-11 19:50:56,242 [ERROR  ] [CONNECTION] fd=1008 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-03-11 19:50:56,245 [WARNING] [EXECUTION] fd=1008 lost connection to auto-trader:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
