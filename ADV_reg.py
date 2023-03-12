@@ -115,20 +115,22 @@ class AutoTrader(BaseAutoTrader):
             self.bidsAdded = []
             spread_tick_count = 0
             possible_order_count = 8 + spread_tick_count
-            for i, price in enumerate(bid_prices):
-                if i < 4  and self.ETF_bid_vol[i] == 0 and self.activeOrders < 19:
-                    self.bid_id = next(self.order_ids)
-                    self.send_insert_order(self.bid_id, Side.BUY, price, 5, Lifespan.GOOD_FOR_DAY)
-                    self.bids.add(self.bid_id)
-                    self.bidsAdded.append(self.bid_id)
-                    self.activeOrders += 1
-            for i, price in enumerate(ask_prices):
-                if i < 4  and self.ETF_ask_vol[i] == 0 and self.activeOrders < 19:
-                    self.ask_id = next(self.order_ids)
-                    self.send_insert_order(self.ask_id, Side.SELL, price, 5, Lifespan.GOOD_FOR_DAY)
-                    self.bids.add(self.ask_id)
-                    self.asksAdded.append(self.ask_id)
-                    self.activeOrders += 1
+            if self.position >= 0:
+                for i, price in enumerate(bid_prices):
+                    if i < 6 and self.ETF_bid_vol[i] == 0 and self.activeOrders < 19:
+                        self.bid_id = next(self.order_ids)
+                        self.send_insert_order(self.bid_id, Side.BUY, price, 5, Lifespan.GOOD_FOR_DAY)
+                        self.bids.add(self.bid_id)
+                        self.bidsAdded.append(self.bid_id)
+                        self.activeOrders += 1
+            if self.position <= 0:
+                for i, price in enumerate(ask_prices):
+                    if i < 6 and self.ETF_ask_vol[i] == 0 and self.activeOrders < 19:
+                        self.ask_id = next(self.order_ids)
+                        self.send_insert_order(self.ask_id, Side.SELL, price, 5, Lifespan.GOOD_FOR_DAY)
+                        self.bids.add(self.ask_id)
+                        self.asksAdded.append(self.ask_id)
+                        self.activeOrders += 1
 
                     
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:

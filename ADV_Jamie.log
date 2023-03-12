@@ -7668,3 +7668,341 @@ task: <Task pending name='Task-2' coro=<Subscriber._subscribe_worker() running a
 2023-03-12 17:21:35,943 [INFO   ] [CONNECTION] fd=1004 connection lost
 2023-03-12 17:21:35,943 [INFO   ] [APP] closing event loop
 2023-03-12 17:21:35,943 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:23:19,490 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:23:19,490 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:23:19,498 [INFO   ] [CONNECTION] fd=972 connection established: peer=127.0.0.1:12345
+2023-03-12 17:24:22,329 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:24:22,330 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:24:22,419 [INFO   ] [CONNECTION] fd=356 connection established: peer=127.0.0.1:12345
+2023-03-12 17:30:08,957 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:30:08,957 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:30:11,624 [INFO   ] [CONNECTION] fd=940 connection established: peer=127.0.0.1:12345
+2023-03-12 17:30:14,738 [ERROR  ] [asyncio] Fatal error: protocol.data_received() call failed.
+protocol: <ADV_Jamie.AutoTrader object at 0x000001D6D709FDF0>
+transport: <_SelectorSocketTransport fd=940 read=polling write=<idle, bufsize=0>>
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 868, in _read_ready__data_received
+    self._protocol.data_received(data)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 162, in data_received
+    self.on_message(typ, self._data, upto + HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 93, in on_message
+    self.on_order_filled_message(*ORDER_FILLED_MESSAGE.unpack_from(data, start))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ADV_Jamie.py", line 298, in on_order_filled_message
+    if client_order_id in self.bids:
+AttributeError: 'AutoTrader' object has no attribute 'bids'
+2023-03-12 17:30:14,745 [ERROR  ] [CONNECTION] fd=940 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 868, in _read_ready__data_received
+    self._protocol.data_received(data)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 162, in data_received
+    self.on_message(typ, self._data, upto + HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 93, in on_message
+    self.on_order_filled_message(*ORDER_FILLED_MESSAGE.unpack_from(data, start))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ADV_Jamie.py", line 298, in on_order_filled_message
+    if client_order_id in self.bids:
+AttributeError: 'AutoTrader' object has no attribute 'bids'
+2023-03-12 17:30:14,745 [INFO   ] [APP] closing event loop
+2023-03-12 17:30:14,746 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:33:51,113 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:33:51,113 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:33:53,731 [INFO   ] [CONNECTION] fd=388 connection established: peer=127.0.0.1:12345
+2023-03-12 17:33:56,883 [ERROR  ] [asyncio] Fatal error: protocol.data_received() call failed.
+protocol: <ADV_Jamie.AutoTrader object at 0x00000292FCFFFE50>
+transport: <_SelectorSocketTransport fd=388 read=polling write=<idle, bufsize=0>>
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 868, in _read_ready__data_received
+    self._protocol.data_received(data)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 162, in data_received
+    self.on_message(typ, self._data, upto + HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 93, in on_message
+    self.on_order_filled_message(*ORDER_FILLED_MESSAGE.unpack_from(data, start))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ADV_Jamie.py", line 307, in on_order_filled_message
+    self.position -= volume
+AttributeError: 'AutoTrader' object has no attribute 'position'
+2023-03-12 17:33:56,889 [ERROR  ] [CONNECTION] fd=388 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 868, in _read_ready__data_received
+    self._protocol.data_received(data)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 162, in data_received
+    self.on_message(typ, self._data, upto + HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 93, in on_message
+    self.on_order_filled_message(*ORDER_FILLED_MESSAGE.unpack_from(data, start))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ADV_Jamie.py", line 307, in on_order_filled_message
+    self.position -= volume
+AttributeError: 'AutoTrader' object has no attribute 'position'
+2023-03-12 17:33:56,890 [INFO   ] [APP] closing event loop
+2023-03-12 17:33:56,890 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:34:53,953 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:34:53,953 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:34:54,016 [INFO   ] [CONNECTION] fd=940 connection established: peer=127.0.0.1:12345
+2023-03-12 17:34:59,759 [ERROR  ] [asyncio] Fatal error: protocol.data_received() call failed.
+protocol: <ADV_Jamie.AutoTrader object at 0x000001E428C4FE50>
+transport: <_SelectorSocketTransport fd=940 read=polling write=<idle, bufsize=0>>
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 868, in _read_ready__data_received
+    self._protocol.data_received(data)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 162, in data_received
+    self.on_message(typ, self._data, upto + HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 93, in on_message
+    self.on_order_filled_message(*ORDER_FILLED_MESSAGE.unpack_from(data, start))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ADV_Jamie.py", line 306, in on_order_filled_message
+    self.send_hedge_order(next(self.order_ids), Side.BID, self.recentFUTUREBidAsk[0], volume)
+AttributeError: 'AutoTrader' object has no attribute 'order_ids'
+2023-03-12 17:34:59,766 [ERROR  ] [CONNECTION] fd=940 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 868, in _read_ready__data_received
+    self._protocol.data_received(data)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 162, in data_received
+    self.on_message(typ, self._data, upto + HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 93, in on_message
+    self.on_order_filled_message(*ORDER_FILLED_MESSAGE.unpack_from(data, start))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ADV_Jamie.py", line 306, in on_order_filled_message
+    self.send_hedge_order(next(self.order_ids), Side.BID, self.recentFUTUREBidAsk[0], volume)
+AttributeError: 'AutoTrader' object has no attribute 'order_ids'
+2023-03-12 17:34:59,766 [INFO   ] [APP] closing event loop
+2023-03-12 17:34:59,766 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:35:31,440 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:35:31,440 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:35:31,495 [INFO   ] [CONNECTION] fd=972 connection established: peer=127.0.0.1:12345
+2023-03-12 17:37:27,259 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:37:27,260 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:37:27,276 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:12345
+2023-03-12 17:38:43,029 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 17:38:43,030 [INFO   ] [CONNECTION] fd=996 connection lost
+2023-03-12 17:38:43,031 [INFO   ] [APP] closing event loop
+2023-03-12 17:38:43,031 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:40:06,486 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:40:06,486 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:40:06,494 [INFO   ] [CONNECTION] fd=1000 connection established: peer=127.0.0.1:12345
+2023-03-12 17:42:32,982 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 17:42:32,982 [INFO   ] [CONNECTION] fd=1000 connection lost
+2023-03-12 17:42:32,983 [INFO   ] [APP] closing event loop
+2023-03-12 17:42:32,983 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:43:20,358 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:43:20,358 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:43:20,365 [INFO   ] [CONNECTION] fd=528 connection established: peer=127.0.0.1:12345
+2023-03-12 17:43:26,141 [WARNING] [TRADER] error with order 1: ETF position limit breached
+2023-03-12 17:43:26,143 [ERROR  ] [CONNECTION] fd=528 connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 854, in _read_ready__data_received
+    data = self._sock.recv(self.max_size)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-03-12 17:43:26,145 [INFO   ] [APP] closing event loop
+2023-03-12 17:43:26,145 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:43:50,144 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:43:50,144 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:43:50,151 [INFO   ] [CONNECTION] fd=924 connection established: peer=127.0.0.1:12345
+2023-03-12 17:44:26,257 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:44:26,257 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:44:26,262 [INFO   ] [CONNECTION] fd=700 connection established: peer=127.0.0.1:12345
+2023-03-12 17:45:04,457 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:45:04,457 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:45:04,464 [INFO   ] [CONNECTION] fd=408 connection established: peer=127.0.0.1:12345
+2023-03-12 17:46:20,244 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 17:46:20,246 [INFO   ] [CONNECTION] fd=408 connection lost
+2023-03-12 17:46:20,246 [INFO   ] [APP] closing event loop
+2023-03-12 17:46:20,246 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:48:43,904 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:48:43,904 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:48:43,909 [INFO   ] [CONNECTION] fd=872 connection established: peer=127.0.0.1:12345
+2023-03-12 17:49:59,672 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 17:49:59,674 [INFO   ] [CONNECTION] fd=872 connection lost
+2023-03-12 17:49:59,674 [INFO   ] [APP] closing event loop
+2023-03-12 17:49:59,674 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:50:06,062 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:50:06,062 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:50:06,067 [INFO   ] [CONNECTION] fd=944 connection established: peer=127.0.0.1:12345
+2023-03-12 17:51:29,028 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 17:51:29,029 [INFO   ] [CONNECTION] fd=944 connection lost
+2023-03-12 17:51:29,030 [INFO   ] [APP] closing event loop
+2023-03-12 17:51:29,030 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:52:58,035 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:52:58,036 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:52:58,042 [INFO   ] [CONNECTION] fd=924 connection established: peer=127.0.0.1:12345
+2023-03-12 17:53:59,406 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:53:59,406 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:53:59,415 [INFO   ] [CONNECTION] fd=936 connection established: peer=127.0.0.1:12345
+2023-03-12 17:55:15,228 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 17:55:15,229 [INFO   ] [CONNECTION] fd=936 connection lost
+2023-03-12 17:55:15,229 [INFO   ] [APP] closing event loop
+2023-03-12 17:55:15,229 [INFO   ] [RECEIVER] connection lost
+2023-03-12 17:56:59,059 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 17:56:59,059 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 17:56:59,065 [INFO   ] [CONNECTION] fd=96 connection established: peer=127.0.0.1:12345
+2023-03-12 17:58:14,763 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 17:58:14,763 [INFO   ] [CONNECTION] fd=96 connection lost
+2023-03-12 17:58:14,764 [INFO   ] [APP] closing event loop
+2023-03-12 17:58:14,764 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:04:24,071 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:04:24,071 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:04:24,079 [INFO   ] [CONNECTION] fd=952 connection established: peer=127.0.0.1:12345
+2023-03-12 18:06:49,556 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:06:49,556 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:06:49,561 [INFO   ] [CONNECTION] fd=860 connection established: peer=127.0.0.1:12345
+2023-03-12 18:08:05,368 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:08:05,369 [INFO   ] [CONNECTION] fd=860 connection lost
+2023-03-12 18:08:05,369 [INFO   ] [APP] closing event loop
+2023-03-12 18:08:05,369 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:08:55,593 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:08:55,593 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:08:55,598 [INFO   ] [CONNECTION] fd=440 connection established: peer=127.0.0.1:12345
+2023-03-12 18:11:20,604 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:11:20,604 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:11:20,609 [INFO   ] [CONNECTION] fd=876 connection established: peer=127.0.0.1:12345
+2023-03-12 18:12:01,561 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:12:01,561 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:12:01,566 [INFO   ] [CONNECTION] fd=748 connection established: peer=127.0.0.1:12345
+2023-03-12 18:13:25,762 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:13:25,762 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:13:25,767 [INFO   ] [CONNECTION] fd=528 connection established: peer=127.0.0.1:12345
+2023-03-12 18:14:49,171 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:14:49,171 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:14:49,178 [INFO   ] [CONNECTION] fd=1020 connection established: peer=127.0.0.1:12345
+2023-03-12 18:15:44,915 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:15:44,915 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:15:44,923 [INFO   ] [CONNECTION] fd=744 connection established: peer=127.0.0.1:12345
+2023-03-12 18:16:23,353 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:16:23,354 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:16:23,359 [INFO   ] [CONNECTION] fd=772 connection established: peer=127.0.0.1:12345
+2023-03-12 18:16:31,322 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:16:31,322 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:16:31,327 [INFO   ] [CONNECTION] fd=956 connection established: peer=127.0.0.1:12345
+2023-03-12 18:17:47,140 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:17:47,141 [INFO   ] [CONNECTION] fd=956 connection lost
+2023-03-12 18:17:47,142 [INFO   ] [APP] closing event loop
+2023-03-12 18:17:47,142 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:18:18,208 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:18:18,208 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:18:18,214 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:12345
+2023-03-12 18:20:13,330 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:20:13,330 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:20:13,337 [INFO   ] [CONNECTION] fd=952 connection established: peer=127.0.0.1:12345
+2023-03-12 18:21:29,144 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:21:29,145 [INFO   ] [CONNECTION] fd=952 connection lost
+2023-03-12 18:21:29,145 [INFO   ] [APP] closing event loop
+2023-03-12 18:21:29,145 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:22:34,897 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:22:34,897 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:22:34,904 [INFO   ] [CONNECTION] fd=392 connection established: peer=127.0.0.1:12345
+2023-03-12 18:24:01,186 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:24:01,186 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:24:01,193 [INFO   ] [CONNECTION] fd=916 connection established: peer=127.0.0.1:12345
+2023-03-12 18:25:16,976 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:25:16,976 [INFO   ] [CONNECTION] fd=916 connection lost
+2023-03-12 18:25:16,977 [INFO   ] [APP] closing event loop
+2023-03-12 18:25:16,977 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:26:38,340 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:26:38,340 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:26:38,345 [INFO   ] [CONNECTION] fd=832 connection established: peer=127.0.0.1:12345
+2023-03-12 18:27:37,939 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:27:37,940 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:27:37,945 [INFO   ] [CONNECTION] fd=792 connection established: peer=127.0.0.1:12345
+2023-03-12 18:28:53,746 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:28:53,747 [INFO   ] [CONNECTION] fd=792 connection lost
+2023-03-12 18:28:53,748 [INFO   ] [APP] closing event loop
+2023-03-12 18:28:53,748 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:31:46,814 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_stolen.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:31:46,814 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:31:46,822 [INFO   ] [CONNECTION] fd=992 connection established: peer=127.0.0.1:12345
+2023-03-12 18:33:02,616 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:33:02,617 [INFO   ] [CONNECTION] fd=992 connection lost
+2023-03-12 18:33:02,617 [INFO   ] [APP] closing event loop
+2023-03-12 18:33:02,617 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:34:24,988 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:34:24,988 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:34:24,994 [INFO   ] [CONNECTION] fd=1012 connection established: peer=127.0.0.1:12345
+2023-03-12 18:34:37,912 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:34:37,912 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:34:37,917 [INFO   ] [CONNECTION] fd=396 connection established: peer=127.0.0.1:12345
+2023-03-12 18:35:53,737 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:35:53,738 [INFO   ] [CONNECTION] fd=396 connection lost
+2023-03-12 18:35:53,738 [INFO   ] [APP] closing event loop
+2023-03-12 18:35:53,738 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:39:10,557 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:39:10,558 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:39:10,563 [INFO   ] [CONNECTION] fd=1012 connection established: peer=127.0.0.1:12345
+2023-03-12 18:40:26,384 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:40:26,385 [INFO   ] [CONNECTION] fd=1012 connection lost
+2023-03-12 18:40:26,385 [INFO   ] [APP] closing event loop
+2023-03-12 18:40:26,385 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:43:00,744 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:43:00,745 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:43:00,752 [INFO   ] [CONNECTION] fd=760 connection established: peer=127.0.0.1:12345
+2023-03-12 18:44:16,540 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:44:16,540 [INFO   ] [CONNECTION] fd=760 connection lost
+2023-03-12 18:44:16,540 [INFO   ] [APP] closing event loop
+2023-03-12 18:44:16,541 [INFO   ] [RECEIVER] connection lost
+2023-03-12 18:44:28,221 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:44:28,221 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:44:28,227 [INFO   ] [CONNECTION] fd=860 connection established: peer=127.0.0.1:12345
+2023-03-12 18:44:57,674 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:44:57,674 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:44:57,679 [INFO   ] [CONNECTION] fd=380 connection established: peer=127.0.0.1:12345
+2023-03-12 18:45:36,789 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 18:45:36,790 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 18:45:36,795 [INFO   ] [CONNECTION] fd=1000 connection established: peer=127.0.0.1:12345
+2023-03-12 18:46:52,603 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 18:46:52,604 [INFO   ] [CONNECTION] fd=1000 connection lost
+2023-03-12 18:46:52,604 [INFO   ] [APP] closing event loop
+2023-03-12 18:46:52,605 [INFO   ] [RECEIVER] connection lost
+2023-03-12 19:19:49,630 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:19:49,630 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:19:49,637 [INFO   ] [CONNECTION] fd=864 connection established: peer=127.0.0.1:12345
+2023-03-12 19:21:05,413 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 19:21:05,413 [INFO   ] [CONNECTION] fd=864 connection lost
+2023-03-12 19:21:05,413 [INFO   ] [APP] closing event loop
+2023-03-12 19:21:05,414 [INFO   ] [RECEIVER] connection lost
+2023-03-12 19:22:07,254 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:22:07,254 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:22:07,259 [INFO   ] [CONNECTION] fd=764 connection established: peer=127.0.0.1:12345
+2023-03-12 19:23:23,055 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 19:23:23,056 [INFO   ] [CONNECTION] fd=764 connection lost
+2023-03-12 19:23:23,056 [INFO   ] [APP] closing event loop
+2023-03-12 19:23:23,057 [INFO   ] [RECEIVER] connection lost
+2023-03-12 19:26:29,624 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:26:29,624 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:26:29,628 [INFO   ] [CONNECTION] fd=956 connection established: peer=127.0.0.1:12345
+2023-03-12 19:27:22,640 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:27:22,640 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:27:22,646 [INFO   ] [CONNECTION] fd=988 connection established: peer=127.0.0.1:12345
+2023-03-12 19:28:24,214 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:28:24,215 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:28:24,221 [INFO   ] [CONNECTION] fd=936 connection established: peer=127.0.0.1:12345
+2023-03-12 19:29:01,086 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:29:01,086 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:29:01,094 [INFO   ] [CONNECTION] fd=932 connection established: peer=127.0.0.1:12345
+2023-03-12 19:30:09,139 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 19:30:09,140 [INFO   ] [CONNECTION] fd=932 connection lost
+2023-03-12 19:30:09,140 [INFO   ] [APP] closing event loop
+2023-03-12 19:30:09,140 [INFO   ] [RECEIVER] connection lost
+2023-03-12 19:31:00,797 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:31:00,798 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:31:00,804 [INFO   ] [CONNECTION] fd=764 connection established: peer=127.0.0.1:12345
+2023-03-12 19:32:06,541 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 19:32:06,542 [INFO   ] [CONNECTION] fd=764 connection lost
+2023-03-12 19:32:06,542 [INFO   ] [APP] closing event loop
+2023-03-12 19:32:06,542 [INFO   ] [RECEIVER] connection lost
+2023-03-12 19:32:28,535 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:32:28,535 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:32:28,539 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:12345
+2023-03-12 19:33:03,832 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:33:03,833 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:33:03,840 [INFO   ] [CONNECTION] fd=740 connection established: peer=127.0.0.1:12345
+2023-03-12 19:34:11,805 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 19:34:11,806 [INFO   ] [CONNECTION] fd=740 connection lost
+2023-03-12 19:34:11,806 [INFO   ] [APP] closing event loop
+2023-03-12 19:34:11,807 [INFO   ] [RECEIVER] connection lost
+2023-03-12 19:35:05,397 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:35:05,397 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:35:05,404 [INFO   ] [CONNECTION] fd=524 connection established: peer=127.0.0.1:12345
+2023-03-12 19:36:11,194 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 19:36:11,195 [INFO   ] [CONNECTION] fd=524 connection lost
+2023-03-12 19:36:11,195 [INFO   ] [APP] closing event loop
+2023-03-12 19:36:11,195 [INFO   ] [RECEIVER] connection lost
+2023-03-12 19:37:00,017 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, autotrader_DataStore.py, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py}
+2023-03-12 19:37:00,018 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-12 19:37:00,023 [INFO   ] [CONNECTION] fd=964 connection established: peer=127.0.0.1:12345
+2023-03-12 19:38:05,732 [WARNING] [TRADER] error with order 0: held unhedged lots for longer than the time limit
+2023-03-12 19:38:05,734 [INFO   ] [CONNECTION] fd=964 connection lost
+2023-03-12 19:38:05,734 [INFO   ] [APP] closing event loop
+2023-03-12 19:38:05,734 [INFO   ] [RECEIVER] connection lost

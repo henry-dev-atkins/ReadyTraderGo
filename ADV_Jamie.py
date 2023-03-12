@@ -48,6 +48,9 @@ class AutoTrader(BaseAutoTrader):
         self.sequence_numbers = []
         self.commstally = 0
         self.midPriceOffsets = []
+        self.recentFUTUREBidAsk = None
+        self.bids = set()
+        self.asks = set()
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -251,7 +254,8 @@ class AutoTrader(BaseAutoTrader):
                                     self.orders[orderid] = [orderid, vol, 0, price] #age, volume, fulfilled, price
                                     self.pos["unreal"][1] += vol
                                     self.send_insert_order(orderid, Side.SELL, price, -vol, Lifespan.GOOD_FOR_DAY)
-                                    self.send_hedge_order(next(self.order_ids), Side.BID, price, vol)
+                                    self.asks.add(orderid)
+                                    #self.send_hedge_order(next(self.order_ids), Side.BID, price, vol)
                                     #print("SELL", vol, "AT", book_prices[i])
                             elif book_deltas[i] > 0:
                                 vol = int(book_deltas[i] * book_posOpRatio)
@@ -265,7 +269,8 @@ class AutoTrader(BaseAutoTrader):
                                     self.orders[orderid] = [orderid, vol, 0, price] #age, volume, fulfilled, price
                                     self.pos["unreal"][0] += vol
                                     self.send_insert_order(orderid, Side.BUY, price, vol, Lifespan.GOOD_FOR_DAY)
-                                    self.send_hedge_order(next(self.order_ids), Side.ASK, price, -vol)
+                                    self.bids.add(orderid)
+                                    #self.send_hedge_order(next(self.order_ids), Side.ASK, price, -vol)
                                     #print("BUY", vol, "AT", book_prices[i])
 
                     self.times.append(time.perf_counter() - startTime)
@@ -275,7 +280,9 @@ class AutoTrader(BaseAutoTrader):
                         #print("ACCURACY", np.round(np.mean(self.accuracy),2), "FORECAST", np.round(self.instOffsets[-1],2), "ORDERS", len(self.orders.keys()), "OPCOUNT", OPCOUNT, "POSITION", self.pos, "COMMSTALLY", self.commstally, "TIME", sequence_number/4, "PERF", np.mean(self.times))
                         self.commstally = 0
                     ###REFRESH DATA FOR NEXT TURN
+                    self.recentFUTUREBidAsk = (ask_prices[0], bid_prices[0])
                     self.data = []
+                    
 
         except Exception as e:
             pass
@@ -292,6 +299,11 @@ class AutoTrader(BaseAutoTrader):
         which may be better than the order's limit price. The volume is
         the number of lots filled at that price.
         """
+        if client_order_id in self.bids:
+            self.send_hedge_order(next(self.ids), Side.ASK, self.recentFUTUREBidAsk[1], volume)
+
+        elif client_order_id in self.asks:
+            self.send_hedge_order(next(self.ids), Side.BID, self.recentFUTUREBidAsk[0], volume)
 
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,
                                 fees: int) -> None:

@@ -274,10 +274,10 @@ class AutoTrader(BaseAutoTrader):
                          price, volume)
         if client_order_id in [bid[0] for bid in self.bids]:
             self.__position += volume
-            self.send_hedge_order(next(self.order_ids), Side.ASK, MINIMUM_BID, volume)
+            self.send_hedge_order(next(self.order_ids), Side.ASK, self.ask_price, volume)
         elif client_order_id in [ask[0] for ask in self.asks]:
             self.__position -= volume
-            self.send_hedge_order(next(self.order_ids), Side.BID, MAXIMUM_ASK//TICK_SIZE_IN_CENTS*TICK_SIZE_IN_CENTS, volume)
+            self.send_hedge_order(next(self.order_ids), Side.BID, self.bid_price, volume)
 
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,
                                 fees: int) -> None:

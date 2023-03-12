@@ -58,6 +58,11 @@ class AutoTrader(BaseAutoTrader):
         self.SentArbTrade = False
         self.lotSize = 20
         self.spread = []
+        self.waitingOrders = 0
+        self.orderBookCounter = 0
+        self.runningPnL = 0
+        self.arb_ask = 0
+        self.arb_bid = 0
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -90,6 +95,22 @@ class AutoTrader(BaseAutoTrader):
         """
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
+        if self.orderBookCounter >= 4:
+            #print(self.waitingOrders)
+            if self.waitingOrders >= 10:
+                for i in self.asks:
+                    self.send_cancel_order(i)
+                for i in self.bids:
+                    self.send_cancel_order(i)
+            self.orderBookCounter = -1
+
+        if self.SentArbTrade == True:
+            self.arbOrderCount += 1
+            if self.arbOrderCount > 10:
+                self.send_cancel_order(self.arb_ask)
+                self.send_cancel_order(self.arb_bid)
+                self.SentArbTrade = False
+
         if instrument == Instrument.FUTURE:
             self.Future_best_ask = ask_prices[0]
             self.Future_best_bid = bid_prices[0]
@@ -97,37 +118,48 @@ class AutoTrader(BaseAutoTrader):
             self.etf_best_ask = ask_prices[0]
             self.etf_best_bid = bid_prices[0]
 
-        if self.Future_best_ask > self.etf_best_bid and self.position <= 0:#Buy etf, short future
-            if self.bid_id == 0 and self.etf_best_bid != 0 and self.position < POSITION_LIMIT:
-                self.bid_id = next(self.order_ids)
-                self.bid_price = self.etf_best_bid
-                self.send_insert_order(self.bid_id, Side.BUY, self.etf_best_bid, self.lotSize, Lifespan.GOOD_FOR_DAY)
-                self.bids.add(self.bid_id)
-                id = next(self.order_ids)
-                self.SentArbTrade = True
-
-        if self.Future_best_bid < self.etf_best_ask and self.position >= 0:#Buy future, short etf 
-            if self.ask_id == 0 and self.etf_best_ask != 0 and self.position > -POSITION_LIMIT:
-                self.ask_id = next(self.order_ids)
-                self.ask_price = self.etf_best_ask
-                self.send_insert_order(self.ask_id, Side.SELL, self.etf_best_ask, self.lotSize, Lifespan.GOOD_FOR_DAY)
-                self.asks.add(self.ask_id)
-                self.SentArbTrade = True
-
-        #Filling the spread with orders of 1
-        self.spread.append(self.etf_best_ask - self.etf_best_bid)
-        if instrument == Instrument.ETF and self.spread[-1] >= TICK_SIZE_IN_CENTS * 2:
-            midpoint = np.round(self.spread[-1] // 2 + self.etf_best_bid, TICK_SIZE_IN_CENTS)
-            for i in np.arange(self.spread[-1], TICK_SIZE_IN_CENTS):
-                if i > midpoint:
-                    self.ask_id = next(self.order_ids)
-                    self.send_insert_order(self.ask_id, Side.SELL, 1, 1, Lifespan.GOOD_FOR_DAY)
-                    self.asks.add(self.ask_id)
-                if i < midpoint:
+            if self.Future_best_ask > self.etf_best_bid and self.position <= 0:#Buy etf, short future
+                if self.bid_id == 0 and self.etf_best_bid != 0 and self.position < POSITION_LIMIT and self.waitingOrders < 10:
                     self.bid_id = next(self.order_ids)
-                    self.send_insert_order(self.bid_id, Side.BUY, 1, self.lotSize, Lifespan.GOOD_FOR_DAY)
+                    self.bid_price = self.etf_best_bid
+                    self.send_insert_order(self.bid_id, Side.BUY, self.etf_best_bid, self.lotSize, Lifespan.GOOD_FOR_DAY)
                     self.bids.add(self.bid_id)
-        
+                    self.arb_bid = self.bid_id
+                    self.waitingOrders += 1
+                    self.SentArbTrade = True
+                    self.arbOrderCount = 0
+
+            if self.Future_best_bid < self.etf_best_ask and self.position >= 0:#Buy future, short etf 
+                if self.ask_id == 0 and self.etf_best_ask != 0 and self.position > -POSITION_LIMIT and self.waitingOrders < 10:
+                    self.ask_id = next(self.order_ids)
+                    self.ask_price = self.etf_best_ask
+                    self.send_insert_order(self.ask_id, Side.SELL, self.etf_best_ask, self.lotSize, Lifespan.GOOD_FOR_DAY)
+                    self.asks.add(self.ask_id)
+                    self.arb_ask = self.ask_id
+                    self.waitingOrders += 1
+                    self.SentArbTrade = True
+                    self.arbOrderCount = 0
+
+            #Filling the spread with orders of 1
+            self.spread.append(self.etf_best_ask - self.etf_best_bid)
+            if instrument == Instrument.ETF and self.spread[-1] >= TICK_SIZE_IN_CENTS * 2 and self.SentArbTrade == False:
+                midpoint = np.round(self.spread[-1] // 2 + self.etf_best_bid, TICK_SIZE_IN_CENTS)
+                for i in np.arange(self.etf_best_bid, self.etf_best_ask + TICK_SIZE_IN_CENTS, TICK_SIZE_IN_CENTS):
+                    if self.waitingOrders >= 10:break
+                    if i > midpoint and self.position >= 0:
+                        self.ask_id = next(self.order_ids)
+                        self.send_insert_order(self.ask_id, Side.SELL, i, 2, Lifespan.GOOD_FOR_DAY)
+                        self.asks.add(self.ask_id)
+                        self.waitingOrders += 1
+                        #print("Sell", i)
+                    if i < midpoint and self.position <= 0:
+                        self.bid_id = next(self.order_ids)
+                        self.send_insert_order(self.bid_id, Side.BUY, i, 2, Lifespan.GOOD_FOR_DAY)
+                        self.bids.add(self.bid_id)
+                        self.waitingOrders += 1
+                        #print("Buy",i, "\n")
+                    #print(self.etf_best_bid, self.etf_best_ask)
+        self.orderBookCounter += 1
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
         """Called when one of your orders is filled, partially or fully.
@@ -142,9 +174,11 @@ class AutoTrader(BaseAutoTrader):
             self.position += volume
             self.send_hedge_order(next(self.order_ids), Side.ASK, MIN_BID_NEAREST_TICK, volume)
 
+
         elif client_order_id in self.asks:
             self.position -= volume
             self.send_hedge_order(next(self.order_ids), Side.BID, MAX_ASK_NEAREST_TICK, volume)
+
         
         if self.SentArbTrade == True:
             if client_order_id in self.bids:
@@ -152,12 +186,9 @@ class AutoTrader(BaseAutoTrader):
                 if self.position > 0:#short etf, buy future
                     if self.Future_best_ask < self.etf_best_bid:
                         self.ask_id = next(self.order_ids)
-                        self.ask_price = self.etf_best_ask
-                        self.send_insert_order(self.ask_id, Side.SELL, self.etf_best_ask, self.lotSize, Lifespan.GOOD_FOR_DAY)
+                        self.send_insert_order(self.ask_id, Side.SELL, self.Future_best_ask + TICK_SIZE_IN_CENTS, self.lotSize, Lifespan.GOOD_FOR_DAY)
                         self.asks.add(self.ask_id)
-                        id = next(self.order_ids)
-                        #print("osition > 0, self.Future_best_ask < self.etf_best_bid", str(id) + str(self.self.Future_best_ask))
-                        #self.send_hedge_order(id, Side.BID, self.Future_best_bid, self.lotSize)
+                        self.waitingOrders += 1
                         self.SentArbTrade = False
 
             elif client_order_id in self.asks:
@@ -165,14 +196,10 @@ class AutoTrader(BaseAutoTrader):
                 if self.position < 0: #short future, buy etf
                     if self.Future_best_bid > self.etf_best_ask:
                         self.bid_id = next(self.order_ids)
-                        self.bid_price = self.etf_best_bid
-                        self.send_insert_order(self.bid_id, Side.BUY, self.etf_best_bid, self.lotSize, Lifespan.GOOD_FOR_DAY)
+                        self.send_insert_order(self.bid_id, Side.BUY, self.Future_best_bid - TICK_SIZE_IN_CENTS, self.lotSize, Lifespan.GOOD_FOR_DAY)
                         self.bids.add(self.bid_id)
-                        id = next(self.order_ids)
-                        #print("self.Future_best_bid > self.etf_best_ask, on < 0", str(id) + str(self.Future_best_bid))
-                        #self.send_hedge_order(id, Side.ASK, self.Future_best_ask, self.lotSize)
+                        self.waitingOrders += 1
                         self.SentArbTrade = False
-
 
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,
                                 fees: int) -> None:
@@ -192,6 +219,7 @@ class AutoTrader(BaseAutoTrader):
                 self.bid_id = 0
             elif client_order_id == self.ask_id:
                 self.ask_id = 0
+            self.waitingOrders -= 1
 
             # It could be either a bid or an ask
             self.bids.discard(client_order_id)
