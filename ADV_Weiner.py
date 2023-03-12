@@ -58,13 +58,13 @@ class AutoTrader(BaseAutoTrader):
         self.asksAdded = []
         self.bidsAdded = []
         self.convdepth = 200
-        self.memory = np.zeros((2,self.convdepth,22))
+        self.memory = np.zeros((2,self.convdepth,20))
         self.OrdersOpen = 0
         self.ourTick = -1
         self.old_bid_prices = []
         self.old_ask_prices = []
-        self.old_midpointdiffs = []
-        self.old_midpoints = []
+        self.old_askdiffs = []
+        self.old_biddiffs = []
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -86,7 +86,7 @@ class AutoTrader(BaseAutoTrader):
         self.logger.info("received hedge filled for order %d with average price %d and volume %d", client_order_id,
                          price, volume)
     
-    def makeStationaryVector(self,convwidth,bid_volumes,bid_prices,ask_volumes,ask_prices,midpointdiff):
+    def makeStationaryVector(self,convwidth,bid_volumes,bid_prices,ask_volumes,ask_prices,biddiff,askdiff):
         if (ask_prices[0] - bid_prices[0]) >= 2:
             bid_volumes = np.flip(np.array(bid_volumes))
             ask_volumes = np.array(ask_volumes)
@@ -99,11 +99,17 @@ class AutoTrader(BaseAutoTrader):
 
             convdata = np.zeros(((convwidth//100)*2))
             ind = (prices-(bid_prices[-1]-convwidth))//100
-            ind = ind + int(((midpointdiff)//100))
+            ind[:10] += biddiff
+            ind[10:] += askdiff
             indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
             convdata[ind[indValid]] = volumes[indValid]
 
-            convdata = np.insert(convdata, (convwidth//TICK_SIZE_IN_CENTS)-1, np.array([0,0]))
+            spread = (ask_prices[0] - bid_prices[-1]) // TICK_SIZE_IN_CENTS
+
+            convdata = np.insert(convdata, (convwidth//TICK_SIZE_IN_CENTS)-1, np.zeros((spread)))
+            if spread % 2 > 0:
+                convdata = convdata[1:]
+            convdata = convdata[spread//2:-spread//2]
 
             return convdata
 
@@ -123,18 +129,19 @@ class AutoTrader(BaseAutoTrader):
         self.old_ask_prices.append(ask_prices)
 
         if self.ourTick == 0:
-            self.old_midpoints.append(None)
-            self.old_midpointdiffs.append(None)
+            self.old_askdiffs.append(None)
+            self.old_biddiffs.append(None)
         elif self.ourTick > 0:
-            midpoint = ((self.old_bid_prices[-1][0]) + (self.old_ask_prices[-1][0])) / 2
-            midpointdiff = ((self.old_bid_prices[-1][0] - self.old_bid_prices[-2][0]) + (self.old_ask_prices[-1][0] - self.old_ask_prices[-2][0])) / 2
-            self.old_midpoints.append(midpoint)
-            self.old_midpointdiffs.append(midpointdiff)
+            biddiff = self.old_bid_prices[-1][0]-self.old_bid_prices[-2][0]
+            askdiff = self.old_ask_prices[-1][0]-self.old_ask_prices[-2][0]
+            self.old_askdiffs.append(askdiff)
+            self.old_askdiffs.append(biddiff)
             #print("midpointdiff", midpointdiff)
-            convdata =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,midpointdiff)
+            convdata =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,biddiff,askdiff)
             
             self.memory[instrument] = np.roll(self.memory[instrument], -1, axis=0)
             self.memory[instrument,-1] = convdata
+
 
         if self.ourTick >= 19:
 
@@ -164,9 +171,10 @@ class AutoTrader(BaseAutoTrader):
                 self.bidsAdded = []
                 #time.sleep(0.1)
                 pred = np.round(conv[1,self.convdepth*2-1])
+                print(pred)
                 #print(pred)
                 #print(self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < POSITION_LIMIT)
-                if self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < LOT_SIZE:
+                if (self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < LOT_SIZE) and False:
                     TOTAL = max(LOT_SIZE - abs(self.position), 0)
                     BID_TOTAL_SIZE = (TOTAL / 2) if self.position > 0 else (TOTAL / 2) - self.position
                     ASK_TOTAL_SIZE = (TOTAL / 2) if self.position < 0 else (TOTAL / 2) + self.position
