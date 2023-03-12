@@ -55,7 +55,7 @@ class AutoTrader(BaseAutoTrader):
         self.InTrade = 0
         self.asksAdded = []
         self.bidsAdded = []
-        self.memory = np.zeros((2,20,20))
+        self.memory = np.zeros((2,20,22))
         self.OrdersOpen = 0
         self.ourTick = -1
 
@@ -80,20 +80,24 @@ class AutoTrader(BaseAutoTrader):
                          price, volume)
     
     def makeStationaryVector(self,convwidth,bid_volumes,bid_prices,ask_volumes,ask_prices):
-        bid_volumes = np.flip(np.array(bid_volumes))
-        ask_volumes = np.array(ask_volumes)
+        if (ask_prices[0] - bid_prices[0]) >= 2:
+            bid_volumes = np.flip(np.array(bid_volumes))
+            ask_volumes = np.array(ask_volumes)
 
-        bid_prices = np.flip(np.array(bid_prices))
-        ask_prices = np.array(ask_prices)
+            bid_prices = np.flip(np.array(bid_prices))
+            ask_prices = np.array(ask_prices)
 
-        prices = np.concatenate([bid_prices,ask_prices])
-        volumes = np.concatenate([bid_volumes,ask_volumes])
+            prices = np.concatenate([bid_prices,ask_prices])
+            volumes = np.concatenate([bid_volumes,ask_volumes])
 
-        convdata = np.zeros(((convwidth//100)*2))
-        ind = (prices-(bid_prices[-1]-convwidth))//100
-        indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
-        convdata[ind[indValid]] = volumes[indValid]
-        return convdata
+            convdata = np.zeros(((convwidth//100)*2))
+            ind = (prices-(bid_prices[-1]-convwidth))//100
+            indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
+            convdata[ind[indValid]] = volumes[indValid]
+
+            convdata = np.insert(convdata, (convwidth//TICK_SIZE_IN_CENTS)-1, np.array([0,0]))
+
+            return convdata
 
     def on_order_book_update_message(self, instrument: int, sequence_number: int, ask_prices: List[int],
                                      ask_volumes: List[int], bid_prices: List[int], bid_volumes: List[int]) -> None:
@@ -145,13 +149,13 @@ class AutoTrader(BaseAutoTrader):
                     TOTAL = max(LOT_SIZE - abs(self.position), 0)
                     BID_TOTAL_SIZE = (TOTAL / 2) if self.position > 0 else (TOTAL / 2) - self.position
                     ASK_TOTAL_SIZE = (TOTAL / 2) if self.position < 0 else (TOTAL / 2) + self.position
-                    bids = convdata[:10]
+                    bids = convdata[:11]
                     bids = np.flip(bids)
-                    total = np.sum(pred[:10][bids==0])
+                    total = np.sum(pred[:11][bids==0])
                     if total > 0:
                         for i, vol in enumerate(bids): #bids
                             if ~np.isnan(vol) and vol == 0 and pred[i] != 0 and ~np.isnan(pred[i]):
-                                price = bid_prices[0] - i*TICK_SIZE_IN_CENTS
+                                price = bid_prices[0] - (i-1)*TICK_SIZE_IN_CENTS
                                 self.bid_id = next(self.order_ids)
                                 size = int(np.round(BID_TOTAL_SIZE * pred[i]/total))
                                 if size > 0 and size < 100:
@@ -162,15 +166,15 @@ class AutoTrader(BaseAutoTrader):
                                     self.OrdersOpen += 1
                                     self.InTrade = 1
                                 if i >= 3: break
-                    asks = convdata[10:]
-                    total = np.sum(pred[10:][asks==0])
+                    asks = convdata[11:]
+                    total = np.sum(pred[11:][asks==0])
                     if total > 0:
                         for i, vol in enumerate(asks): #Asks
-                            if ~np.isnan(vol) and vol == 0 and pred[i+10] != 0 and ~np.isnan(pred[i+10]):
-                                price = ask_prices[0] - (10+i) * TICK_SIZE_IN_CENTS
+                            if ~np.isnan(vol) and vol == 0 and pred[i+11] != 0 and ~np.isnan(pred[i+11]):
+                                price = ask_prices[0] - (12+i) * TICK_SIZE_IN_CENTS
                                 #print(ask_prices[0], (10+i) , TICK_SIZE_IN_CENTS)
                                 self.ask_id = next(self.order_ids)
-                                size = int(np.round(ASK_TOTAL_SIZE * pred[i+10]/total))
+                                size = int(np.round(ASK_TOTAL_SIZE * pred[i+11]/total))
                                 if size > 0 and size < 100:
                                     print(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
                                     self.send_insert_order(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
