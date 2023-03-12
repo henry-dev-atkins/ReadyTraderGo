@@ -98,9 +98,9 @@ class AutoTrader(BaseAutoTrader):
             volumes = np.concatenate([bid_volumes,ask_volumes])
 
             convdata = np.zeros(((convwidth//100)*2))
-            ind = (prices-(bid_prices[-1]-convwidth))//100
-            ind[:10] += biddiff
-            ind[10:] += askdiff
+            ind = np.zeros((20))
+            ind[:10] = (prices-(bid_prices[-1]-convwidth))//100 + biddiff
+            ind[10:] = (prices-(ask_prices[0]-convwidth))//100 + askdiff
             indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
             convdata[ind[indValid]] = volumes[indValid]
 
