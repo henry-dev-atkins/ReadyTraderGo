@@ -130,6 +130,7 @@ class AutoTrader(BaseAutoTrader):
             midpointdiff = ((self.old_bid_prices[-1][0] - self.old_bid_prices[-2][0]) + (self.old_ask_prices[-1][0] - self.old_ask_prices[-2][0])) / 2
             self.old_midpoints.append(midpoint)
             self.old_midpointdiffs.append(midpointdiff)
+            #print("midpointdiff", midpointdiff)
             convdata =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,midpointdiff)
             
             self.memory[instrument] = np.roll(self.memory[instrument], -1, axis=0)
@@ -163,7 +164,7 @@ class AutoTrader(BaseAutoTrader):
                 self.bidsAdded = []
                 #time.sleep(0.1)
                 pred = np.round(conv[1,self.convdepth*2-1])
-                print(pred)
+                #print(pred)
                 #print(self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < POSITION_LIMIT)
                 if self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < LOT_SIZE:
                     TOTAL = max(LOT_SIZE - abs(self.position), 0)
@@ -173,15 +174,29 @@ class AutoTrader(BaseAutoTrader):
                     bids = np.flip(bids)
                     offset = int(self.old_midpointdiffs[-1]//100)
                     if abs(offset) < 5: #movement in the midpoint
-                        total = np.sum(pred[:11+offset][-11:][(bids==0)[:-offset]])
+                        print("\n")
+                        print("offset: ", offset)
+                        print("pred", pred)
+                        print("pred[:11+offset]", pred[:11+offset])
+                        print("pred[:11+offset][-11+offset:]",pred[:11+offset][-11+offset:])
+                        print("bids", bids, (bids==0))
+                        print("(bids==0)[:-offset]", (bids==0)[:-offset])
+                        print("(bids[:offset]==0)", (bids[:offset]==0))
+                        a = pred[:11+offset][-11+offset:]
+                        b = a[(bids[-11+offset:]==0)]
+                        print("b: ", b)
+                        print(pred[:11+offset][-11+offset:][(bids==0)][:-offset])
+                        print(pred[:11+offset][-11+offset:][(bids==0)])
+                        print(pred[:11+offset][-11+offset:][(bids==0)][:-offset])
+                        total = np.sum(pred[:11+offset][-11+offset:][(bids==0)[:-offset]]) #np.sum(pred[:11+offset][-11:][(bids==0)[:-offset]])
                         if total > 0:
                             for i, vol in enumerate(bids[:-offset]): #bids
                                 if ~np.isnan(vol) and vol == 0 and ~np.isnan(pred[i]) and pred[i] > 0:
-                                    price = (self.old_bid_prices[-2][0] + self.old_midpointdiffs[-1]) - (i-1)*TICK_SIZE_IN_CENTS
+                                    price = int(np.round((self.old_bid_prices[-2][0] + self.old_midpointdiffs[-1]) - (i-1)*TICK_SIZE_IN_CENTS, TICK_SIZE_IN_CENTS))
                                     self.bid_id = next(self.order_ids)
                                     size = int(np.round(BID_TOTAL_SIZE * pred[i]/total))
                                     if size > 0 and size < 100:
-                                        #print(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
+                                        print(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
                                         self.send_insert_order(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
                                         self.bids.add(self.bid_id)
                                         self.bidsAdded.append(self.bid_id)
@@ -189,11 +204,12 @@ class AutoTrader(BaseAutoTrader):
                                         self.InTrade = 1
                                     if i >= 3: break
                         asks = convdata[11:]
-                        total = np.sum(pred[11+offset:][-11:][(asks==0)[:-offset]])
+                        print(pred[11+offset:][-11+offset:][(asks==0)[:-offset]])
+                        total = np.sum(pred[11+offset:][-11+offset:][(asks==0)[:-offset]])
                         if total > 0:
                             for i, vol in enumerate(asks[:-offset]): #Asks
                                 if ~np.isnan(vol) and vol == 0 and ~np.isnan(pred[i+11+offset]) and pred[i+11+offset] > 0:
-                                    price = (self.old_bid_prices[-2][0] + self.old_midpointdiffs[-1]) - (12+i) * TICK_SIZE_IN_CENTS
+                                    price = int(np.round((self.old_bid_prices[-2][0] + self.old_midpointdiffs[-1]) - (12+i) * TICK_SIZE_IN_CENTS, TICK_SIZE_IN_CENTS))
                                     #print(ask_prices[0], (10+i) , TICK_SIZE_IN_CENTS)
                                     self.ask_id = next(self.order_ids)
                                     size = int(np.round(ASK_TOTAL_SIZE * pred[i+11+offset]/total))

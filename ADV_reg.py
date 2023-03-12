@@ -50,6 +50,13 @@ class AutoTrader(BaseAutoTrader):
         self.data = [] # bids, bid vol, ask, ask vol
         self.last_best_bid = 0
         self.last_best_ask = 0
+        self.ETF_bids = None
+        self.ETF_asks = None
+        self.ETF_bid_vol = None
+        self.ETF_ask_vol = None
+        self.asksAdded = []
+        self.bidsAdded = []
+        self.activeOrders = 0
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -82,15 +89,48 @@ class AutoTrader(BaseAutoTrader):
         """
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
-        #Default
         if instrument == Instrument.FUTURE:
-            self.FNewBids = bid_prices if bid_prices[0] != 0 else 0
-            self.FLastBids = self.NewBids
-            self.FLastLastBids = self.LastBids
-            print(self.FNewBids, type(self.FNewBids))
+            self.Future_best_ask = ask_prices[0]
+            self.Future_best_bid = bid_prices[0]
 
+        if instrument == Instrument.ETF:
+            self.ETF_bids = bid_prices
+            self.ETF_asks = ask_prices
+            self.ETF_bid_vol = bid_volumes
+            self.ETF_ask_vol = ask_volumes
+            self.etf_best_ask = ask_prices[0]
+            self.etf_best_bid = bid_prices[0]
 
+            for i in self.asksAdded:
+                if i in self.asks:
+                    self.send_cancel_order(i)
+                    self.asks_id = 0
+            for i in self.bidsAdded:
+                if i in self.bids:
+                    self.send_cancel_order(i)
+                    self.bids_id = 0
 
+        if self.ETF_asks and instrument == Instrument.FUTURE:
+            self.asksAdded = []
+            self.bidsAdded = []
+            spread_tick_count = 0
+            possible_order_count = 8 + spread_tick_count
+            for i, price in enumerate(bid_prices):
+                if i < 4  and self.ETF_bid_vol[i] == 0 and self.activeOrders < 19:
+                    self.bid_id = next(self.order_ids)
+                    self.send_insert_order(self.bid_id, Side.BUY, price, 5, Lifespan.GOOD_FOR_DAY)
+                    self.bids.add(self.bid_id)
+                    self.bidsAdded.append(self.bid_id)
+                    self.activeOrders += 1
+            for i, price in enumerate(ask_prices):
+                if i < 4  and self.ETF_ask_vol[i] == 0 and self.activeOrders < 19:
+                    self.ask_id = next(self.order_ids)
+                    self.send_insert_order(self.ask_id, Side.SELL, price, 5, Lifespan.GOOD_FOR_DAY)
+                    self.bids.add(self.ask_id)
+                    self.asksAdded.append(self.ask_id)
+                    self.activeOrders += 1
+
+                    
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
         """Called when one of your orders is filled, partially or fully.
 
@@ -102,8 +142,12 @@ class AutoTrader(BaseAutoTrader):
                          price, volume)
         if client_order_id in self.bids:
             self.position += volume
+            self.send_hedge_order(next(self.order_ids), Side.ASK, MIN_BID_NEAREST_TICK + TICK_SIZE_IN_CENTS , volume)
+
         elif client_order_id in self.asks:
             self.position -= volume
+            self.send_hedge_order(next(self.order_ids), Side.BID, MAX_ASK_NEAREST_TICK - TICK_SIZE_IN_CENTS, volume)
+        
 
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,
                                 fees: int) -> None:
@@ -121,8 +165,10 @@ class AutoTrader(BaseAutoTrader):
         if remaining_volume == 0:
             if client_order_id == self.bid_id:
                 self.bid_id = 0
+                self.activeOrders -= 1
             elif client_order_id == self.ask_id:
                 self.ask_id = 0
+                self.activeOrders -= 1
 
             # It could be either a bid or an ask
             self.bids.discard(client_order_id)
