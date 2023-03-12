@@ -1,3 +1,5 @@
+#C:\Users\encha\AppData\Local\Programs\Python\Python311\python.exe rtg.py run ADV_Weiner.py
+
 # Copyright 2021 Optiver Asia Pacific Pty. Ltd.
 #
 # This file is part of Ready Trader Go.
@@ -55,9 +57,14 @@ class AutoTrader(BaseAutoTrader):
         self.InTrade = 0
         self.asksAdded = []
         self.bidsAdded = []
-        self.memory = np.zeros((2,20,22))
+        self.convdepth = 200
+        self.memory = np.zeros((2,self.convdepth,22))
         self.OrdersOpen = 0
         self.ourTick = -1
+        self.old_bid_prices = []
+        self.old_ask_prices = []
+        self.old_midpointdiffs = []
+        self.old_midpoints = []
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -79,7 +86,7 @@ class AutoTrader(BaseAutoTrader):
         self.logger.info("received hedge filled for order %d with average price %d and volume %d", client_order_id,
                          price, volume)
     
-    def makeStationaryVector(self,convwidth,bid_volumes,bid_prices,ask_volumes,ask_prices):
+    def makeStationaryVector(self,convwidth,bid_volumes,bid_prices,ask_volumes,ask_prices,midpointdiff):
         if (ask_prices[0] - bid_prices[0]) >= 2:
             bid_volumes = np.flip(np.array(bid_volumes))
             ask_volumes = np.array(ask_volumes)
@@ -92,6 +99,7 @@ class AutoTrader(BaseAutoTrader):
 
             convdata = np.zeros(((convwidth//100)*2))
             ind = (prices-(bid_prices[-1]-convwidth))//100
+            ind = ind + int(((midpointdiff)//100))
             indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
             convdata[ind[indValid]] = volumes[indValid]
 
@@ -111,10 +119,21 @@ class AutoTrader(BaseAutoTrader):
         if instrument == 1:
             self.ourTick += 1
         
-        convdata =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices)
-        
-        self.memory[instrument] = np.roll(self.memory[instrument], -1, axis=0)
-        self.memory[instrument,-1] = convdata
+        self.old_bid_prices.append(bid_prices)
+        self.old_ask_prices.append(ask_prices)
+
+        if self.ourTick == 0:
+            self.old_midpoints.append(None)
+            self.old_midpointdiffs.append(None)
+        elif self.ourTick > 0:
+            midpoint = ((self.old_bid_prices[-1][0]) + (self.old_ask_prices[-1][0])) / 2
+            midpointdiff = ((self.old_bid_prices[-1][0] - self.old_bid_prices[-2][0]) + (self.old_ask_prices[-1][0] - self.old_ask_prices[-2][0])) / 2
+            self.old_midpoints.append(midpoint)
+            self.old_midpointdiffs.append(midpointdiff)
+            convdata =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,midpointdiff)
+            
+            self.memory[instrument] = np.roll(self.memory[instrument], -1, axis=0)
+            self.memory[instrument,-1] = convdata
 
         if self.ourTick >= 19:
 
@@ -125,7 +144,7 @@ class AutoTrader(BaseAutoTrader):
             #ac = ac / np.std(normmem**2,axis=1)[:,np.newaxis,:]
             conv = signal.fftconvolve(ac, self.memory, axes=1)
             conv[np.isnan(conv)] = 0
-            conv *= np.mean(self.memory / conv[:,19:20*2-1,:],axis=1)[:,np.newaxis,:]
+            conv *= np.mean(self.memory / (conv[:,self.convdepth-1:self.convdepth*2-1,:]+0.0000001),axis=1)[:,np.newaxis,:]
 
             if self.position == 0:
                 self.InTrade = 0
@@ -143,7 +162,8 @@ class AutoTrader(BaseAutoTrader):
                 self.asksAdded = []
                 self.bidsAdded = []
                 #time.sleep(0.1)
-                pred = np.round(conv[1,20*2-1])
+                pred = np.round(conv[1,self.convdepth*2-1])
+                print(pred)
                 #print(self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < POSITION_LIMIT)
                 if self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < LOT_SIZE:
                     TOTAL = max(LOT_SIZE - abs(self.position), 0)
@@ -151,38 +171,40 @@ class AutoTrader(BaseAutoTrader):
                     ASK_TOTAL_SIZE = (TOTAL / 2) if self.position < 0 else (TOTAL / 2) + self.position
                     bids = convdata[:11]
                     bids = np.flip(bids)
-                    total = np.sum(pred[:11][bids==0])
-                    if total > 0:
-                        for i, vol in enumerate(bids): #bids
-                            if ~np.isnan(vol) and vol == 0 and pred[i] != 0 and ~np.isnan(pred[i]):
-                                price = bid_prices[0] - (i-1)*TICK_SIZE_IN_CENTS
-                                self.bid_id = next(self.order_ids)
-                                size = int(np.round(BID_TOTAL_SIZE * pred[i]/total))
-                                if size > 0 and size < 100:
-                                    print(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
-                                    self.send_insert_order(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
-                                    self.bids.add(self.bid_id)
-                                    self.bidsAdded.append(self.bid_id)
-                                    self.OrdersOpen += 1
-                                    self.InTrade = 1
-                                if i >= 3: break
-                    asks = convdata[11:]
-                    total = np.sum(pred[11:][asks==0])
-                    if total > 0:
-                        for i, vol in enumerate(asks): #Asks
-                            if ~np.isnan(vol) and vol == 0 and pred[i+11] != 0 and ~np.isnan(pred[i+11]):
-                                price = ask_prices[0] - (12+i) * TICK_SIZE_IN_CENTS
-                                #print(ask_prices[0], (10+i) , TICK_SIZE_IN_CENTS)
-                                self.ask_id = next(self.order_ids)
-                                size = int(np.round(ASK_TOTAL_SIZE * pred[i+11]/total))
-                                if size > 0 and size < 100:
-                                    print(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
-                                    self.send_insert_order(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
-                                    self.asks.add(self.ask_id) 
-                                    self.asksAdded.append(self.ask_id)
-                                    self.OrdersOpen += 1
-                                    self.InTrade = 1
-                                if i >= 3: break
+                    offset = int(self.old_midpointdiffs[-1]//100)
+                    if abs(offset) < 5: #movement in the midpoint
+                        total = np.sum(pred[:11+offset][-11:][(bids==0)[:-offset]])
+                        if total > 0:
+                            for i, vol in enumerate(bids[:-offset]): #bids
+                                if ~np.isnan(vol) and vol == 0 and ~np.isnan(pred[i]) and pred[i] > 0:
+                                    price = (self.old_bid_prices[-2][0] + self.old_midpointdiffs[-1]) - (i-1)*TICK_SIZE_IN_CENTS
+                                    self.bid_id = next(self.order_ids)
+                                    size = int(np.round(BID_TOTAL_SIZE * pred[i]/total))
+                                    if size > 0 and size < 100:
+                                        #print(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
+                                        self.send_insert_order(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
+                                        self.bids.add(self.bid_id)
+                                        self.bidsAdded.append(self.bid_id)
+                                        self.OrdersOpen += 1
+                                        self.InTrade = 1
+                                    if i >= 3: break
+                        asks = convdata[11:]
+                        total = np.sum(pred[11+offset:][-11:][(asks==0)[:-offset]])
+                        if total > 0:
+                            for i, vol in enumerate(asks[:-offset]): #Asks
+                                if ~np.isnan(vol) and vol == 0 and ~np.isnan(pred[i+11+offset]) and pred[i+11+offset] > 0:
+                                    price = (self.old_bid_prices[-2][0] + self.old_midpointdiffs[-1]) - (12+i) * TICK_SIZE_IN_CENTS
+                                    #print(ask_prices[0], (10+i) , TICK_SIZE_IN_CENTS)
+                                    self.ask_id = next(self.order_ids)
+                                    size = int(np.round(ASK_TOTAL_SIZE * pred[i+11+offset]/total))
+                                    if size > 0 and size < 100:
+                                        print(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
+                                        self.send_insert_order(self.ask_id, Side.SELL, price,  size, Lifespan.GOOD_FOR_DAY)
+                                        self.asks.add(self.ask_id) 
+                                        self.asksAdded.append(self.ask_id)
+                                        self.OrdersOpen += 1
+                                        self.InTrade = 1
+                                    if i >= 3: break
 
         """                 
         if instrument == 1 and bid_prices[0] != 0:  
@@ -257,6 +279,8 @@ class AutoTrader(BaseAutoTrader):
         the number of lots filled at that price.
         """
         self.logger.info("received order filled for order %d with price %d and volume %d", client_order_id,
+                         price, volume)
+        print("received order filled for order %d with price %d and volume %d", client_order_id,
                          price, volume)
         self.OrdersOpen -= 1
         if client_order_id in self.bids:
