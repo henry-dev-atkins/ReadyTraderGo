@@ -98,18 +98,20 @@ class AutoTrader(BaseAutoTrader):
             volumes = np.concatenate([bid_volumes,ask_volumes])
 
             convdata = np.zeros(((convwidth//100)*2))
-            ind = np.zeros((20))
-            ind[:10] = (prices[:10]-(bid_prices[-1]))//100 + biddiff
-            ind[10:] = (prices[10:]-(ask_prices[0]))//100 + askdiff
+            ind = np.zeros((10),dtype=int)-1
+            ind[:5] = ((prices[:5]-(bid_prices[-1]))//100 + biddiff)
+            ind[5:] = ((prices[5:]-(ask_prices[0]))//100 + askdiff)
             indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
             convdata[ind[indValid]] = volumes[indValid]
 
-            spread = (ask_prices[0] - bid_prices[-1]) // TICK_SIZE_IN_CENTS
+            spread = ((ask_prices[0] - bid_prices[-1]) // TICK_SIZE_IN_CENTS) - 1 #-1 because if they are only one apart then there is NO GAP.
 
             convdata = np.insert(convdata, (convwidth//TICK_SIZE_IN_CENTS)-1, np.zeros((spread)))
             if spread % 2 > 0:
                 convdata = convdata[1:]
+            print("a",np.size(convdata))
             convdata = convdata[spread//2:-spread//2]
+            print("b",np.size(convdata))
 
             return convdata
 
