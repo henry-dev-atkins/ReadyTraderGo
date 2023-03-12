@@ -57,7 +57,7 @@ class AutoTrader(BaseAutoTrader):
         self.InTrade = 0
         self.asksAdded = []
         self.bidsAdded = []
-        self.convdepth = 200
+        self.convdepth = 2000
         self.memory = np.zeros((2,self.convdepth,20))
         self.OrdersOpen = 0
         self.ourTick = -1
@@ -65,6 +65,8 @@ class AutoTrader(BaseAutoTrader):
         self.old_ask_prices = []
         self.old_askdiffs = []
         self.old_biddiffs = []
+        self.memoryTradeable = []
+        self.memorySamples = []
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
         """Called when the exchange detects an error.
@@ -87,33 +89,42 @@ class AutoTrader(BaseAutoTrader):
                          price, volume)
     
     def makeStationaryVector(self,convwidth,bid_volumes,bid_prices,ask_volumes,ask_prices,biddiff,askdiff):
-        if (ask_prices[0] - bid_prices[0]) >= 2:
-            bid_volumes = np.flip(np.array(bid_volumes))
-            ask_volumes = np.array(ask_volumes)
+        bid_volumes = np.flip(np.array(bid_volumes))
+        ask_volumes = np.array(ask_volumes)
 
-            bid_prices = np.flip(np.array(bid_prices))
-            ask_prices = np.array(ask_prices)
+        bid_prices = np.flip(np.array(bid_prices))
+        ask_prices = np.array(ask_prices)
 
-            prices = np.concatenate([bid_prices,ask_prices])
-            volumes = np.concatenate([bid_volumes,ask_volumes])
+        prices = np.concatenate([bid_prices,ask_prices])
+        volumes = np.concatenate([bid_volumes,ask_volumes])
 
-            convdata = np.zeros(((convwidth//100)*2))
-            ind = np.zeros((10),dtype=int)-1
-            ind[:5] = ((prices[:5]-(bid_prices[-1]))//100 + biddiff)
-            ind[5:] = ((prices[5:]-(ask_prices[0]))//100 + askdiff)
-            indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
-            convdata[ind[indValid]] = volumes[indValid]
+        convdata = np.zeros(((convwidth//100)*2))
+        convdata_prices = np.zeros(((convwidth//100)*2))
+        ind = np.zeros((10),dtype=int)-1
+        ind[:5] = ((prices[:5]-(bid_prices[-1])+convwidth)//100 + biddiff)
+        ind[5:] = ((prices[5:]-(ask_prices[0])+convwidth)//100 + askdiff)
+        indValid = np.logical_and(0 <= ind, ind < (convwidth//100)*2)
+        convdata[ind[indValid]] = volumes[indValid]
+        convdata_prices[ind[indValid]] = prices[indValid]
+        if np.count_nonzero(indValid) > 0:
+            samplePrice = prices[ind[indValid]][0]
+            sampleInd = ind[indValid][0]
 
             spread = ((ask_prices[0] - bid_prices[-1]) // TICK_SIZE_IN_CENTS) - 1 #-1 because if they are only one apart then there is NO GAP.
-
             convdata = np.insert(convdata, (convwidth//TICK_SIZE_IN_CENTS)-1, np.zeros((spread)))
-            if spread % 2 > 0:
+            
+            if spread % 2 > 0 and (-biddiff) > askdiff:
                 convdata = convdata[1:]
-            print("a",np.size(convdata))
-            convdata = convdata[spread//2:-spread//2]
-            print("b",np.size(convdata))
+                sampleInd -= 1
+            elif spread % 2 > 0 and askdiff > (-biddiff):
+                convdata = convdata[:-1]
+            if spread > 1:
+                convdata = convdata[spread//2:-(spread//2)]
+                sampleInd -= (spread//2)
 
-            return convdata
+            return convdata, (samplePrice, sampleInd)
+        else:
+            return np.zeros_like(convdata), False
 
     def on_order_book_update_message(self, instrument: int, sequence_number: int, ask_prices: List[int],
                                      ask_volumes: List[int], bid_prices: List[int], bid_volumes: List[int]) -> None:
@@ -139,7 +150,13 @@ class AutoTrader(BaseAutoTrader):
             self.old_askdiffs.append(askdiff)
             self.old_askdiffs.append(biddiff)
             #print("midpointdiff", midpointdiff)
-            convdata =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,biddiff,askdiff)
+            convdata,sample =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,biddiff,askdiff)
+            if sample == False:
+                self.memoryTradeable.append(False)
+                self.memorySamples.append(sample)
+            else:
+                self.memoryTradeable.append(True)
+                self.memorySamples.append(sample)
             
             self.memory[instrument] = np.roll(self.memory[instrument], -1, axis=0)
             self.memory[instrument,-1] = convdata
@@ -176,6 +193,46 @@ class AutoTrader(BaseAutoTrader):
                 print(pred)
                 #print(pred)
                 #print(self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < POSITION_LIMIT)
+                if self.memoryTradeable[-2]:
+                    samplePrice, sampleInd = self.memorySamples[-2]
+                    ids = np.arange(20)
+                    prices = np.arange(20)*TICK_SIZE_IN_CENTS - sampleInd*TICK_SIZE_IN_CENTS
+
+                    j = 0
+
+                    inds = np.array([9,10,8,11,7,12,6,13,5,14,4,15,3,16,2,17,1,18,0,19])
+
+                    for i in inds:
+                        price = prices[i]
+                        size = pred[i]
+                        if size > 0 and (price not in bid_prices) and (price not in ask_prices) and (self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < LOT_SIZE):
+                            if price > bid_prices[0] and price < ask_prices[0]:
+                                if self.position > 0:
+                                    side = Side.SELL
+                                elif self.position < 0:
+                                    side = Side.SELL
+                            elif price < bid_prices[0]:
+                                side = Side.BUY
+                            elif price > ask_prices[0]:
+                                side = Side.SELL
+                            if self.position > 0 and side == Side.SELL:
+                                self.ask_id = next(self.order_ids)
+                                self.send_insert_order(self.ask_id, Side.SELL, price, size, Lifespan.GOOD_FOR_DAY)
+                                self.asks.add(self.ask_id)
+                                self.asksAdded.append(self.ask_id)
+                                self.OrdersOpen += 1
+                                self.InTrade = 1
+                                j += 1
+                            elif self.position < 0 and side == Side.BUY:
+                                self.bid_id = next(self.order_ids)
+                                self.send_insert_order(self.bid_id, Side.BUY, price, size, Lifespan.GOOD_FOR_DAY)
+                                self.bids.add(self.bid_id)
+                                self.bidsAdded.append(self.bid_id)
+                                self.OrdersOpen += 1
+                                self.InTrade = 1
+                                j += 1
+                        if j >= 3: break
+
                 if (self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < LOT_SIZE) and False:
                     TOTAL = max(LOT_SIZE - abs(self.position), 0)
                     BID_TOTAL_SIZE = (TOTAL / 2) if self.position > 0 else (TOTAL / 2) - self.position
@@ -250,7 +307,7 @@ class AutoTrader(BaseAutoTrader):
                 self.InTrade = 1
 
 
-                          
+                        
             if self.InTrade != 0 and self.OrderBooksSinceTrade > 20:
                 if self.position > 0:#short etf, buy future
                     self.ask_id = next(self.order_ids)
@@ -269,9 +326,9 @@ class AutoTrader(BaseAutoTrader):
                     #print("self.Future_best_bid > self.etf_best_ask, on < 0", str(id) + str(self.Future_best_bid))
                     self.send_hedge_order(id, Side.ASK, bid_prices[0], LOT_SIZE)
                     print("Was Short, Closing By Buying")
-       
+    
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
-                         sequence_number)
+                        sequence_number)
         if instrument == Instrument.FUTURE:
             price_adjustment = - (self.position // LOT_SIZE) * TICK_SIZE_IN_CENTS
             new_bid_price = bid_prices[0] + price_adjustment if bid_prices[0] != 0 else 0
