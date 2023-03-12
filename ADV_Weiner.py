@@ -193,8 +193,8 @@ class AutoTrader(BaseAutoTrader):
                 print(pred)
                 #print(pred)
                 #print(self.OrdersOpen == 0 and self.InTrade == 0 and bid_prices[0] != 0 or ask_prices[0] != 0 and abs(self.position) < POSITION_LIMIT)
-                if self.memoryTradeable[-2]:
-                    samplePrice, sampleInd = self.memorySamples[-2]
+                if self.memoryTradeable[-1]:
+                    samplePrice, sampleInd = self.memorySamples[-1]
                     ids = np.arange(20)
                     prices = np.arange(20)*TICK_SIZE_IN_CENTS - sampleInd*TICK_SIZE_IN_CENTS
 
