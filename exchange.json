@@ -1,6 +1,6 @@
 {
   "Engine": {
-    "MarketDataFile": "data/market_data3.csv",
+    "MarketDataFile": "data/market_data1.csv",
     "MarketEventInterval": 0.05,
     "MarketOpenDelay": 5.0,
     "MatchEventsFile": "match_events.csv",
@@ -37,11 +37,12 @@
   },
   "Traders": {
     "Data_Trader": "secretZERO",
+    "TraderTwo":"secret",
     "Default_Trader": "secret2",
-    "NotUs_Trader": "secret3",
     "Arb_Trader":"secret4",
     "Jamie_Trader":"secret5",
     "Regression_Trader":"secret6",
-    "Wiener_Trader":"secret7"
+    "Wiener_Trader":"secret7",
+    "Henry_Trader":"secretH"
   }
 }
