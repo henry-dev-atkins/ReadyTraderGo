@@ -50,8 +50,7 @@ class AutoTrader(BaseAutoTrader):
                self.send_cancel_order(client_order_id)
                self.position -= volume
            else:
-               self.send_hedge_order(next(self.order_ids),
-                                     Side.ASK, MIN_BID_NEAREST_TICK, volume)
+               self.send_hedge_order(next(self.order_ids),Side.ASK, MIN_BID_NEAREST_TICK, volume)
 
 
        elif client_order_id in self.asks:

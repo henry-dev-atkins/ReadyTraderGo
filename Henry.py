@@ -66,6 +66,7 @@ class AutoTrader(BaseAutoTrader):
         self.lastTime = self.event_loop.time()
         self.current_etf_ask_prices = self.current_etf_ask_volumes = self.current_etf_bid_prices = self.current_etf_bid_volumes = []
         self.current_fut_ask_prices = self.current_fut_ask_volumes = self.current_fut_bid_prices = self.current_fut_bid_volumes = []
+        self.Future_best_bid = self.Future_best_ask = self.etf_best_bid = self.etf_best_ask = 0
     
     def calcOptimalPosition(self):
         size = abs(self.position)
@@ -89,23 +90,23 @@ class AutoTrader(BaseAutoTrader):
         if now - self.lastTime >= 1:
             self.messeges_in_s = 0
         
-    def placeBuy(self, price:int):
+    def placeBuy(self, price:int, size = None):
         #print("BUY: ", self.waitingOrders, self.messeges_in_s, abs(self.position))
         if self.waitingOrders >= 9 or self.messeges_in_s >= 25 or abs(self.position) >=99:return
         self.bid_id = next(self.order_ids)
         self.bid_price = int(price)
-        size = self.calcOptimalPosition()
+        if size is None: size = self.calcOptimalPosition()
         #print("87", self.bid_id, Side.BUY, self.bid_price, size, Lifespan.GOOD_FOR_DAY)
         self.send_insert_order(self.bid_id, Side.BUY, self.bid_price, size, Lifespan.GOOD_FOR_DAY)
         self.messeges_in_s += 1
         self.bids.add(self.bid_id)
 
-    def placeSell(self, price:int):
+    def placeSell(self, price:int, size = None):
         #print("SELL:", self.waitingOrders >= 9 or self.messeges_in_s >= 25 or abs(self.position) >= 99)
         if self.waitingOrders >= 9 or self.messeges_in_s >= 25 or abs(self.position) >= 99:return
         self.ask_id = next(self.order_ids)
         self.ask_price = int(price)
-        size = self.calcOptimalPosition()
+        if size is None: size = self.calcOptimalPosition()
         #print("96", self.ask_id, Side.SELL, self.ask_price, size, Lifespan.GOOD_FOR_DAY)
         self.send_insert_order(self.ask_id, Side.SELL, self.ask_price, size, Lifespan.GOOD_FOR_DAY)
         self.messeges_in_s += 1
@@ -118,11 +119,11 @@ class AutoTrader(BaseAutoTrader):
         
     def scheduled_placing_in_spread(self):#print(self.mid, self.spread, self.mid - self.spread, self.mid + self.spread, TICK_SIZE_IN_CENTS, np.arange(self.mid - self.spread, self.mid + self.spread, TICK_SIZE_IN_CENTS))
         if self.mid == 0 or self.spread <= 50 or self.spread == 5000:return
-        
+
         bid_to_mid_range = np.arange(max(self.best_bid, self.mid-4*TICK_SIZE_IN_CENTS), self.mid, TICK_SIZE_IN_CENTS)
         if self.position < 0:
-            for i in bid_to_mid_range:
-                if len(self.bids) < 5 and i < self.mid:self.placeBuy(i-TICK_SIZE_IN_CENTS)
+            for i, val  in enumerate(bid_to_mid_range):
+                if len(self.bids) < 5 and val < self.mid:self.placeBuy(val-TICK_SIZE_IN_CENTS)
         
         mid_to_ask_range = np.arange(self.mid, min(self.best_ask, self.mid+4*TICK_SIZE_IN_CENTS), TICK_SIZE_IN_CENTS)
         if self.position > 0:
@@ -158,6 +159,8 @@ class AutoTrader(BaseAutoTrader):
             self.current_etf_ask_volumes = list(ask_volumes)
             self.current_etf_bid_prices = list(bid_prices)
             self.current_etf_bid_volumes = list(bid_volumes)
+            if self.etf_best_ask < ask_prices[0]:self.etf_best_ask = ask_prices[0]
+            if self.etf_best_bid > bid_prices[0]:self.etf_best_bid = bid_prices[0]
 
         if instrument == Instrument.FUTURE:
             self.scheduled_cancelling()
@@ -167,6 +170,8 @@ class AutoTrader(BaseAutoTrader):
             self.current_fut_ask_volumes = list(ask_volumes)
             self.current_fut_bid_prices = list(bid_prices)
             self.current_fut_bid_volumes = list(bid_volumes)
+            if self.Future_best_ask < ask_prices[0]:self.Future_best_ask = ask_prices[0]
+            if self.Future_best_bid > bid_prices[0]:self.Future_best_bid = bid_prices[0]
 
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
@@ -199,7 +204,9 @@ class AutoTrader(BaseAutoTrader):
     def on_trade_ticks_message(self, instrument: int, sequence_number: int, ask_prices: List[int],ask_volumes: List[int], bid_prices: List[int], bid_volumes: List[int]) -> None:
         self.logger.info("received trade ticks for instrument %d with sequence number %d", instrument,sequence_number)
         self.checkOneSecond()
-        if instrument == Instrument.ETF:     
+        if instrument == Instrument.ETF:   
+            if self.etf_best_ask < ask_prices[0]:self.etf_best_ask = ask_prices[0]
+            if self.etf_best_bid > bid_prices[0]:self.etf_best_bid = bid_prices[0]  
             pass
             """
             self.spread = abs(min(ask_prices[0] - bid_prices[0], 5000))
@@ -213,6 +220,8 @@ class AutoTrader(BaseAutoTrader):
             """
 
         if instrument == Instrument.FUTURE:
+            if self.Future_best_ask < ask_prices[0]:self.Future_best_ask = ask_prices[0]
+            if self.Future_best_bid > bid_prices[0]:self.Future_best_bid = bid_prices[0]
             pass
             """self.scheduled_cancelling()
             self.mid = int(np.round((ask_prices[0] - bid_prices[0])/2 + bid_prices[0], -2))
