@@ -399,3 +399,49 @@
 2023-03-16 20:43:38,151 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=290.774855 client_order_id=1155 message='ETF position limit breached'
 2023-03-16 20:43:38,151 [INFO   ] [COMPETITOR] 'Arb_Trader' closing execution channel at time=290.774855
 2023-03-16 20:43:38,152 [INFO   ] [CONNECTION] fd=368 connection lost
+2023-03-16 20:44:14,658 [INFO   ] [APP] exchange started with arguments={rtg.py, run, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py, Henry.py, ADV_stolen2.py}
+2023-03-16 20:44:14,658 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-16 20:44:14,659 [INFO   ] [CONTROLLER] starting the match
+2023-03-16 20:44:14,659 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-16 20:44:14,660 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-16 20:44:14,660 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-16 20:44:14,660 [INFO   ] [INFORMATION] information channel established
+2023-03-16 20:44:14,674 [INFO   ] [CONNECTION] fd=860 connection established: peer=127.0.0.1:64708
+2023-03-16 20:44:14,674 [INFO   ] [EXECUTION] fd=860 'Arb_Trader' is ready!
+2023-03-16 20:44:14,694 [INFO   ] [CONNECTION] fd=836 connection established: peer=127.0.0.1:64719
+2023-03-16 20:44:14,695 [INFO   ] [EXECUTION] fd=836 'Default_Trader' is ready!
+2023-03-16 20:44:14,697 [INFO   ] [CONNECTION] fd=840 connection established: peer=127.0.0.1:64720
+2023-03-16 20:44:14,697 [INFO   ] [EXECUTION] fd=840 'Regression_Trader' is ready!
+2023-03-16 20:44:14,698 [INFO   ] [CONNECTION] fd=900 connection established: peer=127.0.0.1:64721
+2023-03-16 20:44:14,699 [INFO   ] [EXECUTION] fd=900 'Jamie_Trader' is ready!
+2023-03-16 20:44:14,716 [INFO   ] [CONNECTION] fd=892 connection established: peer=127.0.0.1:64724
+2023-03-16 20:44:14,716 [INFO   ] [EXECUTION] fd=892 'Henry_Trader' is ready!
+2023-03-16 20:44:15,742 [INFO   ] [CONNECTION] fd=896 connection established: peer=127.0.0.1:64725
+2023-03-16 20:44:17,902 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:64728
+2023-03-16 20:44:17,903 [INFO   ] [EXECUTION] fd=996 'TraderTwo' is ready!
+2023-03-16 20:44:19,677 [INFO   ] [CONTROLLER] market open
+2023-03-16 20:44:19,677 [INFO   ] [COMPETITOR] 'TraderTwo' sent error message: time=0.000000 client_order_id=1 message='order rejected: market not yet open'
+2023-03-16 20:44:19,678 [INFO   ] [COMPETITOR] 'TraderTwo' sent error message: time=0.000000 client_order_id=2 message='order rejected: market not yet open'
+2023-03-16 20:44:20,218 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=0.532000 client_order_id=14 message='0 is not a valid price'
+2023-03-16 20:44:20,218 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=0.532000 client_order_id=17 message='order rejected: active order count limit breached'
+2023-03-16 20:44:20,219 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=0.532000 client_order_id=18 message='order rejected: active order count limit breached'
+2023-03-16 20:44:20,714 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=1.032000 client_order_id=7 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:20,909 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=1.219000 client_order_id=9 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:21,193 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=1.516000 client_order_id=10 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:26,138 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=6.454000 client_order_id=39 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:26,498 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=6.813000 client_order_id=41 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:26,708 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.032000 client_order_id=43 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:27,174 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.485000 client_order_id=48 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:27,444 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.766000 client_order_id=49 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:27,645 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.969000 client_order_id=50 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:27,898 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=8.219000 client_order_id=52 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:28,150 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=8.469000 client_order_id=53 message='order rejected: in cross with an existing order'
+2023-03-16 20:44:28,403 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=8.719000 client_order_id=55 message='order rejected: in cross with an existing order'
+2023-03-16 20:45:20,449 [INFO   ] [COMPETITOR] Unhedged lots timer expired for Regression_Trader at etf=-25 fut=-25 rel=-50
+2023-03-16 20:45:20,449 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=60.766000 client_order_id=0 message='held unhedged lots for longer than the time limit'
+2023-03-16 20:45:20,449 [INFO   ] [COMPETITOR] 'Regression_Trader' closing execution channel at time=60.766000
+2023-03-16 20:45:20,450 [INFO   ] [CONNECTION] fd=840 connection lost
+2023-03-16 20:45:24,671 [INFO   ] [COMPETITOR] Unhedged lots timer expired for Jamie_Trader at etf=72 fut=14 rel=86
+2023-03-16 20:45:24,672 [INFO   ] [COMPETITOR] 'Jamie_Trader' sent error message: time=64.985000 client_order_id=0 message='held unhedged lots for longer than the time limit'
+2023-03-16 20:45:24,672 [INFO   ] [COMPETITOR] 'Jamie_Trader' closing execution channel at time=64.985000
+2023-03-16 20:45:24,672 [INFO   ] [CONNECTION] fd=900 connection lost
