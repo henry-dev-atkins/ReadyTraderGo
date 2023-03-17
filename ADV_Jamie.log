@@ -175,3 +175,6 @@
 2023-03-16 21:49:11,996 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, ADV_arb.py, ADV_default.py, ADV_Jamie.py, ADV_reg.py, Henry.py, ADV_stolen2.py}
 2023-03-16 21:49:11,996 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
 2023-03-16 21:49:12,004 [INFO   ] [CONNECTION] fd=940 connection established: peer=127.0.0.1:12345
+2023-03-17 22:25:55,599 [INFO   ] [APP] ADV_Jamie started with arguments={rtg.py, run, ADV_default.py, ADV_stolen2.py, Henry.py, ADV_Jamie.py}
+2023-03-17 22:25:55,600 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Jamie_Trader","Secret":"secret5"}
+2023-03-17 22:25:55,608 [INFO   ] [CONNECTION] fd=388 connection established: peer=127.0.0.1:12345
