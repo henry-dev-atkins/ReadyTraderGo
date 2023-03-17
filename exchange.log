@@ -2190,3 +2190,277 @@
 2023-03-16 22:30:07,529 [INFO   ] [EXECUTION] fd=820 'Henry_Trader' is ready!
 2023-03-16 22:30:08,751 [INFO   ] [CONNECTION] fd=856 connection established: peer=127.0.0.1:50075
 2023-03-16 22:30:12,520 [INFO   ] [CONTROLLER] market open
+2023-03-16 23:51:34,966 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-16 23:51:34,966 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-16 23:51:34,966 [INFO   ] [CONTROLLER] starting the match
+2023-03-16 23:51:34,966 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-16 23:51:34,966 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-16 23:51:34,966 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-16 23:51:34,966 [INFO   ] [INFORMATION] information channel established
+2023-03-16 23:51:35,196 [INFO   ] [CONNECTION] fd=568 connection established: peer=127.0.0.1:50294
+2023-03-16 23:51:35,196 [INFO   ] [EXECUTION] fd=568 'Henry_Trader' is ready!
+2023-03-16 23:51:36,631 [INFO   ] [CONNECTION] fd=392 connection established: peer=127.0.0.1:50295
+2023-03-16 23:51:39,980 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:01:33,586 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:01:33,586 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:01:33,586 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:01:33,586 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:01:33,586 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:01:33,586 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:01:33,586 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:01:33,693 [INFO   ] [CONNECTION] fd=1004 connection established: peer=127.0.0.1:50809
+2023-03-17 00:01:33,693 [INFO   ] [EXECUTION] fd=1004 'Henry_Trader' is ready!
+2023-03-17 00:01:34,837 [INFO   ] [CONNECTION] fd=980 connection established: peer=127.0.0.1:50810
+2023-03-17 00:01:45,551 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:01:45,551 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:01:45,552 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:01:45,552 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:01:45,552 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:01:45,552 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:01:45,552 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:01:45,615 [INFO   ] [CONNECTION] fd=956 connection established: peer=127.0.0.1:50819
+2023-03-17 00:01:45,615 [INFO   ] [EXECUTION] fd=956 'Henry_Trader' is ready!
+2023-03-17 00:01:46,770 [INFO   ] [CONNECTION] fd=1020 connection established: peer=127.0.0.1:50820
+2023-03-17 00:01:50,566 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:02:49,576 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:02:49,576 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:02:49,576 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:02:49,576 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:02:49,576 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:02:49,576 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:02:49,576 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:02:49,667 [INFO   ] [CONNECTION] fd=952 connection established: peer=127.0.0.1:50843
+2023-03-17 00:02:49,668 [INFO   ] [EXECUTION] fd=952 'Henry_Trader' is ready!
+2023-03-17 00:02:50,804 [INFO   ] [CONNECTION] fd=992 connection established: peer=127.0.0.1:50844
+2023-03-17 00:07:29,264 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:07:29,264 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:07:29,265 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:07:29,265 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:07:29,265 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:07:29,265 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:07:29,265 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:07:29,383 [INFO   ] [CONNECTION] fd=912 connection established: peer=127.0.0.1:50934
+2023-03-17 00:07:29,383 [INFO   ] [EXECUTION] fd=912 'Henry_Trader' is ready!
+2023-03-17 00:07:30,507 [INFO   ] [CONNECTION] fd=1020 connection established: peer=127.0.0.1:50935
+2023-03-17 00:08:03,688 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:08:03,688 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:08:03,688 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:08:03,688 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:08:03,689 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:08:03,689 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:08:03,689 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:08:03,790 [INFO   ] [CONNECTION] fd=1012 connection established: peer=127.0.0.1:50963
+2023-03-17 00:08:03,790 [INFO   ] [EXECUTION] fd=1012 'Henry_Trader' is ready!
+2023-03-17 00:08:04,913 [INFO   ] [CONNECTION] fd=980 connection established: peer=127.0.0.1:50964
+2023-03-17 00:08:34,101 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:08:34,101 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:08:34,101 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:08:34,102 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:08:34,102 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:08:34,102 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:08:34,102 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:08:34,202 [INFO   ] [CONNECTION] fd=712 connection established: peer=127.0.0.1:50979
+2023-03-17 00:08:34,202 [INFO   ] [EXECUTION] fd=712 'Henry_Trader' is ready!
+2023-03-17 00:08:35,356 [INFO   ] [CONNECTION] fd=700 connection established: peer=127.0.0.1:50980
+2023-03-17 00:08:56,882 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:08:56,882 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:08:56,883 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:08:56,883 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:08:56,883 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:08:56,883 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:08:56,883 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:08:56,978 [INFO   ] [CONNECTION] fd=932 connection established: peer=127.0.0.1:50993
+2023-03-17 00:08:56,978 [INFO   ] [EXECUTION] fd=932 'Henry_Trader' is ready!
+2023-03-17 00:08:58,115 [INFO   ] [CONNECTION] fd=984 connection established: peer=127.0.0.1:50994
+2023-03-17 00:09:11,002 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:09:11,003 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:09:11,003 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:09:11,003 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:09:11,003 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:09:11,004 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:09:11,004 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:09:11,124 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51005
+2023-03-17 00:09:11,125 [INFO   ] [EXECUTION] fd=996 'Henry_Trader' is ready!
+2023-03-17 00:09:12,259 [INFO   ] [CONNECTION] fd=984 connection established: peer=127.0.0.1:51006
+2023-03-17 00:09:16,024 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:12:23,730 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:12:23,730 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:12:23,731 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:12:23,731 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:12:23,731 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:12:23,731 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:12:23,731 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:12:23,838 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51072
+2023-03-17 00:12:23,838 [INFO   ] [EXECUTION] fd=996 'Henry_Trader' is ready!
+2023-03-17 00:12:24,989 [INFO   ] [CONNECTION] fd=1000 connection established: peer=127.0.0.1:51073
+2023-03-17 00:12:28,752 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:13:23,963 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:13:23,963 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:13:23,963 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:13:23,963 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:13:23,963 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:13:23,963 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:13:23,963 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:13:24,059 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51089
+2023-03-17 00:13:24,059 [INFO   ] [EXECUTION] fd=996 'Henry_Trader' is ready!
+2023-03-17 00:13:25,200 [INFO   ] [CONNECTION] fd=984 connection established: peer=127.0.0.1:51090
+2023-03-17 00:13:28,963 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:14:42,733 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:14:42,733 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:14:42,733 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:14:42,733 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:14:42,733 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:14:42,733 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:14:42,733 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:14:42,805 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51113
+2023-03-17 00:14:42,806 [INFO   ] [EXECUTION] fd=996 'Henry_Trader' is ready!
+2023-03-17 00:14:43,958 [INFO   ] [CONNECTION] fd=984 connection established: peer=127.0.0.1:51114
+2023-03-17 00:14:47,740 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:15:32,458 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:15:32,458 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:15:32,458 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:15:32,458 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:15:32,458 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:15:32,458 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:15:32,458 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:15:32,567 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51143
+2023-03-17 00:15:32,567 [INFO   ] [EXECUTION] fd=996 'Henry_Trader' is ready!
+2023-03-17 00:15:33,738 [INFO   ] [CONNECTION] fd=984 connection established: peer=127.0.0.1:51144
+2023-03-17 00:15:37,478 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:16:43,716 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:16:43,716 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:16:43,716 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:16:43,716 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:16:43,717 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:16:43,717 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:16:43,717 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:16:43,837 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51179
+2023-03-17 00:16:43,837 [INFO   ] [EXECUTION] fd=996 'Henry_Trader' is ready!
+2023-03-17 00:16:44,969 [INFO   ] [CONNECTION] fd=1000 connection established: peer=127.0.0.1:51180
+2023-03-17 00:16:48,730 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:19:13,893 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py}
+2023-03-17 00:19:13,893 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:19:13,893 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:19:13,893 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:19:13,893 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:19:13,908 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:19:13,908 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:19:14,011 [INFO   ] [CONNECTION] fd=984 connection established: peer=127.0.0.1:51215
+2023-03-17 00:19:14,011 [INFO   ] [EXECUTION] fd=984 'Henry_Trader' is ready!
+2023-03-17 00:19:15,166 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51216
+2023-03-17 00:19:18,923 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:23:49,240 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py, ADV_arb.py}
+2023-03-17 00:23:49,240 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:23:49,240 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:23:49,240 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:23:49,241 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:23:49,241 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:23:49,241 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:23:49,243 [INFO   ] [MARKET_EVENTS] reader thread complete after processing 0 market events
+2023-03-17 00:23:49,304 [INFO   ] [CONNECTION] fd=1016 connection established: peer=127.0.0.1:51316
+2023-03-17 00:23:49,304 [INFO   ] [EXECUTION] fd=1016 'Arb_Trader' is ready!
+2023-03-17 00:23:49,305 [INFO   ] [CONNECTION] fd=1012 connection established: peer=127.0.0.1:51317
+2023-03-17 00:23:49,305 [INFO   ] [EXECUTION] fd=1012 'Henry_Trader' is ready!
+2023-03-17 00:23:50,485 [INFO   ] [CONNECTION] fd=420 connection established: peer=127.0.0.1:51318
+2023-03-17 00:23:54,239 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:23:54,489 [INFO   ] [TIMER] shutting down the match: time=0.250000 reason='match complete'
+2023-03-17 00:23:54,489 [INFO   ] [COMPETITOR] 'Arb_Trader' closing execution channel at time=0.250000
+2023-03-17 00:23:54,489 [INFO   ] [COMPETITOR] 'Henry_Trader' closing execution channel at time=0.250000
+2023-03-17 00:23:54,489 [INFO   ] [CONNECTION] fd=1016 connection lost
+2023-03-17 00:23:54,489 [INFO   ] [CONNECTION] fd=1012 connection lost
+2023-03-17 00:23:54,489 [INFO   ] [SCORE_BOARD] writer thread complete after processing 4 score records
+2023-03-17 00:23:54,489 [INFO   ] [MATCH_EVENTS] writer thread complete after processing 0 match events
+2023-03-17 00:23:54,489 [INFO   ] [APP] closing event loop
+2023-03-17 00:25:51,498 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py, ADV_arb.py}
+2023-03-17 00:25:51,498 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:25:51,499 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:25:51,499 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:25:51,499 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:25:51,499 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:25:51,499 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:25:51,521 [INFO   ] [CONNECTION] fd=872 connection established: peer=127.0.0.1:51402
+2023-03-17 00:25:51,521 [INFO   ] [EXECUTION] fd=872 'Arb_Trader' is ready!
+2023-03-17 00:25:51,521 [INFO   ] [CONNECTION] fd=864 connection established: peer=127.0.0.1:51404
+2023-03-17 00:25:51,522 [INFO   ] [EXECUTION] fd=864 'Henry_Trader' is ready!
+2023-03-17 00:25:52,693 [INFO   ] [CONNECTION] fd=976 connection established: peer=127.0.0.1:51405
+2023-03-17 00:25:56,513 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:26:19,160 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py, ADV_arb.py}
+2023-03-17 00:26:19,160 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"Round1_Results/Round1_market_data_match40_events.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:26:19,160 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:26:19,160 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:26:19,160 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:26:19,160 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:26:19,160 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:26:19,261 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51422
+2023-03-17 00:26:19,261 [INFO   ] [EXECUTION] fd=996 'Arb_Trader' is ready!
+2023-03-17 00:26:19,262 [INFO   ] [CONNECTION] fd=1000 connection established: peer=127.0.0.1:51424
+2023-03-17 00:26:19,262 [INFO   ] [EXECUTION] fd=1000 'Henry_Trader' is ready!
+2023-03-17 00:26:20,439 [INFO   ] [CONNECTION] fd=1004 connection established: peer=127.0.0.1:51425
+2023-03-17 00:26:24,171 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:38:19,526 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py, ADV_arb.py}
+2023-03-17 00:38:19,526 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/JamiesData/market_data_Jamie_6.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:38:19,526 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:38:19,526 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:38:19,527 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:38:19,527 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:38:19,527 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:38:19,527 [ERROR  ] [MARKET_EVENTS] failed to open market data file: filename='data/JamiesData/market_data_Jamie_6.csv'
+Traceback (most recent call last):
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\market_events.py", line 176, in start
+    market_data = open(self.filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'data/JamiesData/market_data_Jamie_6.csv'
+2023-03-17 00:38:19,529 [ERROR  ] [asyncio] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<Controller.start() done, defined at C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\controller.py:102> exception=FileNotFoundError(2, 'No such file or directory')>
+Traceback (most recent call last):
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\controller.py", line 111, in start
+    self.__market_events_reader.start()
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\market_events.py", line 176, in start
+    market_data = open(self.filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'data/JamiesData/market_data_Jamie_6.csv'
+2023-03-17 00:38:19,621 [INFO   ] [CONNECTION] fd=420 connection established: peer=127.0.0.1:51794
+2023-03-17 00:38:19,621 [INFO   ] [EXECUTION] fd=420 'Arb_Trader' is ready!
+2023-03-17 00:38:19,621 [INFO   ] [CONNECTION] fd=424 connection established: peer=127.0.0.1:51796
+2023-03-17 00:38:19,621 [INFO   ] [EXECUTION] fd=424 'Henry_Trader' is ready!
+2023-03-17 00:38:20,769 [INFO   ] [CONNECTION] fd=524 connection established: peer=127.0.0.1:51798
+2023-03-17 00:38:50,249 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py, ADV_arb.py}
+2023-03-17 00:38:50,249 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data_Jamie_6.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:38:50,249 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:38:50,249 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:38:50,249 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:38:50,249 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:38:50,249 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:38:50,334 [INFO   ] [CONNECTION] fd=404 connection established: peer=127.0.0.1:51808
+2023-03-17 00:38:50,334 [INFO   ] [EXECUTION] fd=404 'Arb_Trader' is ready!
+2023-03-17 00:38:50,334 [INFO   ] [CONNECTION] fd=408 connection established: peer=127.0.0.1:51810
+2023-03-17 00:38:50,334 [INFO   ] [EXECUTION] fd=408 'Henry_Trader' is ready!
+2023-03-17 00:38:51,474 [INFO   ] [CONNECTION] fd=412 connection established: peer=127.0.0.1:51811
+2023-03-17 00:38:55,277 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:38:57,809 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=2.531000 client_order_id=4 message='0 is not a valid price'
+2023-03-17 00:38:59,787 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=4.500000 client_order_id=15 message='0 is not a valid price'
+2023-03-17 00:39:01,787 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=6.500000 client_order_id=26 message='0 is not a valid price'
+2023-03-17 00:39:02,771 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=7.484000 client_order_id=37 message='0 is not a valid price'
+2023-03-17 00:39:21,549 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=26.266000 client_order_id=48 message='0 is not a valid price'
+2023-03-17 00:39:22,252 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=26.969000 client_order_id=59 message='0 is not a valid price'
+2023-03-17 00:39:23,564 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=28.281000 client_order_id=70 message='0 is not a valid price'
+2023-03-17 00:39:24,782 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=29.500000 client_order_id=81 message='0 is not a valid price'
+2023-03-17 00:39:26,071 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=30.781000 client_order_id=92 message='0 is not a valid price'
+2023-03-17 00:39:27,242 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=31.953000 client_order_id=103 message='0 is not a valid price'
+2023-03-17 00:39:28,586 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=33.297000 client_order_id=114 message='0 is not a valid price'
+2023-03-17 00:39:29,789 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=34.500000 client_order_id=125 message='0 is not a valid price'
+2023-03-17 00:39:31,070 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=35.781000 client_order_id=136 message='0 is not a valid price'
+2023-03-17 00:40:03,741 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py, ADV_arb.py}
+2023-03-17 00:40:03,741 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data_Jamie_6.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH"}}
+2023-03-17 00:40:03,741 [INFO   ] [CONTROLLER] starting the match
+2023-03-17 00:40:03,741 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-17 00:40:03,741 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-17 00:40:03,741 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-17 00:40:03,741 [INFO   ] [INFORMATION] information channel established
+2023-03-17 00:40:03,840 [INFO   ] [CONNECTION] fd=996 connection established: peer=127.0.0.1:51829
+2023-03-17 00:40:03,840 [INFO   ] [EXECUTION] fd=996 'Arb_Trader' is ready!
+2023-03-17 00:40:03,840 [INFO   ] [CONNECTION] fd=1000 connection established: peer=127.0.0.1:51831
+2023-03-17 00:40:03,841 [INFO   ] [EXECUTION] fd=1000 'Henry_Trader' is ready!
+2023-03-17 00:40:05,026 [INFO   ] [CONNECTION] fd=984 connection established: peer=127.0.0.1:51832
+2023-03-17 00:40:08,762 [INFO   ] [CONTROLLER] market open
+2023-03-17 00:40:11,234 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=2.469000 client_order_id=4 message='0 is not a valid price'
+2023-03-17 00:40:13,272 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=4.500000 client_order_id=15 message='0 is not a valid price'
+2023-03-17 00:40:15,763 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=7.000000 client_order_id=26 message='0 is not a valid price'
