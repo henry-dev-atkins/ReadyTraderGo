@@ -147,14 +147,11 @@ class AutoTrader(BaseAutoTrader):
                         self.send_insert_order(self.ask_id, Side.SELL, i, 2, Lifespan.GOOD_FOR_DAY)
                         self.asks.add(self.ask_id)
                         self.waitingOrders += 1
-                        #print("Sell", i)
                     if i < midpoint and self.position <= 0:
                         self.bid_id = next(self.order_ids)
                         self.send_insert_order(self.bid_id, Side.BUY, i, 2, Lifespan.GOOD_FOR_DAY)
                         self.bids.add(self.bid_id)
                         self.waitingOrders += 1
-                        #print("Buy",i, "\n")
-                    #print(self.etf_best_bid, self.etf_best_ask)
         self.orderBookCounter += 1
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:

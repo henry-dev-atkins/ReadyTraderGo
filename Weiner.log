@@ -1,0 +1,67 @@
+2023-03-18 11:06:19,602 [INFO   ] [APP] Weiner started with arguments={rtg.py, run, Henry.py, Weiner.py, ADV_reg.py, ADV_default.py, ADV_arb.py, ADV_7730.py, ADV_7731.py}
+2023-03-18 11:06:19,602 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Wiener_Trader","Secret":"secret7"}
+2023-03-18 11:06:21,943 [INFO   ] [CONNECTION] fd=852 connection established: peer=127.0.0.1:12345
+2023-03-18 11:06:51,223 [INFO   ] [APP] Weiner started with arguments={rtg.py, run, Henry.py, Weiner.py, ADV_reg.py, ADV_default.py, ADV_arb.py, ADV_7730.py, ADV_7731.py}
+2023-03-18 11:06:51,224 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Wiener_Trader","Secret":"secret7"}
+2023-03-18 11:06:52,965 [INFO   ] [CONNECTION] fd=952 connection established: peer=127.0.0.1:12345
+2023-03-18 11:06:56,811 [ERROR  ] [RECEIVER] connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\pubsub.py", line 136, in _subscribe_worker
+    protocol.datagram_received(buffer[start:start + length], from_addr)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 212, in datagram_received
+    self.on_datagram(typ, data, HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 69, in on_datagram
+    self.on_order_book_update_message(inst, seq, *BOOK_PART.iter_unpack(data[ORDER_BOOK_HEADER_SIZE:]))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\Weiner.py", line 153, in on_order_book_update_message
+    convdata,sample =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,biddiff,askdiff)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\Weiner.py", line 110, in makeStationaryVector
+    samplePrice = prices[ind[indValid]][0]
+IndexError: index 10 is out of bounds for axis 0 with size 10
+2023-03-18 11:06:56,820 [INFO   ] [APP] closing event loop
+2023-03-18 11:06:56,821 [INFO   ] [CONNECTION] fd=952 connection lost
+2023-03-18 11:06:56,821 [ERROR  ] [asyncio] Exception in callback _SelectorSocketTransport._call_connection_lost(None)
+handle: <Handle _SelectorSocketTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 976, in _call_connection_lost
+    super()._call_connection_lost(exc)
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 734, in _call_connection_lost
+    self._protocol.connection_lost(exc)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 59, in connection_lost
+    Subscription.close(self)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 186, in close
+    self._receiver_transport.close()
+AttributeError: 'NoneType' object has no attribute 'close'
+2023-03-18 11:10:43,966 [INFO   ] [APP] Weiner started with arguments={rtg.py, run, Henry.py, Weiner.py, ADV_reg.py, ADV_default.py, ADV_arb.py, ADV_7730.py}
+2023-03-18 11:10:43,966 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"Wiener_Trader","Secret":"secret7"}
+2023-03-18 11:10:45,616 [INFO   ] [CONNECTION] fd=908 connection established: peer=127.0.0.1:12345
+2023-03-18 11:10:49,498 [ERROR  ] [RECEIVER] connection lost:
+Traceback (most recent call last):
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\pubsub.py", line 136, in _subscribe_worker
+    protocol.datagram_received(buffer[start:start + length], from_addr)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 212, in datagram_received
+    self.on_datagram(typ, data, HEADER_SIZE, length)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 69, in on_datagram
+    self.on_order_book_update_message(inst, seq, *BOOK_PART.iter_unpack(data[ORDER_BOOK_HEADER_SIZE:]))
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\Weiner.py", line 153, in on_order_book_update_message
+    convdata,sample =self.makeStationaryVector(1000,bid_volumes,bid_prices,ask_volumes,ask_prices,biddiff,askdiff)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\Weiner.py", line 110, in makeStationaryVector
+    samplePrice = prices[ind[indValid]][0]
+IndexError: index 10 is out of bounds for axis 0 with size 10
+2023-03-18 11:10:49,505 [INFO   ] [APP] closing event loop
+2023-03-18 11:10:49,505 [INFO   ] [CONNECTION] fd=908 connection lost
+2023-03-18 11:10:49,505 [ERROR  ] [asyncio] Exception in callback _SelectorSocketTransport._call_connection_lost(None)
+handle: <Handle _SelectorSocketTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 976, in _call_connection_lost
+    super()._call_connection_lost(exc)
+  File "C:\Users\henry\AppData\Local\Programs\Python\Python310\lib\asyncio\selector_events.py", line 734, in _call_connection_lost
+    self._protocol.connection_lost(exc)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\base_auto_trader.py", line 59, in connection_lost
+    Subscription.close(self)
+  File "C:\Users\henry\Desktop\ReadyTraderGo\ReadyTraderGo\ready_trader_go\messages.py", line 186, in close
+    self._receiver_transport.close()
+AttributeError: 'NoneType' object has no attribute 'close'
