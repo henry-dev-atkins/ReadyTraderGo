@@ -1,4 +1,4 @@
-# py rtg.py run autotrader_DataStore.py ADV_arb.py ADV_default.py ADV_stolen.py ADV_Jamie.py ADV_stolen2.py Henry.py ADV_regression.py
+# py rtg.py run Henry.py Weiner.py ADV_reg.py ADV_default.py ADV_arb.py ADV_7730.py
 # Copyright 2021 Optiver Asia Pacific Pty. Ltd.
 #
 # This file is part of Ready Trader Go.

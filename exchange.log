@@ -10350,3 +10350,159 @@ FileNotFoundError: [Errno 2] No such file or directory: 'data/market_data5.csv'
 2023-03-18 11:10:11,268 [INFO   ] [COMPETITOR] Unhedged lots timer expired for Arb_Trader at etf=-101 fut=81 rel=-20
 2023-03-18 11:10:19,257 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=203.016000 client_order_id=942 message='order rejected: in cross with an existing order'
 2023-03-18 11:10:19,258 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=203.016000 client_order_id=943 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:43,951 [INFO   ] [APP] exchange started with arguments={rtg.py, run, Henry.py, Weiner.py, ADV_reg.py, ADV_default.py, ADV_arb.py, ADV_7730.py}
+2023-03-18 11:10:43,952 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data1.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Data_Trader":"secretZERO","TraderTwo":"secret","Default_Trader":"secret2","Arb_Trader":"secret4","Jamie_Trader":"secret5","Regression_Trader":"secret6","Wiener_Trader":"secret7","Henry_Trader":"secretH","7730_Trader":"secret4","7731_Trader":"secret4"}}
+2023-03-18 11:10:43,952 [INFO   ] [CONTROLLER] starting the match
+2023-03-18 11:10:43,952 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-18 11:10:43,953 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-18 11:10:43,954 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-18 11:10:43,954 [INFO   ] [INFORMATION] information channel established
+2023-03-18 11:10:43,974 [INFO   ] [CONNECTION] fd=892 connection established: peer=127.0.0.1:64833
+2023-03-18 11:10:43,975 [INFO   ] [EXECUTION] fd=892 'Henry_Trader' is ready!
+2023-03-18 11:10:43,981 [INFO   ] [CONNECTION] fd=956 connection established: peer=127.0.0.1:64835
+2023-03-18 11:10:43,981 [INFO   ] [CONNECTION] fd=960 connection established: peer=127.0.0.1:64834
+2023-03-18 11:10:43,982 [INFO   ] [EXECUTION] fd=960 'Default_Trader' is ready!
+2023-03-18 11:10:43,982 [INFO   ] [EXECUTION] fd=956 'Regression_Trader' is ready!
+2023-03-18 11:10:43,983 [INFO   ] [CONNECTION] fd=964 connection established: peer=127.0.0.1:64836
+2023-03-18 11:10:43,984 [INFO   ] [EXECUTION] fd=964 'Arb_Trader' is ready!
+2023-03-18 11:10:44,812 [INFO   ] [CONNECTION] fd=968 connection established: peer=127.0.0.1:64837
+2023-03-18 11:10:45,616 [INFO   ] [CONNECTION] fd=344 connection established: peer=127.0.0.1:64838
+2023-03-18 11:10:45,616 [INFO   ] [EXECUTION] fd=344 'Wiener_Trader' is ready!
+2023-03-18 11:10:47,179 [INFO   ] [CONNECTION] fd=908 connection established: peer=127.0.0.1:64839
+2023-03-18 11:10:47,180 [INFO   ] [EXECUTION] fd=908 '7730_Trader' is ready!
+2023-03-18 11:10:48,989 [INFO   ] [CONTROLLER] market open
+2023-03-18 11:10:49,500 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=0.516000 client_order_id=16 message='order rejected: active order count limit breached'
+2023-03-18 11:10:49,500 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=0.516000 client_order_id=17 message='order rejected: active order count limit breached'
+2023-03-18 11:10:49,500 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=0.516000 client_order_id=18 message='order rejected: active order count limit breached'
+2023-03-18 11:10:49,506 [INFO   ] [CONNECTION] fd=344 connection lost
+2023-03-18 11:10:49,507 [WARNING] [EXECUTION] fd=344 lost connection to auto-trader:
+2023-03-18 11:10:50,187 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=1.203000 client_order_id=7 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:50,529 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=1.547000 client_order_id=8 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:50,796 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=1.813000 client_order_id=9 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:50,956 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=1.969000 client_order_id=10 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:51,193 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=2.203000 client_order_id=12 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:52,490 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=3.500000 client_order_id=20 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:55,695 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=6.703000 client_order_id=42 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:56,263 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.281000 client_order_id=47 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:56,466 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.484000 client_order_id=48 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:56,708 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.719000 client_order_id=50 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:56,958 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=7.969000 client_order_id=52 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:57,241 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=8.250000 client_order_id=55 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:57,460 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=8.469000 client_order_id=56 message='order rejected: in cross with an existing order'
+2023-03-18 11:10:57,776 [INFO   ] [COMPETITOR] 'Default_Trader' sent error message: time=8.781000 client_order_id=58 message='order rejected: in cross with an existing order'
+2023-03-18 11:11:37,977 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=48.984000 client_order_id=167 message='order rejected: in cross with an existing order'
+2023-03-18 11:11:44,505 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=55.516000 client_order_id=286 message='order rejected: in cross with an existing order'
+2023-03-18 11:11:44,713 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=55.719000 client_order_id=291 message='order rejected: in cross with an existing order'
+2023-03-18 11:11:44,956 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=55.969000 client_order_id=294 message='order rejected: in cross with an existing order'
+2023-03-18 11:11:45,250 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=56.266000 client_order_id=296 message='order rejected: in cross with an existing order'
+2023-03-18 11:11:45,453 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=56.469000 client_order_id=297 message='order rejected: in cross with an existing order'
+2023-03-18 11:11:49,747 [INFO   ] [COMPETITOR] Unhedged lots timer expired for Regression_Trader at etf=-20 fut=-20 rel=-40
+2023-03-18 11:11:49,749 [INFO   ] [COMPETITOR] 'Regression_Trader' sent error message: time=60.766000 client_order_id=0 message='held unhedged lots for longer than the time limit'
+2023-03-18 11:11:49,749 [INFO   ] [COMPETITOR] 'Regression_Trader' closing execution channel at time=60.766000
+2023-03-18 11:11:49,749 [INFO   ] [CONNECTION] fd=956 connection lost
+2023-03-18 11:12:17,772 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=88.781000 client_order_id=285 message='order rejected: in cross with an existing order'
+2023-03-18 11:12:57,028 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=128.047000 client_order_id=600 message='order rejected: in cross with an existing order'
+2023-03-18 11:12:57,506 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=128.516000 client_order_id=606 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:29,742 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=160.750000 client_order_id=832 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:29,743 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=160.750000 client_order_id=833 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:37,720 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=168.734000 client_order_id=871 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:37,720 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=168.734000 client_order_id=872 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:38,033 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=169.047000 client_order_id=572 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:38,033 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=169.047000 client_order_id=873 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:38,033 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=169.047000 client_order_id=874 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:38,257 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=169.266000 client_order_id=876 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:38,257 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=169.266000 client_order_id=877 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:38,257 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=169.266000 client_order_id=878 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:38,258 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=169.266000 client_order_id=576 message='order rejected: in cross with an existing order'
+2023-03-18 11:13:47,983 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=179.000000 client_order_id=623 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,223 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.234000 client_order_id=980 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,223 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.234000 client_order_id=981 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,223 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.234000 client_order_id=982 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,223 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.234000 client_order_id=983 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,510 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.516000 client_order_id=984 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,510 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.516000 client_order_id=985 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,510 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.516000 client_order_id=986 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,510 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.516000 client_order_id=987 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,789 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.797000 client_order_id=989 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,789 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.797000 client_order_id=990 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,789 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.797000 client_order_id=991 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,962 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.969000 client_order_id=994 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:00,962 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=191.969000 client_order_id=995 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:33,804 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=224.813000 client_order_id=1216 message='order rejected: in cross with an existing order'
+2023-03-18 11:14:33,989 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=225.000000 client_order_id=1217 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:06,564 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=317.578000 client_order_id=1700 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:06,703 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=317.719000 client_order_id=1704 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:06,997 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=318.016000 client_order_id=1708 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:07,298 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=318.313000 client_order_id=1711 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:07,473 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=318.484000 client_order_id=1714 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:07,474 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=318.484000 client_order_id=1715 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:07,797 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=318.813000 client_order_id=1720 message='order rejected: in cross with an existing order'
+2023-03-18 11:16:07,797 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=318.813000 client_order_id=1721 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,008 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.016000 client_order_id=2108 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,259 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.266000 client_order_id=2110 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,259 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.266000 client_order_id=2111 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,522 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.531000 client_order_id=2113 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,523 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.531000 client_order_id=2114 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,523 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.531000 client_order_id=2115 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,790 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.797000 client_order_id=2117 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,791 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.797000 client_order_id=2118 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,791 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.797000 client_order_id=2119 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,978 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.984000 client_order_id=2120 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,979 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.984000 client_order_id=2121 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:26,979 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=397.984000 client_order_id=2122 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:27,213 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=398.219000 client_order_id=2123 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:27,213 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=398.219000 client_order_id=2124 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:27,214 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=398.234000 client_order_id=2125 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:51,214 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=422.234000 client_order_id=2158 message='order rejected: in cross with an existing order'
+2023-03-18 11:17:51,467 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=422.484000 client_order_id=2161 message='order rejected: in cross with an existing order'
+2023-03-18 11:18:06,254 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=437.266000 client_order_id=1563 message='order rejected: in cross with an existing order'
+2023-03-18 11:18:32,515 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=463.531000 client_order_id=2222 message='order rejected: in cross with an existing order'
+2023-03-18 11:18:50,465 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=481.484000 client_order_id=1720 message='order rejected: in cross with an existing order'
+2023-03-18 11:19:46,754 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=537.766000 client_order_id=2553 message='order rejected: in cross with an existing order'
+2023-03-18 11:19:46,755 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=537.766000 client_order_id=2554 message='order rejected: in cross with an existing order'
+2023-03-18 11:19:50,628 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=541.641000 client_order_id=2580 message='order rejected: in cross with an existing order'
+2023-03-18 11:19:50,629 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=541.641000 client_order_id=2581 message='order rejected: in cross with an existing order'
+2023-03-18 11:20:47,271 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=598.281000 client_order_id=2170 message='order rejected: in cross with an existing order'
+2023-03-18 11:20:48,685 [INFO   ] [COMPETITOR] 'Arb_Trader' sent error message: time=599.701576 client_order_id=2176 message='ETF position limit breached'
+2023-03-18 11:20:48,686 [INFO   ] [COMPETITOR] 'Arb_Trader' closing execution channel at time=599.701576
+2023-03-18 11:20:48,689 [INFO   ] [CONNECTION] fd=964 connection lost
+2023-03-18 11:21:14,785 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=625.797000 client_order_id=2908 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:15,004 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=626.016000 client_order_id=2911 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:15,213 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=626.219000 client_order_id=2915 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:15,509 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=626.516000 client_order_id=2918 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:15,510 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=626.516000 client_order_id=2919 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:15,742 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=626.750000 client_order_id=2921 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:38,718 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=649.734000 client_order_id=3049 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:38,956 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=649.969000 client_order_id=3052 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:39,704 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=650.719000 client_order_id=3057 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:39,704 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=650.719000 client_order_id=3058 message='order rejected: in cross with an existing order'
+2023-03-18 11:21:48,685 [INFO   ] [COMPETITOR] Unhedged lots timer expired for Arb_Trader at etf=-107 fut=95 rel=-12
+2023-03-18 11:22:04,000 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.016000 client_order_id=3212 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,001 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.016000 client_order_id=3213 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,232 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.250000 client_order_id=3215 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,232 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.250000 client_order_id=3216 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,504 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.516000 client_order_id=3218 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,504 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.516000 client_order_id=3219 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,725 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.734000 client_order_id=3221 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,726 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.734000 client_order_id=3222 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:04,944 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=675.953000 client_order_id=3224 message='order rejected: in cross with an existing order'
+2023-03-18 11:22:05,227 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=676.234000 client_order_id=3226 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:05,026 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=796.031000 client_order_id=3775 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:05,224 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=796.234000 client_order_id=3778 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:05,486 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=796.500000 client_order_id=3780 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:05,486 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=796.500000 client_order_id=3781 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:05,784 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=796.797000 client_order_id=3784 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:05,785 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=796.797000 client_order_id=3785 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:05,963 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=796.969000 client_order_id=3788 message='order rejected: in cross with an existing order'
+2023-03-18 11:24:06,194 [INFO   ] [COMPETITOR] 'Henry_Trader' sent error message: time=797.203000 client_order_id=3792 message='order rejected: in cross with an existing order'
+2023-03-18 11:25:45,441 [INFO   ] [MARKET_EVENTS] reader thread complete after processing 461484 market events
+2023-03-18 11:25:49,024 [INFO   ] [TIMER] shutting down the match: time=900.031000 reason='match complete'
+2023-03-18 11:25:49,024 [INFO   ] [COMPETITOR] 'Henry_Trader' closing execution channel at time=900.031000
+2023-03-18 11:25:49,024 [INFO   ] [COMPETITOR] 'Default_Trader' closing execution channel at time=900.031000
+2023-03-18 11:25:49,024 [INFO   ] [COMPETITOR] '7730_Trader' closing execution channel at time=900.031000
+2023-03-18 11:25:49,024 [INFO   ] [CONNECTION] fd=892 connection lost
+2023-03-18 11:25:49,024 [INFO   ] [CONNECTION] fd=960 connection lost
+2023-03-18 11:25:49,024 [INFO   ] [CONNECTION] fd=908 connection lost
+2023-03-18 11:25:49,024 [INFO   ] [MATCH_EVENTS] writer thread complete after processing 490235 match events
+2023-03-18 11:25:49,025 [INFO   ] [SCORE_BOARD] writer thread complete after processing 21606 score records
+2023-03-18 11:25:49,025 [INFO   ] [APP] closing event loop
