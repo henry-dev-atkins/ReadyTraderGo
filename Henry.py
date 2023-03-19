@@ -237,27 +237,30 @@ class AutoTrader(BaseAutoTrader):
                 pass
 
     def testHedgeNeeded(self):
-        """NOT 100% CORRECT YET
-        Need to add point at which self.position changed signs, thats what the time measurement is from.
         """
-        #We wait as long as possible before headging, saves us costs and can make us directionally trading too. Saw profit improve.
+        NOT 100% CORRECT YET
+        Need to add point at which self.position changed signs, thats what the time measurement is from.
+        We wait as long as possible before headging, saves us costs and can make us directionally trading too. Saw profit improve.
+        """
+       
         now = self.event_loop.time()
+        print("Checking Hedge Time: ", np.round(now - self.lastHedgeCheckTime), " >= ", LATE_HEDGE_TIME)
         if now - self.lastHedgeCheckTime >= LATE_HEDGE_TIME:
             self.lastHedgeCheckTime = now
             targetHedgePosition = -1 * self.position
-            sizeDiff = abs(targetHedgePosition - self.HedgePosition)
-            #print(sizeDiff)
-            if sizeDiff >= MAX_UNHEDGED_LOTS:
-                #print(self.position, self.HedgePosition)
-                if self.position > self.HedgePosition:
+            sizeDiff = targetHedgePosition - self.HedgePosition
+            print("Size Diff: ", sizeDiff)
+            if abs(sizeDiff) >= MAX_UNHEDGED_LOTS:
+                print("pos, hedgePos, target; ", self.position, self.HedgePosition, targetHedgePosition)
+                if sizeDiff < 0:
                     id = next(self.order_ids)
-                    self.send_hedge_order(id, Side.ASK, MIN_BID_NEAREST_TICK, sizeDiff)
+                    self.send_hedge_order(id, Side.ASK, MIN_BID_NEAREST_TICK, abs(sizeDiff))
                     self.messeges_in_s += 1
                     self.HEDGE_asks.add(id)
                     #print(self.position, self.HedgePosition, id, Side.ASK, MIN_BID_NEAREST_TICK, sizeDiff)
-                if self.position < self.HedgePosition:
+                if sizeDiff > 0:
                     id = next(self.order_ids)
-                    self.send_hedge_order(id, Side.BID, MAX_ASK_NEAREST_TICK, sizeDiff)
+                    self.send_hedge_order(id, Side.BID, MAX_ASK_NEAREST_TICK, abs(sizeDiff))
                     self.messeges_in_s += 1
                     self.HEDGE_bids.add(id)
                     #print(self.position, self.HedgePosition, id, Side.BID, MAX_ASK_NEAREST_TICK, sizeDiff)
@@ -267,28 +270,34 @@ class AutoTrader(BaseAutoTrader):
         self.logger.info("received order filled for order %d with price %d and volume %d", client_order_id,price, volume)
         self.checkOneSecond()
         if client_order_id in self.bids:
+            if np.sign(self.position + volume) != np.sign(self.position):
+                self.lastHedgeCheckTime = self.event_loop.time()
+            self.loop.call_at(time.time() + LATE_HEDGE_TIME, self.testHedgeNeeded())
             self.position += volume
             """Hashed parts are where I added the delayed hedging. Remove #'s and the - loop.call_a ... estHedgeNeeded()) - to change back to immediate hedgeing."""
             #id = next(self.order_ids)
             #self.send_hedge_order(id, Side.ASK, MIN_BID_NEAREST_TICK, volume)
             #self.messeges_in_s += 1
             #self.HEDGE_asks.add(id)
-            if abs(self.position - self.HedgePosition) > MAX_UNHEDGED_LOTS:
-                self.loop.call_at(time.time() + LATE_HEDGE_TIME, self.testHedgeNeeded())
+            #if abs(self.position - self.HedgePosition) > MAX_UNHEDGED_LOTS:
+            #    self.loop.call_at(time.time() + LATE_HEDGE_TIME, self.testHedgeNeeded())
             if self.etf_best_ask > price:#Search for arb opportunity
                 self.placeSell(self.etf_best_ask + TICK_SIZE_IN_CENTS, volume)
 
         elif client_order_id in self.asks:
+            if np.sign(self.position - volume) != np.sign(self.position):
+                self.lastHedgeCheckTime = self.event_loop.time()
+            self.loop.call_at(time.time() + LATE_HEDGE_TIME, self.testHedgeNeeded())
             self.position -= volume
             #id = next(self.order_ids)
             #self.send_hedge_order(id, Side.BID, MAX_ASK_NEAREST_TICK, volume)
             #self.messeges_in_s += 1
             #self.HEDGE_bids.add(id)
-            if abs(self.position - self.HedgePosition) < -MAX_UNHEDGED_LOTS:
-                self.loop.call_at(time.time() + LATE_HEDGE_TIME, self.testHedgeNeeded())
+            #if abs(self.position - self.HedgePosition) < -MAX_UNHEDGED_LOTS:
+            #    self.loop.call_at(time.time() + LATE_HEDGE_TIME, self.testHedgeNeeded())
             if self.etf_best_bid < price:#Search for arb opportunity
                 self.placeBuy(self.etf_best_bid - TICK_SIZE_IN_CENTS, volume)
-
+        if self.position == 0: self.lastHedgeCheckTime = self.event_loop.time()
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,fees: int) -> None:
         self.logger.info("received order status for order %d with fill volume %d remaining %d and fees %d",client_order_id, fill_volume, remaining_volume, fees)
         self.checkOneSecond()
