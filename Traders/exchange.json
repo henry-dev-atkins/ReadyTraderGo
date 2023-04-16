@@ -1,11 +1,11 @@
 {
   "Engine": {
-    "MarketDataFile": "data/market_data3.csv",
+    "MarketDataFile": "data/market_data5.csv",
     "MarketEventInterval": 0.05,
     "MarketOpenDelay": 5.0,
     "MatchEventsFile": "match_events.csv",
     "ScoreBoardFile": "score_board.csv",
-    "Speed": 1.0,
+    "Speed": 2.0,
     "TickInterval": 0.25
   },
   
@@ -46,6 +46,7 @@
     "Wiener_Trader":"secret7",
     "Henry_Trader":"secretH",
     "7730_Trader":"secret4",
-    "7731_Trader":"secret4"
+    "7731_Trader":"secret4",
+    "TraderKevin":"Kevin"
   }
 }
